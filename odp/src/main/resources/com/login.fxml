@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
+   <children>
+      <ImageView fitHeight="154.0" fitWidth="211.0" layoutX="34.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/odeplan_logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutY="446.0" mnemonicParsing="false" onAction="#startSession" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Iniciar sesión" textFill="#e1e5da">
+         <font>
+            <Font name="Cantarell Bold" size="22.0" />
+         </font>
+      </Button>
+      <Label fx:id="user_label" layoutY="227.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="USUARIO" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" />
+         </padding>
+      </Label>
+
+      <Label fx:id="passwd_label" layoutY="291.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Clave de acceso" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <padding>
+            <Insets left="12.0" />
+         </padding>
+      </Label>
+
+      <TextField fx:id="user" alignment="CENTER" layoutY="227.0" onAction="#check" onKeyPressed="#hideUserLabel" onKeyReleased="#check" onKeyTyped="#check" onMouseClicked="#hideUserLabel" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+         <font>
+            <Font name="Cantarell Bold" size="18.0" />
+         </font>
+      </TextField>
+
+      <PasswordField fx:id="passwd" alignment="CENTER" layoutY="291.0" onAction="#check" onKeyPressed="#hidePwLabel" onKeyReleased="#check" onKeyTyped="#check" onMouseClicked="#hidePwLabel" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: transparent; -fx-text-inner-color: white;">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+      </PasswordField>
+
+   </children>
+</Pane>

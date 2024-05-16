@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
+   <children>
+      <Label fx:id="user_label" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="USUARIO" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/odeplan_logo_small.png" />
+         </image>
+      </ImageView>
+      <Button layoutY="534.0" mnemonicParsing="false" onAction="#startSession" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#e1e5da">
+         <font>
+            <Font name="Cantarell Bold" size="22.0" />
+         </font>
+      </Button>
+      <TabPane layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="467.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="SIGUIENTES">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="56.0" layoutY="33.0" prefHeight="342.0" prefWidth="488.0">
+                           <columns>
+                              <TableColumn prefWidth="59.0" text="tiempo" />
+                              <TableColumn prefWidth="34.0" text="uds" />
+                              <TableColumn prefWidth="58.0" text="Pedido" />
+                              <TableColumn prefWidth="69.0" text="Mod" />
+                              <TableColumn prefWidth="98.0" text="Tipo" />
+                              <TableColumn minWidth="7.0" prefWidth="97.0" text="Tarea" />
+                              <TableColumn prefWidth="72.0" text="Fecha" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Abrir" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="HOY">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="56.0" layoutY="33.0" prefHeight="342.0" prefWidth="488.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="tiempo" />
+                              <TableColumn prefWidth="75.0" text="uds" />
+                              <TableColumn prefWidth="75.0" text="Pedido" />
+                              <TableColumn prefWidth="75.0" text="Mod" />
+                              <TableColumn prefWidth="75.0" text="Tipo" />
+                              <TableColumn prefWidth="113.0" text="Tarea" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Abrir" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="REVISION">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="56.0" layoutY="33.0" prefHeight="342.0" prefWidth="488.0">
+                          <columns>
+                              <TableColumn prefWidth="75.0" text="tiempo" />
+                              <TableColumn prefWidth="75.0" text="uds" />
+                            <TableColumn prefWidth="75.0" text="Pedido" />
+                            <TableColumn prefWidth="75.0" text="Mod" />
+                              <TableColumn prefWidth="75.0" text="Tipo" />
+                              <TableColumn prefWidth="113.0" text="Tarea" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Revisar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+
+   </children>
+</Pane>

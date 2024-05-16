@@ -1,5 +1,5 @@
 # OnDemandPlanner 
-## lanificador para trabajos a demanda para talleres y fábricas.
+## Planificador para trabajos a demanda para talleres y fábricas.
 
 ### El Problema
 
@@ -9,9 +9,9 @@ Partimos de la base de la estructura típica de un taller, o de una empresa que 
 
 ##### Que no pretende el sistema
 
-Esta versión del software no pretende gestional agendas de perosonal no ligado directamente a la prodccion, como son administrativos, prevención de riesgos, y aunque los que pretende es facilitar el trabajo de la oficinatécnica, tampoco planifica su tiempo.
+Esta versión del software no pretende gestionar agendas de personal no ligado directamente a la producción, como son administrativos, prevención de riesgos, y aunque los que pretende es facilitar el trabajo de la oficina técnica, tampoco planifica su tiempo.
 
-Esta version del software no tiene en cuenta el uso del material sobre el pedido, por ende tampoco su rentabilidad económica. Pero todo se andará.
+Esta versión del software no tiene en cuenta el uso del material sobre el pedido, por ende tampoco su rentabilidad económica. Pero todo se andará.
 
 Tampoco tiene en cuenta el control de materia prima ni el control de material elaborado o semi-elaborado, pero todo se andará.
 
@@ -23,7 +23,7 @@ Ejemplos de talleres o fábricas que pueden implementar este modelo serían:
 - Una empresa de artes gráficas
 - Un taller de cerrajería
 - Un taller de reparación de vehículos
-- Una carpinteria
+- Una carpintería
 - Una fábrica de muebles a demanda
 - Un taller de impresión digital
 - [...]
@@ -49,19 +49,19 @@ En este modelo, un **tipo de producto** recoge todos aquellos productos que sigu
 *En esta versión del software vamos a obviar el consumo de materia prima, pero lo dejamos preparado para su ampliación.
 
 **Un producto** de este tipo seria *"una mesa de melamina blanca de 120x60 cm"*
-**Un pedido** podria incluir *cinco mesas de melamina blanca 120x60 y una de 200x60*, este pedido tendria un total de 6 productos, todos del mismo **tipo** pero de diferente **modelo**, tambien podria incluir productos de otros tipos, durante el proceso de **agendación** veremos la compatibilidad de los mismos y si merece la pena separarlos.
+**Un pedido** podría incluir *cinco mesas de melamina blanca 120x60 y una de 200x60*, este pedido tendria un total de 6 productos, todos del mismo **tipo** pero de diferente **modelo**, también podría incluir productos de otros tipos, durante el proceso de **agendación** veremos la compatibilidad de los mismos y si merece la pena separarlos.
 
 ### El proceso
 El proceso es una característica del tipo de producto. EL proceso define **tareas** donde se pueden usar **materiales** o **máquinas**, pero siempre necesitan un operario **responsable** y opcionalmente otros operarios **implicados**
 
 
-En el ejemplo del tipo **Mesa de melamina blanca** el proceso tendria las siguientes **tareas**:
-- **Tarea** *corte*,  **responsable** *Vicente* con **capacidad** de realizar este tipo de tarea y adiestramieto en **maquina** *escuadradora*, en esta tarea se consumirá *tablero de melamina blanca* del almacen,
-- **Tarea** *corte cnc* del embalaje **responsable** *Luis* , se consumira *cartón* y *espuma de poliuretano* y se usará la **maquina** *Zünd*
+En el ejemplo del tipo **Mesa de melamina blanca** el proceso tendría las siguientes **tareas**:
+- **Tarea** *corte*,  **responsable** *Vicente* con **capacidad** de realizar este tipo de tarea y adiestramiento en **maquina** *escuadradora*, en esta tarea se consumirá *tablero de melamina blanca* del almacén,
+- **Tarea** *corte cnc* del embalaje **responsable** *Luis* , se consumirá *cartón* y *espuma de poliuretano* y se usará la **maquina** *Zünd*
 - **Tarea** *canteado*, que en el momento de programar, la podrá hacer tanto Vicente como Luis, pues los dos tienen **capacidad** y no se necesita maquina para ello.
-- **Tarea** *embalaje* , esuna tarea de baja ualificacion que todos los operarios tienen **capacidad** se elige por defecto el de menor coste.
+- **Tarea** *embalaje* , es una tarea de baja cualificación que todos los operarios tienen **capacidad** se elige por defecto el de menor coste.
 
-De estas tareas , las dos de corte se pueden iniciar simultáneamente pues no se necesita el producto para hacerla, despues el canteado y finalmente el embalaje.
+De estas tareas , las dos de corte se pueden iniciar simultáneamente pues no se necesita el producto para hacerla, después el canteado y finalmente el embalaje.
 
 
 
