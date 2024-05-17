@@ -31,14 +31,14 @@
             <Image url="@images/odeplan_logo_small.png" />
          </image>
       </ImageView>
-      <Button layoutY="534.0" mnemonicParsing="false" onAction="#startSession" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#e1e5da">
+      <Button layoutY="534.0" mnemonicParsing="false" onAction="#close" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#e1e5da">
          <font>
             <Font name="Cantarell Bold" size="22.0" />
          </font>
       </Button>
-      <TabPane layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="467.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabs" layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="467.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="SIGUIENTES">
+          <Tab closable="false" text="SIGUIENTES">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -50,15 +50,15 @@
                               <TableColumn prefWidth="69.0" text="Mod" />
                               <TableColumn prefWidth="98.0" text="Tipo" />
                               <TableColumn minWidth="7.0" prefWidth="97.0" text="Tarea" />
-                              <TableColumn prefWidth="72.0" text="Fecha" />
+                              <TableColumn prefWidth="72.0" style="-fx-text-color: blue;" text="Fecha" />
                            </columns>
                         </TableView>
-                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Abrir" />
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" onAction="#openFutureTask" prefHeight="26.0" prefWidth="84.0" text="Abrir" textFill="#7c7c7c" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="HOY">
+            <Tab closable="false" text="HOY">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -67,17 +67,16 @@
                               <TableColumn prefWidth="75.0" text="tiempo" />
                               <TableColumn prefWidth="75.0" text="uds" />
                               <TableColumn prefWidth="75.0" text="Pedido" />
-                              <TableColumn prefWidth="75.0" text="Mod" />
-                              <TableColumn prefWidth="75.0" text="Tipo" />
-                              <TableColumn prefWidth="113.0" text="Tarea" />
+                              <TableColumn prefWidth="140.0" text="Mod" />
+                              <TableColumn prefWidth="122.0" text="Tarea" />
                            </columns>
                         </TableView>
-                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Abrir" />
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" onAction="#openTask" prefHeight="26.0" prefWidth="84.0" text="Abrir" textFill="#7c7c7c" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="REVISION">
+          <Tab closable="false" text="REVISION">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -85,13 +84,12 @@
                           <columns>
                               <TableColumn prefWidth="75.0" text="tiempo" />
                               <TableColumn prefWidth="75.0" text="uds" />
-                            <TableColumn prefWidth="75.0" text="Pedido" />
-                            <TableColumn prefWidth="75.0" text="Mod" />
-                              <TableColumn prefWidth="75.0" text="Tipo" />
-                              <TableColumn prefWidth="113.0" text="Tarea" />
+                            <TableColumn prefWidth="73.0" text="Pedido" />
+                            <TableColumn prefWidth="140.0" text="Mod" />
+                              <TableColumn prefWidth="124.0" text="Tarea" />
                           </columns>
                         </TableView>
-                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Revisar" />
+                        <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" onAction="#reviewTask" prefHeight="26.0" prefWidth="84.0" text="Revisar" textFill="#a4a4a4" />
                      </children>
                   </AnchorPane>
             </content>

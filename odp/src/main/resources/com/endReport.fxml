@@ -12,7 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
    <children>
-      <Label fx:id="task_label" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Reporte: Corte - Mesa Medina - 100 ud" textFill="WHITE">
+      <Label fx:id="taskLabel" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Reporte: Corte - Mesa Medina - 100 ud" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="20.0" />
          </font>
@@ -28,7 +28,7 @@
             <Image url="@images/odeplan_logo_small.png" />
          </image>
       </ImageView>
-      <Label layoutY="100.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text=" sobre calidad" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutY="84.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text=" sobre calidad" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -39,18 +39,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="prepTimeLabel" layoutX="145.0" layoutY="450.0" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="min /min" textFill="#7c7c7c">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutY="450.0" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="preparacion" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutY="434.0" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="preparacion" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="17.0" />
          </font>
@@ -61,62 +50,89 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button layoutX="372.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text=" Cerrar Tarea" textFill="#e1e5da">
+      <ToggleButton fx:id="qualityToggle" layoutX="432.0" layoutY="84.0" mnemonicParsing="false" onAction="#changeQualityCal" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" text="Aceptable" textFill="#3f7248" />
+      <TextArea fx:id="qualityText" layoutY="136.0" prefHeight="100.0" prefWidth="600.0" promptText="Comentario obligatorio,  por ejemplo contesta a: ¿Se ha usado más material del esperado? ¿la calidad es la habitual? ¿Has tenido problemas con la maquina,  los archivos, los materiales  de calidad? etc." style="-fx-background-color: #E5E1DA;" />
+      <Label layoutY="236.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text=" sobre el tiempo" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <ToggleButton fx:id="timetToggle" layoutX="432.0" layoutY="236.0" mnemonicParsing="false" onAction="#changeTimeCal" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" text="Suficiente" textFill="#3f7248" />
+      <TextArea fx:id="timeText" layoutY="288.0" prefHeight="94.0" prefWidth="600.0" promptText="Comentario obligatorio, ¿Estaba mal estimado el tiempo? ¿el de la preparación o el de la pieza? ¿Has tenido problemas con los ficheros, maquinas o materiales ? indicalos. ¿Haya agun retraso acumulado por procesos anteriores?" style="-fx-background-color: #E5E1DA;" />
+      <Label fx:id="nextTaskWorkerLabel" layoutY="534.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Envarna Vales Alegria" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="298.0" layoutY="434.0" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="por unidad" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="17.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label layoutY="382.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 0;" text=" tiempos estimados / tiempos obtenidos" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label fx:id="prepTimeLabel" layoutX="146.0" layoutY="434.0" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="min/min" textFill="#7c7c7c">
+         <font>
+            <Font name="Cantarell Regular" size="17.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label fx:id="pieceTimeLabel" layoutX="447.0" layoutY="434.0" prefHeight="52.0" prefWidth="153.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="min/min" textFill="#7c7c7c">
+         <font>
+            <Font name="Cantarell Regular" size="17.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Button fx:id="returnButton" layoutX="317.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="130.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="vuelve" textFill="#7c7c7c">
          <font>
             <Font name="Cantarell Bold" size="22.0" />
          </font>
       </Button>
-      <ToggleButton layoutX="432.0" layoutY="100.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" text="Aceptable" textFill="#3f7248" />
-      <TextArea layoutY="152.0" prefHeight="100.0" prefWidth="600.0" promptText="Comentario obligatorio,  por ejemplo contesta a: ¿Se ha usado más material del esperado? ¿la calidad es la habitual? ¿Has tenido problemas con la maquina,  los archivos, los materiales  de calidad? etc." style="-fx-background-color: #E5E1DA;" />
-      <Label layoutY="252.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text=" sobre el tiempo" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="endTaskButton" layoutX="470.0" layoutY="534.0" mnemonicParsing="false" onAction="#endTaskButtonPressed" prefHeight="52.0" prefWidth="130.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="finaliza!" textFill="#7c7c7c">
+         <font>
+            <Font name="Cantarell Bold" size="22.0" />
+         </font>
+      </Button>
+      <Label layoutY="486.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 0;" text="finalizado, pasa el material a :" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <ToggleButton layoutX="432.0" layoutY="252.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" text="Suficiente" textFill="#3f7248" />
-      <TextArea layoutY="304.0" prefHeight="94.0" prefWidth="600.0" promptText="Comentario obligatorio, ¿Estaba mal estimado el tiempo? ¿el de la preparación o el de la pieza? ¿Has tenido problemas con los ficheros, maquinas o materiales ? indicalos. ¿Haya agun retraso acumulado por procesos anteriores?" style="-fx-background-color: #E5E1DA;" />
-      <Label fx:id="prepTimeLabel1" layoutX="474.0" layoutY="450.0" prefHeight="52.0" prefWidth="126.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="min/min" textFill="#7c7c7c">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="298.0" layoutY="450.0" prefHeight="52.0" prefWidth="176.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="pieza" textFill="WHITE">
-         <font>
-            <Font name="Cantarell Regular" size="17.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label layoutY="398.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #92C7CF; -fx-background-radius: 0;" text=" tiempos estimados vs tiempos obtenidos" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label layoutY="534.0" prefHeight="52.0" prefWidth="371.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Entrega el material a FRANCISCO" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
          </font>
          <opaqueInsets>
             <Insets />
