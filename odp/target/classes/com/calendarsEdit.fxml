@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
+   <children>
+      <Label alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Edición de calendarios" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/odeplan_logo_small.png" />
+         </image>
+      </ImageView>
+      <Rectangle fill="#aad7d9" height="52.0" layoutY="534.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <Button layoutX="38.0" layoutY="534.0" mnemonicParsing="false" onAction="#goAbilitiesCalendar" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cancelar cambios" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton" layoutX="390.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar y cerrar" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER_RIGHT" layoutY="100.0" prefHeight="52.0" prefWidth="355.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Se aplica a " textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <ChoiceBox fx:id="rankCuoice" layoutX="355.0" layoutY="100.0" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <Label alignment="CENTER_RIGHT" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Lun" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="mondayField" layoutX="60.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="100.0" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Mar" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="tuesdayField" layoutX="160.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="200.0" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Mier" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="wenesdayField" layoutX="260.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Juev" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="thursdayField" layoutX="360.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="400.0" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Vier" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="fridayField" layoutX="460.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="6" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="500.0" layoutY="170.0" prefHeight="52.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Sab" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label fx:id="fridayField1" layoutX="560.0" layoutY="170.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="0" textFill="#7c7c7c">
+         <font>
+            <Font size="12.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutY="240.0" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Desde:" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="12.0" />
+         </padding>
+      </Label>
+      <DatePicker fx:id="sinceSelector" layoutX="160.0" layoutY="240.0" onAction="#changedDates" prefHeight="52.0" prefWidth="140.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <Label fx:id="dayLabel" alignment="CENTER_RIGHT" layoutX="300.0" layoutY="240.0" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Hasta:" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="12.0" />
+         </padding>
+      </Label>
+      <DatePicker fx:id="toSelector" layoutX="460.0" layoutY="240.0" prefHeight="52.0" prefWidth="140.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <Rectangle fill="#aad7d9" height="52.0" layoutY="310.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <Button fx:id="returnButton1" layoutX="40.0" layoutY="310.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aumenta Horas" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="onlyAday" layoutX="52.0" layoutY="117.0" mnemonicParsing="false" onAction="#onlyAdayMode" text="solo un da" textFill="WHITE" />
+      <Button fx:id="returnButton11" layoutX="220.0" layoutY="310.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Establece horas" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton12" layoutX="400.0" layoutY="310.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Reduce horas" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER_RIGHT" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Lun" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="100.0" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Mar" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="200.0" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Mier" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Juev" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="400.0" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Vier" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="500.0" layoutY="433.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Sab" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="1-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="100.0" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="2-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="200.0" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="3-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="4-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="400.0" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="5-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="500.0" layoutY="459.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="6-ene" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+      </Label>
+      <Label layoutX="57.0" layoutY="429.0" prefHeight="60.0" prefWidth="46.0" text="Label" />
+
+   </children>
+</Pane>
