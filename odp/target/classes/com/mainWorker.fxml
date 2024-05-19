@@ -31,7 +31,7 @@
             <Image url="@images/odeplan_logo_small.png" />
          </image>
       </ImageView>
-      <Button layoutY="534.0" mnemonicParsing="false" onAction="#close" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#e1e5da">
+      <Button layoutY="534.0" mnemonicParsing="false" onAction="#close" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#7c7c7c">
          <font>
             <Font name="Cantarell Bold" size="22.0" />
          </font>
@@ -46,11 +46,10 @@
                            <columns>
                               <TableColumn prefWidth="59.0" text="tiempo" />
                               <TableColumn prefWidth="34.0" text="uds" />
-                              <TableColumn prefWidth="58.0" text="Pedido" />
-                              <TableColumn prefWidth="69.0" text="Mod" />
-                              <TableColumn prefWidth="98.0" text="Tipo" />
-                              <TableColumn minWidth="7.0" prefWidth="97.0" text="Tarea" />
-                              <TableColumn prefWidth="72.0" style="-fx-text-color: blue;" text="Fecha" />
+                              <TableColumn prefWidth="78.0" text="Modelo" />
+                              <TableColumn prefWidth="100.0" text="Tipo" />
+                              <TableColumn minWidth="7.0" prefWidth="118.0" text="Tarea" />
+                              <TableColumn prefWidth="98.0" style="-fx-text-color: blue;" text="Fecha" />
                            </columns>
                         </TableView>
                         <Button layoutX="66.0" layoutY="387.0" mnemonicParsing="false" onAction="#openFutureTask" prefHeight="26.0" prefWidth="84.0" text="Abrir" textFill="#7c7c7c" />
@@ -66,8 +65,8 @@
                            <columns>
                               <TableColumn prefWidth="75.0" text="tiempo" />
                               <TableColumn prefWidth="75.0" text="uds" />
-                              <TableColumn prefWidth="75.0" text="Pedido" />
-                              <TableColumn prefWidth="140.0" text="Mod" />
+                              <TableColumn prefWidth="75.0" text="Modelo" />
+                              <TableColumn prefWidth="140.0" text="Tipo" />
                               <TableColumn prefWidth="122.0" text="Tarea" />
                            </columns>
                         </TableView>
@@ -84,7 +83,7 @@
                           <columns>
                               <TableColumn prefWidth="75.0" text="tiempo" />
                               <TableColumn prefWidth="75.0" text="uds" />
-                            <TableColumn prefWidth="73.0" text="Pedido" />
+                            <TableColumn prefWidth="73.0" text="Tipo" />
                             <TableColumn prefWidth="140.0" text="Mod" />
                               <TableColumn prefWidth="124.0" text="Tarea" />
                           </columns>

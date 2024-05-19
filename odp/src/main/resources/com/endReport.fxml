@@ -65,7 +65,7 @@
       </Label>
       <ToggleButton fx:id="timetToggle" layoutX="432.0" layoutY="236.0" mnemonicParsing="false" onAction="#changeTimeCal" prefHeight="52.0" prefWidth="106.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" text="Suficiente" textFill="#3f7248" />
       <TextArea fx:id="timeText" layoutY="288.0" prefHeight="94.0" prefWidth="600.0" promptText="Comentario obligatorio, ¿Estaba mal estimado el tiempo? ¿el de la preparación o el de la pieza? ¿Has tenido problemas con los ficheros, maquinas o materiales ? indicalos. ¿Haya agun retraso acumulado por procesos anteriores?" style="-fx-background-color: #E5E1DA;" />
-      <Label fx:id="nextTaskWorkerLabel" layoutY="534.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Envarna Vales Alegria" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="nextTaskWorkerLabel" layoutY="534.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Encarna" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

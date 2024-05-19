@@ -7,8 +7,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class Accesdb {
@@ -16,7 +18,7 @@ public class Accesdb {
     private static boolean logMode=true;
     private static LogToFile bbddlog = new LogToFile("queries");
 
-    private final static String bdcon = "jdbc:mysql://localhost:3306/CajeroNOVA";
+    private final static String bdcon = "jdbc:mysql://localhost:3306/odplanDDBB";
     //private final static String bdcon = "jdbc:mysql://localhost:33006/CajeroNOVA";
     private final static String us = "root";
     private final static String pw = "root";
@@ -28,13 +30,28 @@ public class Accesdb {
     //public final static String addEmployee="INSERT INTO empleados (nombre, apellidos, telefono, cargo) VALUES ('-', '-', '-', '-', '-');";
     //public static Scanner sc = new Scanner(System.in);
 
+
     public static void setLogOn(){
         Accesdb.logMode=true;
     }
     public static void setLogOff(){
         Accesdb.logMode=false;
     }
-
+    
+    public static Worker trustWorker(String username, String pwd){
+        Worker user= null;
+        username=username.split(" ")[0]; // to prevent sql attack
+        pwd=pwd.split(" ")[0];
+        String[] reg=lligReg("SELECT * FROM worker WHERE userName='"+username+"' AND password='"+pwd+"'");
+        System.out.print("-".repeat(50));
+        for (String string : reg) {
+            System.out.print(string+" - ");
+        }
+        System.out.println("length "+reg.length);
+        if (reg.length==17 && reg[14].equals("YES"));
+        user= new Worker(reg[1],reg[2],reg[3],reg[5],reg[6],reg[9],reg[10],reg[11],reg[12],reg[13],true,reg[16]);
+        return user;
+    }
 
     public static void modifica(String query){
         try {

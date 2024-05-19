@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -13,39 +15,23 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
    <children>
-      <Label fx:id="employeeName" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Francisco Lorin Colorado" textFill="WHITE">
+      <TextField fx:id="nameField" alignment="CENTER_RIGHT" layoutY="17.0" onMouseClicked="#hideUserLabel" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-text-inner-color: white;" text="Francisco Lorin Colorado">
          <font>
-            <Font name="Cantarell Regular" size="20.0" />
+            <Font size="24.0" />
          </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
+      </TextField>
       <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/odeplan_logo_small.png" />
          </image>
       </ImageView>
       <Rectangle fill="#aad7d9" height="52.0" layoutY="534.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Button layoutX="38.0" layoutY="534.0" mnemonicParsing="false" onAction="#toAbilities" prefHeight="52.0" prefWidth="274.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="capacidades" textFill="#7c7c7c">
+      <Rectangle fill="#aad7d9" height="52.0" layoutY="463.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <Button layoutX="38.0" layoutY="534.0" mnemonicParsing="false" onAction="#toAbilities" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="capacidades" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="dateField" layoutX="74.0" layoutY="100.0" prefHeight="52.0" prefWidth="114.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="24-03-2025" textFill="#7c7c7c">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutY="100.0" prefHeight="52.0" prefWidth="74.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="desde:" textFill="WHITE">
          <font>
             <Font size="14.0" />
@@ -68,17 +54,6 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="addresField" layoutX="102.0" layoutY="240.0" prefHeight="52.0" prefWidth="498.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="Calle Maestro Chapi, 52 , 46134 Foios" textFill="#7c7c7c">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutY="240.0" prefHeight="52.0" prefWidth="104.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="direccion" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
@@ -90,33 +65,11 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="employeeFolderLabel" alignment="CENTER" layoutY="389.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="JUSTIFICANTES, EPIS, FORMACION, CONSENTIMIENTOS" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Button fx:id="returnButton" layoutX="498.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#7c7c7c">
+      <Button fx:id="returnButton" layoutX="479.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Cerrar" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="ssField" layoutX="280.0" layoutY="100.0" prefHeight="52.0" prefWidth="125.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="461234567487987" textFill="#7c7c7c">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutX="188.0" layoutY="100.0" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="num ss" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
@@ -128,18 +81,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="dniFIeld" layoutX="495.0" layoutY="100.0" prefHeight="52.0" prefWidth="104.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="461234567487987" textFill="#7c7c7c">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="404.0" layoutY="100.0" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="dni/nie" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="404.0" layoutY="100.0" prefHeight="52.0" prefWidth="85.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="dni/nie" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -161,17 +103,6 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="telnumField" layoutX="58.0" layoutY="310.0" prefHeight="52.0" prefWidth="104.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="600 600 600" textFill="#7c7c7c">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutY="310.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Tel." textFill="WHITE">
          <font>
             <Font size="14.0" />
@@ -183,31 +114,9 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="mailField" layoutX="237.0" layoutY="310.0" prefHeight="52.0" prefWidth="125.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="francis@colorin.com" textFill="#7c7c7c">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutX="162.0" layoutY="310.0" prefHeight="52.0" prefWidth="74.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="mail" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label fx:id="contactField" layoutX="451.0" layoutY="310.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="652652652, maritrini, su mujer" textFill="#7c7c7c">
-         <font>
-            <Font size="10.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -230,6 +139,47 @@
       <ChoiceBox fx:id="sectionChoice" layoutX="103.0" layoutY="170.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
       <ChoiceBox fx:id="rankChoice" layoutX="355.0" layoutY="170.0" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
       <CheckBox fx:id="activeChecbox" layoutX="478.0" layoutY="484.0" mnemonicParsing="false" onAction="#toggleActive" text="desactivado" textFill="WHITE" />
+      <Label alignment="CENTER_RIGHT" layoutY="463.0" prefHeight="52.0" prefWidth="104.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="userName" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="257.0" layoutY="463.0" prefHeight="52.0" prefWidth="74.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="pass" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Button fx:id="applyButton" layoutX="343.0" layoutY="534.0" mnemonicParsing="false" onAction="#applyButtonPressed" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="datePicker" layoutX="75.0" layoutY="100.0" prefHeight="52.0" prefWidth="114.0" />
+      <TextField fx:id="ssField" layoutX="279.0" layoutY="100.0" prefHeight="52.0" prefWidth="125.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="5416144126" />
+      <TextField fx:id="ssDniField" layoutX="486.0" layoutY="100.0" prefHeight="52.0" prefWidth="114.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="5416144126" />
+      <TextField fx:id="adressField" layoutX="104.0" layoutY="240.0" prefHeight="52.0" prefWidth="496.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="Calle amestro chapi 12312  Meliana" />
+      <TextField fx:id="telField" layoutX="52.0" layoutY="310.0" prefHeight="52.0" prefWidth="114.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="5416144126" />
+      <TextField fx:id="mailField" layoutX="237.0" layoutY="310.0" prefHeight="52.0" prefWidth="125.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="uno@dos.tr" />
+      <TextField fx:id="otherField" layoutX="451.0" layoutY="310.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="Amiga 534654" />
+      <Button layoutY="389.0" mnemonicParsing="false" onAction="#chooseWorkerFolder" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="JUSTIFICANTES, EPIS, FORMACION, CONSENTIMIENTOS" textFill="#7c7c7c">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nikField" layoutX="109.0" layoutY="463.0" prefHeight="52.0" prefWidth="114.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="5416144126" />
+      <TextField fx:id="passField" layoutX="347.0" layoutY="463.0" prefHeight="52.0" prefWidth="114.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="5416144126" />
 
    </children>
 </Pane>

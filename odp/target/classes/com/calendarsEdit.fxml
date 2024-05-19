@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -37,72 +38,6 @@
          </font>
       </Button>
       <ChoiceBox fx:id="colectiveChoce" layoutX="38.0" layoutY="169.0" onDragDetected="#checkChoices" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Label fx:id="mondayField" layoutX="60.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="tuesdayField" layoutX="160.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="wenesdayField" layoutX="260.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="thursdayField" layoutX="360.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="8.5" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="fridayField" layoutX="460.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="6" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="fridayField1" layoutX="560.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" text="0" textFill="#7c7c7c">
-         <font>
-            <Font size="12.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="5.0" />
-         </padding>
-      </Label>
       <Rectangle fill="#aad7d9" height="52.0" layoutY="379.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <Label alignment="CENTER_RIGHT" layoutY="309.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Lun" textFill="WHITE">
          <font>
@@ -192,7 +127,7 @@
             <Insets right="4.0" />
          </padding>
       </Label>
-      <Label fx:id="wenesdayDate" alignment="CENTER_RIGHT" layoutX="200.0" layoutY="335.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="3-ene" textFill="WHITE">
+      <Label fx:id="wednesdayDate" alignment="CENTER_RIGHT" layoutX="200.0" layoutY="335.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="3-ene" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -245,12 +180,12 @@
       <Label layoutX="377.0" layoutY="186.0" text="todos/lista empleados" />
       <Label layoutX="46.0" layoutY="396.0" text="modifica horario/reduce horario" />
       <Label layoutX="391.0" layoutY="396.0" text="general/semana/dia" />
-      <Button fx:id="nextButton" layoutX="474.0" layoutY="239.0" mnemonicParsing="false" onAction="#nextWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
+      <Button fx:id="nextWeekButton" layoutX="474.0" layoutY="239.0" mnemonicParsing="false" onAction="#nextWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="nextButton1" layoutX="374.0" layoutY="239.0" mnemonicParsing="false" onAction="#nextWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
+      <Button fx:id="pervWeekbuton" layoutX="374.0" layoutY="239.0" mnemonicParsing="false" onAction="#prevWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -258,6 +193,12 @@
       <Label layoutX="48.0" layoutY="444.0" text="si empleado != todos MODIFICA" />
       <Label layoutX="363.0" layoutY="361.0" text="si general, desaparecen las fechas" />
       <Label layoutX="44.0" layoutY="221.0" text="si empleado != todos desactiva grupos" />
+      <TextField fx:id="mondayField" layoutX="60.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
+      <TextField fx:id="tuesdayField" layoutX="160.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
+      <TextField fx:id="wednesdayField" layoutX="260.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
+      <TextField fx:id="thursdayField" layoutX="360.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
+      <TextField fx:id="fridayField" layoutX="460.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
+      <TextField fx:id="saturdayField" layoutX="561.0" layoutY="309.0" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
 
    </children>
 </Pane>

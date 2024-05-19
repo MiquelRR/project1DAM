@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.model.TrustUser;
+import com.model.Accesdb;
+import com.model.Worker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,8 +49,9 @@ public class loginController {
 
     @FXML
     void startSession(ActionEvent event) throws IOException {
-        if (TrustUser.valideUser(user.getText(), passwd.getText())) {
-            // App.setRoot("operations");
+        Worker usr = Accesdb.trustWorker(user.getText(), passwd.getText());
+        if (usr.getRol().equals("ADMIN")) {
+            App.setRoot("adminMenu");
             System.out.println("hola");
         } else {
             Alert alert = new Alert(AlertType.ERROR); // WARNING, ERROR

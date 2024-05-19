@@ -1,4 +1,4 @@
-package com.example.model;
+package com.model;
 
 import java.io.BufferedWriter;
 import java.io.File;
