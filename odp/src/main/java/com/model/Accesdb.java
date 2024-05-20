@@ -8,8 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -37,7 +40,92 @@ public class Accesdb {
     public static void setLogOff(){
         Accesdb.logMode=false;
     }
-    
+
+    public static LocalDate readLastProcessedDate(){
+        LocalDate lastDate=null;
+        String gettedDate = lligString("SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;");
+        if (gettedDate!=null ) {
+            lastDate=LocalDate.parse(gettedDate);
+        }
+        return lastDate;
+    }
+    public static Map<Integer,String> readRanks(){
+        Map<Integer,String> map = new HashMap<>();
+        List<String[]> lst = lligTaula("rank");
+        for (String[] reg : lst) {
+            map.put(Integer.parseInt(reg[0]),reg[1]);
+        }
+        return map;
+    }
+    public static Map<Integer,WeekTemplate> readWeekTemplates(){
+        Map<Integer,WeekTemplate> readedList = new HashMap<>();
+        List<String[]> lst = lligTaula("weekTemplate");
+        for (String[] reg : lst) {
+            int idWeek= Integer.parseInt(reg[0]);
+            int idWorker =Integer.parseInt(reg[1]);
+            int monday =  Integer.parseInt(reg[2]);
+            int tuesday = Integer.parseInt(reg[3]);
+            int wednesday = Integer.parseInt(reg[4]);
+            int thursday =Integer.parseInt(reg[5]);
+            int friday=Integer.parseInt(reg[6]);
+            int saturday=Integer.parseInt(reg[7]);
+            WeekTemplate wt = new WeekTemplate(monday,tuesday,wednesday,thursday,friday,saturday);           
+            readedList.put(idWorker,wt);
+        }
+        return readedList;
+    }
+    public static List<Worker> readWorkers(){
+        List<Worker> readedList= new ArrayList<>();
+        List<String[]> lst = lligTaula("worker");
+        for (String[] reg : lst) {
+      
+            String idWorker=reg[0];
+            String userName=reg[1];
+            String fullName= reg[2];
+            String passwd=reg[3];
+            String since=reg[4];
+            String ssNum = reg[5];
+            String dni=reg[6];
+            String section=reg[7];
+            String rank=reg[8];
+            String address=reg[9];
+            String telNum=reg[10];
+            String mail=reg[11];
+            String contact=reg[12];
+            String docFolder=reg[13];
+            String active=reg[14];
+            String type=reg[15];
+            String rol=reg[16];
+            Worker wk = new Worker(idWorker,userName,fullName,passwd,since,ssNum,dni,section,rank,address,telNum,mail,contact,docFolder,active,type,rol);           
+            readedList.add(wk);
+        }
+        return readedList;
+    }
+
+    public static void initStaff() {
+        //generate "GENERAL" calendar if does't exist;
+        LocalDate today=LocalDate.now();
+        LocalDate lastDate=today;
+        int nextYear=today.getYear()+1;
+        LocalDate expected = YearMonth.of(nextYear,2).atEndOfMonth();
+        String gettedDate = lligString("SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;");
+        if (gettedDate!=null ) {
+            lastDate=LocalDate.parse(gettedDate);
+        }
+        if (lastDate.isBefore(expected)){
+            lastDate= lastDate.plusDays(1);
+            for( LocalDate date= lastDate; !date.isAfter(expected); date = date.plusDays(1)){
+
+            }            
+        }
+    }
+    public static void writeCalendar(int idWorker,List<Day> calendar){
+        for (Day day : calendar) {
+            agrega("calendar",new Object[] {"idWorker",idWorker,"date",day.getDate().toString(),"workTime",day.getWorkTime()});            
+        }
+        
+    }
+
     public static Worker trustWorker(String username, String pwd){
         Worker user= null;
         username=username.split(" ")[0]; // to prevent sql attack

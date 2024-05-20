@@ -63,6 +63,12 @@ En el ejemplo del tipo **Mesa de melamina blanca** el proceso tendría las sigui
 
 De estas tareas , las dos de corte se pueden iniciar simultáneamente pues no se necesita el producto para hacerla, después el canteado y finalmente el embalaje.
 
+### Trabajador
+Se diferencia entre dos roles, el trabajador de administracion, y el trabajador de taller. Estos roles seleccionan la vosta del programa. El trabajador de administracion puede dar alta y baja de trabajadores, así como secciones y calendarios, dar alta de tipos, modelos y pedidos, planificarlos. Ta
+
+### Calendarios
+El sistema trabaja con calendarios jerarquizados y personalizados, es decir: existe un calendario general, el cual se aplica a toda la compañia si no existe un calendario específico. Existe un calendario de sección, que 
+
 
 
 

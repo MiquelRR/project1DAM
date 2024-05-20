@@ -1,79 +1,46 @@
 package com.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WeekTemplate {
-    public WeekTemplate(int id, String name, int monday, int tuesday, int wednesday, int thursday, int friday,
-            int saturday, int sunday) {
-        this.id = id;
-        this.name = name;
-        this.monday = monday;
-        this.tuesday = tuesday;
-        this.wednesday = wednesday;
-        this.thursday = thursday;
-        this.friday = friday;
-        this.saturday = saturday;
-        this.sunday = sunday;
+
+    public class InvalidDayException extends RuntimeException {
+        public InvalidDayException(String message) {
+            super(message);
+        }
     }
-    int id;
-    String name;
-    int monday;
-    int tuesday;
-    int wednesday;
-    int thursday;
-    int friday;
-    int saturday;
-    int sunday;
-    public int getId() {
-        return id;
+
+    int[] workingMinutes;
+    public static final Map<String, Integer> DAYS_OF_WEEK = new HashMap<>() {
+        {
+            put("monday", 0);
+            put("tuesday", 1);
+            put("wednesday", 2);
+            put("thursday", 3);
+            put("friday", 4);
+            put("saturday", 5);
+            put("sunday", 6);
+        }
+    };
+
+    public WeekTemplate(int monday, int tuesday, int wednesday, int thursday, int friday,
+            int saturday) {
+        this.workingMinutes = new int[] { monday, tuesday, wednesday, thursday, friday, saturday };
     }
-    public void setId(int id) {
-        this.id = id;
+
+    public int getTotalTime(int weekday) {
+        return this.workingMinutes[weekday];
     }
-    public String getName() {
-        return name;
+
+    public int getTotalTime(String dayName){
+        dayName=dayName.toLowerCase();
+        if(DAYS_OF_WEEK.keySet().contains(dayName)){
+            return this.workingMinutes[DAYS_OF_WEEK.get(dayName)];
+        } else {
+            throw new InvalidDayException( "Invalid dayName :"+dayName);
+        }
+
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getMonday() {
-        return monday;
-    }
-    public void setMonday(int monday) {
-        this.monday = monday;
-    }
-    public int getTuesday() {
-        return tuesday;
-    }
-    public void setTuesday(int tuesday) {
-        this.tuesday = tuesday;
-    }
-    public int getWednesday() {
-        return wednesday;
-    }
-    public void setWednesday(int wednesday) {
-        this.wednesday = wednesday;
-    }
-    public int getThursday() {
-        return thursday;
-    }
-    public void setThursday(int thursday) {
-        this.thursday = thursday;
-    }
-    public int getFriday() {
-        return friday;
-    }
-    public void setFriday(int friday) {
-        this.friday = friday;
-    }
-    public int getSaturday() {
-        return saturday;
-    }
-    public void setSaturday(int saturday) {
-        this.saturday = saturday;
-    }
-    public int getSunday() {
-        return sunday;
-    }
-    public void setSunday(int sunday) {
-        this.sunday = sunday;
-    }
+
 }

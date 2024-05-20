@@ -2,34 +2,72 @@ package com.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Worker {
+    int idWorker;
+    public int getIdWorker() {
+        return idWorker;
+    }
+    public void setIdWorker(int idWorker) {
+        this.idWorker = idWorker;
+    }
     String userName;
     String fullName;
     String passwd;
     LocalDate since;
     String ssNum;
     String dni;
-    Section section;
-    Rank rank;
+    Integer section;
+    Integer rank;
     String address;
     String telNum;
     String mail;
     String contact;
     String docFolder;
+    String type;
     Boolean active;
     List<Day> calendar;
     List<TaskType> abilities;
     WeekTemplate weekTemplate;
     String rol;
-    public Worker(String userName, String fullName, String passwd, String ssNum, String dni,
+
+    
+    
+    public Worker(String idWorker, String userName, String fullName, String passwd, String since, String ssNum,
+            String dni, String section, String rank, String address, String telNum, String mail, String contact,
+            String docFolder, String active,  String type, String rol) {
+        this.idWorker = Integer.parseInt(idWorker);
+        this.userName = userName;
+        this.fullName = fullName;
+        this.passwd = passwd;
+        LocalDate date =(since!=null)?LocalDate.parse(since):null;
+        this.since = date;
+        this.ssNum = ssNum;
+        this.dni = dni;
+        Integer sc = (section!=null)?Integer.parseInt(section):null;
+        this.section = sc;
+        Integer rk = (rank!=null)?Integer.parseInt(rank):null;
+        this.rank = rk;
+        this.address = address;
+        this.telNum = telNum;
+        this.mail = mail;
+        this.contact = contact;
+        this.docFolder = docFolder;
+        this.active = active!=null && active.equals("YES");
+        this.type = type;
+        this.rol = rol;
+    }
+    public Worker(int idWorker, String userName, String fullName, String passwd, String ssNum, String dni, Integer section,
              String address, String telNum, String mail, String contact, String docFolder,
             Boolean active, String rol) {
+        this.idWorker=idWorker;
         this.userName = userName;
         this.fullName = fullName;
         this.passwd = passwd;
         this.ssNum = ssNum;
         this.dni = dni;
+        this.section= section;
         this.address = address;
         this.telNum = telNum;
         this.mail = mail;
@@ -74,16 +112,16 @@ public class Worker {
     public void setDni(String dni) {
         this.dni = dni;
     }
-    public Section getSection() {
+    public Integer getSection() {
         return section;
     }
-    public void setSection(Section section) {
+    public void setSection(Integer section) {
         this.section = section;
     }
-    public Rank getRank() {
+    public Integer getRank() {
         return rank;
     }
-    public void setRank(Rank rank) {
+    public void setRank(Integer rank) {
         this.rank = rank;
     }
     public String getAddress() {
