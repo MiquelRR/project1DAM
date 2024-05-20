@@ -57,6 +57,9 @@ public class Accesdb {
         }
         return map;
     }
+    public static void writeLastProcessedDate(LocalDate date){
+        agrega("lastGeneratedDates", new Object[]{"lastDate",date.toString()});
+    }
     public static Map<Integer,WeekTemplate> readWeekTemplates(){
         Map<Integer,WeekTemplate> readedList = new HashMap<>();
         List<String[]> lst = lligTaula("weekTemplate");
@@ -74,6 +77,34 @@ public class Accesdb {
         }
         return readedList;
     }
+    public static List<Integer> readTaskTypeIndexesOf(Integer idWorker){
+        List<Integer> returnList= new ArrayList<>();
+        List<String[]> lista=lligQuery("SELECT idTask FROM abilities WHERE idWorker = "+idWorker);
+        for (String[] reg : lista) {
+            returnList.add(Integer.parseInt(reg[0]));
+        }
+        return returnList;
+    }
+    public static List<Day> readCalendarOf(Integer idWorker){
+        List<String[]> list=lligQuery("SELECT date, workTime FROM calendar WHERE idWorker="+idWorker );
+        List<Day> returnList = new ArrayList<>();
+        for (String[] reg  : list) {
+            Day day=new Day(LocalDate.parse(reg[0]),Integer.parseInt(reg[1]));
+            returnList.add(day);
+        }
+        return returnList;
+    }
+
+    public static Map<Integer, TaskType> readTaskTypes(){
+        Map<Integer,TaskType> returnMap = new HashMap<>();
+        List<String[]> list =  lligTaula("taskTypes");
+        for (String[] reg : list) {
+            TaskType taskType= new TaskType(reg[1]);
+            returnMap.put(Integer.parseInt(reg[0]),taskType);
+        }
+        return returnMap;
+    }
+
     public static List<Worker> readWorkers(){
         List<Worker> readedList= new ArrayList<>();
         List<String[]> lst = lligTaula("worker");
@@ -126,19 +157,13 @@ public class Accesdb {
         
     }
 
-    public static Worker trustWorker(String username, String pwd){
-        Worker user= null;
-        username=username.split(" ")[0]; // to prevent sql attack
+    public static RolAndId trustWorker(String username, String pwd){
+        
+        username=username.split(" ")[0]; // to prevent SQL attack
         pwd=pwd.split(" ")[0];
-        String[] reg=lligReg("SELECT * FROM worker WHERE userName='"+username+"' AND password='"+pwd+"'");
-        System.out.print("-".repeat(50));
-        for (String string : reg) {
-            System.out.print(string+" - ");
-        }
-        System.out.println("length "+reg.length);
-        if (reg.length==17 && reg[14].equals("YES"));
-        user= new Worker(reg[1],reg[2],reg[3],reg[5],reg[6],reg[9],reg[10],reg[11],reg[12],reg[13],true,reg[16]);
-        return user;
+        String[] reg=lligReg("SELECT idWorker, workerRol FROM worker WHERE userName='"+username+"' AND password='"+pwd+"'");
+        
+        return new RolAndId(Integer.parseInt(reg[0]), reg[1]);
     }
 
     public static void modifica(String query){
