@@ -1,6 +1,0 @@
-2024-05-20T08:14:58.175084:Opened filelog queries.log
-2024-05-20T08:14:58.199188:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
-2024-05-20T08:14:58.622200:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
-2024-05-20T08:15:33.367774:Opened filelog queries.log
-2024-05-20T08:15:33.403545:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
-2024-05-20T08:15:33.935885:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)

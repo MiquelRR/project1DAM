@@ -29,7 +29,7 @@
          </image>
       </ImageView>
       <Rectangle fill="#aad7d9" height="52.0" layoutY="534.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Button fx:id="applyButton" layoutX="330.0" layoutY="534.0" mnemonicParsing="false" onAction="#applyAndClose" prefHeight="52.0" prefWidth="230.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar y cerrar" textFill="#7c7c7c">
+      <Button fx:id="applyButton" layoutX="349.0" layoutY="534.0" mnemonicParsing="false" onAction="#applyAndClose" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar y cerrar" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>

@@ -1,6 +1,7 @@
 package com.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +76,7 @@ public class Worker {
         this.docFolder = docFolder;
         this.active = active;
         this.rol = rol;
+        this.abilities= new ArrayList<>();
     }
     public String getUserName() {
         return userName;
@@ -183,6 +185,10 @@ public class Worker {
     }
     public void setRol(String rol) {
         this.rol = rol;
+    }
+    @Override
+    public String toString() {
+        return userName;
     }
 
 }

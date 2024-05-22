@@ -16,3 +16,957 @@
 2024-05-19T19:39:45.113387062:Accesdb.lligReg(SELECT * FROM worker WHERE userName='admin' AND password='1234')
 2024-05-20T20:26:27.882796606:Opened filelog queries.log
 2024-05-20T20:26:28.247172156:Error en la bd -lligReg-: 1698-Access denied for user 'root'@'localhost'
+2024-05-20T21:06:49.019549763:Opened filelog queries.log
+2024-05-20T21:06:49.389211353:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-20T21:08:07.411953147:Opened filelog queries.log
+2024-05-20T21:08:07.731132259:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='JHDJK' AND password='JJK')
+2024-05-20T21:10:23.431927705:Opened filelog queries.log
+2024-05-20T21:10:23.777516123:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:24.509641983:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:31.301516110:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:31.694821992:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:31.897314837:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:32.096326822:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:35.530313853:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:35.812673424:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:36.033582526:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:41.701110718:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='qds' AND password='asda')
+2024-05-20T21:10:58.003965861:Opened filelog queries.log
+2024-05-20T21:10:58.282498967:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='fhbd' AND password='fghjdf')
+2024-05-20T21:13:17.171133620:Opened filelog queries.log
+2024-05-20T21:13:17.457672609:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='awfdff' AND password='asfd')
+2024-05-20T21:15:05.163923382:Opened filelog queries.log
+2024-05-20T21:15:05.449730290:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='pepe' AND password='po')
+2024-05-20T21:15:14.080184538:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='pepe' AND password='po')
+2024-05-20T21:15:23.418108627:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-20T21:21:44.658421157:Opened filelog queries.log
+2024-05-20T21:21:44.953909894:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-20T21:32:33.905818580:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='' AND password='')
+2024-05-20T21:32:37.808831469:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='' AND password='')
+2024-05-20T21:32:42.399899314:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='' AND password='')
+2024-05-21T07:31:43.937920342:Opened filelog queries.log
+2024-05-21T07:31:44.326198550:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T07:31:51.902879998:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T07:32:06.435434598:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T07:32:39.357741656:Opened filelog queries.log
+2024-05-21T07:32:39.659448375:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T07:34:22.528032093:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T07:34:38.335556256:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='admin' AND password='1234')
+2024-05-21T09:16:45.311912032:Opened filelog queries.log
+2024-05-21T09:16:45.617515749:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:16:45.703552552:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:16:45.720791151:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:16:45.742568822:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:16:45.761526346:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:16:45.779337497:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:16:45.779571908:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:16:45.798390939:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:16:45.816972347:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:16:45.831581133:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:16:45.844570357:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:16:45.856660348:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:40:42.800461029:Opened filelog queries.log
+2024-05-21T09:40:43.084647628:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:40:43.126064868:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:40:43.156418503:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:40:43.186494601:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:40:43.206844154:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:40:43.224577360:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:40:43.224818592:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:40:43.242872869:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:40:43.259030555:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:40:43.272801599:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:40:43.286759431:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:40:43.301933182:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:41:54.087340035:Opened filelog queries.log
+2024-05-21T09:41:54.365639805:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:41:54.403929038:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:41:54.436077663:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:41:54.463671483:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:41:54.477514922:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:41:54.491069329:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:41:54.491311425:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:41:54.504576376:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:41:54.517943857:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:41:54.530781144:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:41:54.544050842:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:41:54.556232772:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:44:48.559233667:Opened filelog queries.log
+2024-05-21T09:44:48.835870316:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:44:48.872586005:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:44:48.903310133:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:44:48.933433188:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:44:48.952590441:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:44:48.972302319:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:44:48.972586329:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:44:48.990356098:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:44:49.009433681:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:44:49.026562016:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:44:49.042947536:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:44:49.055962520:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:45:07.785902418:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'ASD');
+2024-05-21T09:48:47.260047351:Opened filelog queries.log
+2024-05-21T09:48:47.544817654:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:48:47.574533854:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:48:47.603514340:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:48:47.630102072:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:48:47.648417290:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:48:47.661748101:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:48:47.662234679:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:48:47.676645536:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:48:47.693035651:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:48:47.707202290:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:48:47.719856061:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:48:47.733281771:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:48:50.821617459:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'');
+2024-05-21T09:48:51.679040024:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (2,'');
+2024-05-21T09:48:51.872731845:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (3,'');
+2024-05-21T09:48:52.072019761:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (4,'');
+2024-05-21T09:48:52.343666512:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (5,'');
+2024-05-21T09:48:52.530823197:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (6,'');
+2024-05-21T09:48:52.713778951:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (7,'');
+2024-05-21T09:48:55.124327763:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (8,'');
+2024-05-21T09:51:11.433561310:Opened filelog queries.log
+2024-05-21T09:51:11.722521737:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:51:11.761947829:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:51:11.791846242:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:51:11.822165856:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:51:11.838939995:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:51:11.856613830:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:51:11.857059399:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:51:11.870957716:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:51:11.885044321:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:51:11.899233505:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:51:11.914457829:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:51:11.928951340:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:53:34.292955233:Opened filelog queries.log
+2024-05-21T09:53:34.672624013:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-21T09:53:34.714602734:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:53:34.743596746:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:53:34.775188827:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:53:34.794720177:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:53:34.814279793:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:53:34.814629256:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:53:34.837018101:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:53:34.853410118:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:53:34.869484979:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:53:34.887716575:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:53:34.903123400:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:56:21.377138184:Opened filelog queries.log
+2024-05-21T09:56:21.666876867:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T09:56:21.696911415:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T09:56:21.720620806:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T09:56:21.734499372:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T09:56:21.749078781:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T09:56:21.749332497:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:56:21.763190276:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T09:56:21.780197532:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T09:56:21.793797827:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T09:56:21.808844478:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T09:56:21.825601918:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T09:56:54.865798254:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'TALLER');
+2024-05-21T10:00:30.664613062:Opened filelog queries.log
+2024-05-21T10:00:31.006851056:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:00:31.045256114:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:00:31.078475367:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:00:31.099878709:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:00:31.123384617:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:00:31.124055301:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:00:31.149289887:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:00:31.172222309:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:00:31.191102233:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:00:31.209524827:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:00:31.224816920:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:14:41.935074306:Opened filelog queries.log
+2024-05-21T10:14:42.458230112:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:14:42.493484827:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:14:42.522556850:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:14:42.542705328:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:14:42.562802617:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:14:42.563451240:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:14:42.579075741:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:14:42.592636306:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:14:42.604920814:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:14:42.617800732:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:14:42.630166017:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:15:15.657513953:Opened filelog queries.log
+2024-05-21T10:15:15.951714513:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:15:15.977040616:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:15:16.001773070:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:15:16.016846135:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:15:16.031415036:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:15:16.031920547:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:15:16.046079169:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:15:16.060444666:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:15:16.073154351:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:15:16.085520340:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:15:16.097438128:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:15:51.250466106:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'FRESADO');
+2024-05-21T10:16:05.202033195:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (2,'ADMIN');
+2024-05-21T10:16:36.110022257:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (3,'CERRAJERIA');
+2024-05-21T10:17:24.825651691:Opened filelog queries.log
+2024-05-21T10:17:25.122846237:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:17:25.148207798:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:17:25.173747090:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:17:25.188199141:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:17:25.203141886:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:17:25.203594157:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:17:25.217441400:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:17:25.231101487:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:17:25.243873034:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:17:25.256882158:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:17:25.268891648:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:17:44.176111462:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (4,'MONTAJE');
+2024-05-21T10:19:17.094765433:Opened filelog queries.log
+2024-05-21T10:19:17.420117206:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:19:17.458754041:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:19:17.483198141:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:19:17.498107733:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:19:17.512914492:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:19:17.513354554:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:19:17.527078136:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:19:17.540666959:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:19:17.553073647:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:19:17.566273346:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:19:17.580275780:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:19:34.914223413:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (5,'PINTURA');
+2024-05-21T10:19:49.165321868:Opened filelog queries.log
+2024-05-21T10:19:49.495542270:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:19:49.530176314:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:19:49.557332543:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:19:49.577358923:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:19:49.598371658:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:19:49.598955238:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:19:49.617202705:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:19:49.634158052:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:19:49.652045062:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:19:49.667137959:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:19:49.679418739:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:20:18.609054158:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (6,'ROTULACION');
+2024-05-21T10:20:31.295444960:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (7,'preparacion');
+2024-05-21T10:44:52.537643005:Opened filelog queries.log
+2024-05-21T10:44:52.866942053:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:44:52.894565780:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:44:52.917698411:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:44:52.933273744:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:44:52.947992085:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:44:52.948519095:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:44:52.962619152:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:44:52.976523175:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:44:52.989066475:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:44:53.001638794:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:44:53.013565278:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:47:28.983007607:Opened filelog queries.log
+2024-05-21T10:47:29.296859893:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:47:29.330391437:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:47:29.356873497:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:47:29.377110772:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:47:29.393457123:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:47:29.393944074:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:47:29.413867745:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:47:29.433872660:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:47:29.451802607:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:47:29.469087430:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:47:29.480867617:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:48:49.963827551:Opened filelog queries.log
+2024-05-21T10:48:50.268839729:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:48:50.300669847:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:48:50.323823773:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:48:50.338917839:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:48:50.354261838:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:48:50.354735582:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:48:50.368646900:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:48:50.383373200:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:48:50.396855210:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:48:50.410980928:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:48:50.423799843:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:52:42.389444977:Opened filelog queries.log
+2024-05-21T10:52:42.719072773:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T10:52:42.752028018:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T10:52:42.775884950:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T10:52:42.790500125:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T10:52:42.805677271:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T10:52:42.806151418:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:52:42.820892675:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T10:52:42.835368281:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T10:52:42.848864942:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T10:52:42.861922212:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T10:52:42.874319231:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T10:52:49.457081982:Accesdb.modifica(DELETE FROM section WHERE idSection = 7)
+2024-05-21T10:52:49.483589081:Accesdb.modifica(DELETE FROM section WHERE idSection = 7)
+2024-05-21T11:04:54.304416630:Opened filelog queries.log
+2024-05-21T11:04:54.655279891:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:04:54.692191472:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:04:54.723316853:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:04:54.746535174:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:04:54.766372240:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:04:54.766924672:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:04:54.790189563:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:04:54.808839621:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:04:54.825578741:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:04:54.842115867:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:04:54.858162997:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T11:05:00.085022223:Accesdb.modifica(DELETE FROM section WHERE idSection = 6)
+2024-05-21T11:05:00.096498863:Accesdb.modifica(DELETE FROM section WHERE idSection = 6)
+2024-05-21T11:05:14.707165375:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (6,'Porculacion');
+2024-05-21T11:05:20.380925528:Accesdb.modifica(DELETE FROM section WHERE idSection = 6)
+2024-05-21T11:05:20.392156511:Accesdb.modifica(DELETE FROM section WHERE idSection = 6)
+2024-05-21T11:06:28.666129015:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-21T11:06:28.677808759:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-21T11:06:30.850387501:Accesdb.modifica(DELETE FROM section WHERE idSection = 5)
+2024-05-21T11:06:30.860445231:Accesdb.modifica(DELETE FROM section WHERE idSection = 5)
+2024-05-21T11:06:32.657398093:Accesdb.modifica(DELETE FROM section WHERE idSection = 4)
+2024-05-21T11:06:32.670437558:Accesdb.modifica(DELETE FROM section WHERE idSection = 4)
+2024-05-21T11:06:34.601176675:Accesdb.modifica(DELETE FROM section WHERE idSection = 3)
+2024-05-21T11:06:34.610770411:Accesdb.modifica(DELETE FROM section WHERE idSection = 3)
+2024-05-21T11:06:36.665577730:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-21T11:06:36.675655259:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-21T11:06:38.488071928:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-21T11:06:38.497165058:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-21T11:06:52.863836625:Opened filelog queries.log
+2024-05-21T11:06:53.144968474:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:06:53.171704451:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:06:53.195535386:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:06:53.208907486:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:06:53.223582034:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:06:53.223835926:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:06:53.238135536:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:06:53.258544556:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:06:53.273886449:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:06:53.291515366:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:06:53.308971371:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T11:07:28.645900709:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'CORTE');
+2024-05-21T11:07:37.505136849:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'IMPRESION');
+2024-05-21T11:07:45.239879350:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (2,'FRESADO');
+2024-05-21T11:49:33.519344314:Opened filelog queries.log
+2024-05-21T11:49:33.837414189:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:49:33.864988276:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:49:33.888909736:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:49:33.902609574:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:49:33.917833414:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:49:33.918285473:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:49:33.933164131:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:49:33.948244185:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:49:33.961600767:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:49:33.975190958:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:49:33.987483549:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T11:51:29.963437660:Opened filelog queries.log
+2024-05-21T11:51:30.259574661:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:51:30.292529018:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:51:30.324423317:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:51:30.342046654:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:51:30.357677372:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:51:30.358121688:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:51:30.372749738:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:51:30.390190416:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:51:30.404257011:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:51:30.417341469:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:51:30.429631517:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T11:51:34.715311509:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-21T11:51:34.726754779:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-21T11:51:36.983478623:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-21T11:51:37.000690500:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-21T11:51:39.042676832:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-21T11:51:39.054750810:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-21T11:51:50.576383584:Opened filelog queries.log
+2024-05-21T11:51:50.884621010:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:51:50.911881296:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:51:50.936866688:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:51:50.950441136:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:51:50.966875733:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:51:50.967124492:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:51:50.981985030:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:51:50.997411063:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:51:51.010327682:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:51:51.023217316:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:51:51.035536860:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T11:58:50.524664099:Opened filelog queries.log
+2024-05-21T11:58:50.823012366:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T11:58:50.858070072:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T11:58:50.884607339:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T11:58:50.906480565:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T11:58:50.923446393:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T11:58:50.923704849:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:58:50.941731144:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T11:58:50.958178478:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T11:58:50.970661964:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T11:58:50.986221275:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T11:58:51.000371695:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:05:10.321392376:Opened filelog queries.log
+2024-05-21T12:05:10.677373357:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:05:10.709241354:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:05:10.733344853:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:05:10.753725784:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:05:10.775670903:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:05:10.775985268:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:05:10.793814583:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:05:10.807937101:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:05:10.820563889:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:05:10.833296538:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:05:10.846235888:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:09:36.837358097:Opened filelog queries.log
+2024-05-21T12:09:37.135832547:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:09:37.161968266:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:09:37.185636706:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:09:37.201308658:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:09:37.215800410:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:09:37.216047174:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:09:37.230489301:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:09:37.245228715:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:09:37.262352934:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:09:37.278733271:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:09:37.292137515:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:11:04.852009062:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial de 1ª')' at line 1
+2024-05-21T12:14:42.820424394:Opened filelog queries.log
+2024-05-21T12:14:43.164054123:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:14:43.200663050:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:14:43.232561113:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:14:43.248635755:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:14:43.263209652:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:14:43.263451712:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:14:43.277263605:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:14:43.291386052:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:14:43.304195107:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:14:43.316911230:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:14:43.329010206:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:14:50.911725118:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Primera')' at line 1
+2024-05-21T12:14:54.000700863:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-21T12:14:54.017803228:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-21T12:15:00.702072087:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'Uno');
+2024-05-21T12:15:10.574663083:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'Otro');
+2024-05-21T12:15:19.819746018:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Primera')' at line 1
+2024-05-21T12:42:59.058928481:Opened filelog queries.log
+2024-05-21T12:42:59.355034340:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:42:59.383419123:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:42:59.407065873:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:42:59.421648473:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:42:59.436073727:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:42:59.436575162:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:42:59.451826253:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:42:59.472579147:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:42:59.488408856:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:42:59.505186350:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:42:59.518452207:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:46:32.497355197:Opened filelog queries.log
+2024-05-21T12:46:32.809246802:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:46:32.835908040:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:46:32.863862739:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:46:32.885877093:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:46:32.906939982:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:46:32.907381420:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:46:32.925790350:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:46:32.945817185:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:46:32.963896023:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:46:32.982188679:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:46:32.994762051:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:49:33.918214590:Opened filelog queries.log
+2024-05-21T12:49:34.249594055:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:49:34.279855629:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:49:34.303353687:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:49:34.323110830:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:49:34.340980541:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:49:34.341450035:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:49:34.358753241:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:49:34.378767448:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:49:34.394767239:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:49:34.407982408:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:49:34.420375568:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T12:55:29.668993093:Opened filelog queries.log
+2024-05-21T12:55:29.995052815:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T12:55:30.029735176:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T12:55:30.057829650:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T12:55:30.077936502:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T12:55:30.096303598:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T12:55:30.096821436:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:55:30.110479542:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T12:55:30.124100948:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T12:55:30.136570974:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T12:55:30.150264547:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T12:55:30.161863948:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T13:16:28.981185484:Opened filelog queries.log
+2024-05-21T13:16:29.331344338:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-21T13:16:29.364335616:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-21T13:16:29.387880901:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-21T13:16:29.403339494:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-21T13:16:29.418214324:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-21T13:16:29.418683410:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T13:16:29.433093643:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-21T13:16:29.447205751:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-21T13:16:29.460062385:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-21T13:16:29.473197234:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-21T13:16:29.485337503:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-21T13:16:39.290025436:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Primera')' at line 1
+2024-05-21T13:16:53.809196866:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (1,'Primera')' at line 1
+2024-05-21T13:16:59.899689476:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 1
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 1' at line 1
+2024-05-21T13:16:59.909998469:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 1
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 1' at line 1
+2024-05-22T07:42:36.194152107:Opened filelog queries.log
+2024-05-22T07:42:36.548197652:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T07:42:36.577504355:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T07:42:36.602605241:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T07:42:36.616896799:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T07:42:36.634698635:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T07:42:36.635190623:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T07:42:36.650021313:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T07:42:36.664874283:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T07:42:36.678602949:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T07:42:36.692290332:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T07:42:36.707057249:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T07:42:43.237622746:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T07:42:43.250488618:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T07:42:45.786991392:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T07:42:45.798527262:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T07:43:02.069085004:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'CORTE');
+2024-05-22T07:47:45.533273083:Opened filelog queries.log
+2024-05-22T07:47:45.871319956:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T07:47:45.902314061:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T07:47:45.931865154:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T07:47:45.946889631:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T07:47:45.961624005:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T07:47:45.962099031:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T07:47:45.976012060:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T07:47:45.992252509:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T07:47:46.007625879:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T07:47:46.021218495:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T07:47:46.034822972:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T07:48:10.275852058:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'Pepe');
+2024-05-22T07:48:21.732381094:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T07:48:21.743908292:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T07:48:24.220265877:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T07:48:24.231456171:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T07:56:59.407312852:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'CERRAJERIA');
+2024-05-22T07:57:27.046964748:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'OFICIAL DE PRIMERA')' at line 1
+2024-05-22T07:59:56.730420759:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-22T07:59:56.747565838:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-22T08:00:00.054992419:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:00:00.065580768:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:02:58.209188860:Opened filelog queries.log
+2024-05-22T08:02:58.521003060:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T08:02:58.547518645:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T08:02:58.571756976:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T08:02:58.585923414:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T08:02:58.600503720:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T08:02:58.600776423:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:02:58.614792272:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:02:58.629741031:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T08:02:58.643187115:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T08:02:58.656758801:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T08:02:58.669396998:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T08:03:20.455696307:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'Cosda');
+2024-05-22T08:04:10.565135748:Opened filelog queries.log
+2024-05-22T08:04:10.890025901:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T08:04:10.923982031:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T08:04:10.948612941:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T08:04:10.963095567:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T08:04:10.978356001:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T08:04:10.978814038:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:04:10.992576739:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:04:11.007261161:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T08:04:11.020752323:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T08:04:11.034554430:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T08:04:11.047210475:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T08:04:19.062220669:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:04:19.079210233:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:04:58.835077470:Opened filelog queries.log
+2024-05-22T08:04:59.165387138:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T08:04:59.203021364:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T08:04:59.226571146:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T08:04:59.245718424:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T08:04:59.264615877:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T08:04:59.264991167:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:04:59.278783483:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:04:59.293412247:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T08:04:59.306967959:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T08:04:59.320178008:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T08:04:59.332913960:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T08:08:58.167846689:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'CERRAJERIA');
+2024-05-22T08:11:08.665863707:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'COSA');
+2024-05-22T08:11:17.989892239:Opened filelog queries.log
+2024-05-22T08:11:18.338804263:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T08:11:18.372144568:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T08:11:18.399108005:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T08:11:18.420113300:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T08:11:18.440251846:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T08:11:18.440713134:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:11:18.454841181:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:11:18.472339853:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T08:11:18.490056022:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T08:11:18.507887119:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T08:11:18.524494162:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T08:11:29.547597981:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (2,'cONSINYA');
+2024-05-22T08:14:23.130141131:Opened filelog queries.log
+2024-05-22T08:14:23.456019787:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T08:14:23.482964712:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T08:14:23.506728182:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T08:14:23.520281159:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T08:14:23.535065547:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T08:14:23.535511357:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:14:23.550182124:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T08:14:23.565230597:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T08:14:23.578983264:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T08:14:23.592158036:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T08:14:23.604034941:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T08:14:32.843384678:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (3,'Hola');
+2024-05-22T08:14:37.464891208:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-22T08:14:37.483412513:Accesdb.modifica(DELETE FROM section WHERE idSection = 2)
+2024-05-22T08:14:38.669325834:Accesdb.modifica(DELETE FROM section WHERE idSection = 3)
+2024-05-22T08:14:38.680921324:Accesdb.modifica(DELETE FROM section WHERE idSection = 3)
+2024-05-22T08:14:41.604993943:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:14:41.616086909:Accesdb.modifica(DELETE FROM section WHERE idSection = 0)
+2024-05-22T08:14:48.967373881:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Felipe')' at line 1
+2024-05-22T08:18:33.031164501:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-22T08:18:33.043960179:Error en la bd -modifica-: 
+DELETE FROM rank WHERE idRank = 0
+1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank WHERE idRank = 0' at line 1
+2024-05-22T09:18:26.901382524:Opened filelog queries.log
+2024-05-22T09:18:27.243037949:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:18:27.270226249:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:18:27.294622821:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:18:27.308318797:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:18:27.324040872:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:18:27.324641731:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:18:27.345831235:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:18:27.364947001:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:18:27.380252061:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:18:27.397307312:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:18:27.413822312:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:20:24.717012708:Opened filelog queries.log
+2024-05-22T09:20:24.990981997:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:20:25.018183898:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:20:25.042145805:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:20:25.056619325:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:20:25.071723251:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:20:25.072189133:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:20:25.085908282:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:20:25.100738863:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:20:25.114040311:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:20:25.126993848:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:20:25.139185176:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:21:30.984420908:Opened filelog queries.log
+2024-05-22T09:21:31.271171459:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:21:31.299015057:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:21:31.323485757:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:21:31.337852916:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:21:31.352833127:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:21:31.353311476:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:21:31.368220836:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:21:31.383421487:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:21:31.396456158:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:21:31.408949770:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:21:31.421445173:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:28:04.295659837:Opened filelog queries.log
+2024-05-22T09:28:04.630262047:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:28:04.665511329:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:28:04.692004587:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:28:04.712016021:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:28:04.729772430:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:28:04.730247946:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:28:04.744405958:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:28:04.759599244:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:28:04.774109344:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:28:04.788009119:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:28:04.800752389:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:28:11.343295992:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T09:28:11.359143900:Accesdb.modifica(DELETE FROM section WHERE idSection = 1)
+2024-05-22T09:28:24.930778587:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (0,'CERRAJERIA');
+2024-05-22T09:28:47.038454562:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'OFICIAL 1ª')' at line 1
+2024-05-22T09:49:07.386521567:Opened filelog queries.log
+2024-05-22T09:49:07.671712263:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:49:07.699175049:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:49:07.723875262:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:49:07.737608003:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:49:07.752217375:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:49:07.752680944:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:49:07.767364325:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:49:07.782345889:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:49:07.796054747:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:49:07.814487615:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:49:07.831008516:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:49:22.971051011:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T09:51:57.474838096:Opened filelog queries.log
+2024-05-22T09:51:57.820669202:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T09:51:57.850829306:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T09:51:57.874933803:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T09:51:57.888896374:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T09:51:57.903194494:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T09:51:57.903670216:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:51:57.917767039:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T09:51:57.932051461:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T09:51:57.946329923:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T09:51:57.960090625:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T09:51:57.973206838:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T09:52:07.880169912:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T10:07:16.450437953:Opened filelog queries.log
+2024-05-22T10:07:16.732468568:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:07:16.758857203:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:07:16.783322804:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:07:16.800816968:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:07:16.821827523:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:07:16.822281241:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:07:16.839611871:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:07:16.856501262:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:07:16.872620192:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:07:16.889094753:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:07:16.903937705:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:07:27.805483695:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T10:07:34.149363497:Accesdb.agrega(..) INSERT INTO taskType (idTask,name) VALUES (0,'FRESADO');
+2024-05-22T10:08:10.094346186:Accesdb.agrega(..) INSERT INTO taskType (idTask,name) VALUES (1,'nose');
+2024-05-22T10:10:50.692249851:Opened filelog queries.log
+2024-05-22T10:10:51.011451979:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:10:51.044649897:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:10:51.076098705:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:10:51.093996195:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:10:51.112176735:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:10:51.112615766:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:10:51.126962810:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:10:51.146239386:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:10:51.163491973:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:10:51.180154137:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:10:51.194881574:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:11:00.457284675:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T10:11:19.671040780:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'taskType.PRIMARY'
+2024-05-22T10:41:09.923441358:Opened filelog queries.log
+2024-05-22T10:41:10.227034027:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:41:10.254416865:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:41:10.278954838:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:41:10.292797285:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:41:10.307236225:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:41:10.307703711:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:41:10.322372007:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:41:10.336745983:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:41:10.350523340:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:41:10.363687658:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:41:10.376115735:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:41:39.212210064:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T10:42:02.585487582:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (1,'ROTULACION');
+2024-05-22T10:42:11.457087425:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (1,'Oficial 2ª')' at line 1
+2024-05-22T10:42:24.166867767:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'taskType.PRIMARY'
+2024-05-22T10:46:22.827946648:Opened filelog queries.log
+2024-05-22T10:46:23.148246854:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:46:23.183315460:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:46:23.207399343:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:46:23.221343884:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:46:23.236281604:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:46:23.236756716:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:46:23.250750929:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:46:23.265523169:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:46:23.278406037:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:46:23.290780368:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:46:23.302776431:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:46:35.040965135:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'Oficial 1ª')' at line 1
+2024-05-22T10:46:45.461029697:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (1,'Oficial 2ª')' at line 1
+2024-05-22T10:46:52.206564985:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (2,'Peon')' at line 1
+2024-05-22T10:47:07.984536749:Opened filelog queries.log
+2024-05-22T10:47:08.271998416:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:47:08.299422545:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:47:08.324076828:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:47:08.337929882:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:47:08.352619204:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:47:08.353198671:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:47:08.367406449:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:47:08.382425312:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:47:08.396139446:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:47:08.408957197:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:47:08.421268740:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:47:20.938494575:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'taskType.PRIMARY'
+2024-05-22T10:47:31.286148205:Error en la bd -agrega-: 1062-Duplicate entry '1' for key 'taskType.PRIMARY'
+2024-05-22T10:47:44.096773319:Opened filelog queries.log
+2024-05-22T10:47:44.395393511:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T10:47:44.422731281:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T10:47:44.449497559:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T10:47:44.469815802:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T10:47:44.491198031:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T10:47:44.491789003:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:47:44.509872541:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T10:47:44.527722376:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T10:47:44.546002025:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T10:47:44.560911117:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T10:47:44.573071035:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T10:48:00.648752029:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (2,'DISEÑO');
+2024-05-22T10:51:55.146376058:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'taskType.PRIMARY'
+2024-05-22T10:53:23.206949089:Accesdb.agrega(..) INSERT INTO section (idSection,name) VALUES (3,'ONA');
+2024-05-22T10:57:38.060013566:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'UNA')' at line 1
+2024-05-22T10:58:50.542493494:Error en la bd -agrega-: 1062-Duplicate entry '1' for key 'taskType.PRIMARY'
+2024-05-22T11:03:00.757550515:Opened filelog queries.log
+2024-05-22T11:03:01.094362589:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:03:01.124996993:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:03:01.148756137:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:03:01.170948014:Error en la bd -lligTaula- : 1146-Table 'odplanDDBB.taskTypes' doesn't exist
+2024-05-22T11:03:01.192432511:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:03:01.192912440:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:03:01.212119028:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:03:01.231858164:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:03:01.251752162:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:03:01.268662788:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:03:01.288134949:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:06:20.727829295:Opened filelog queries.log
+2024-05-22T11:06:21.049222747:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:06:21.085502923:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:06:21.114510020:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:06:21.135484741:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:06:21.156645750:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:06:21.157096049:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:06:21.177560848:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:06:21.198716337:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:06:21.215186656:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:06:21.228777058:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:06:21.243217068:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:06:46.826310302:Accesdb.agrega(..) INSERT INTO taskType (idTask,name) VALUES (2,'PRUEBA');
+2024-05-22T11:06:56.344573456:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'UNO')' at line 1
+2024-05-22T11:07:11.461087643:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-22T11:07:51.524720990:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (1,'OTRO')' at line 1
+2024-05-22T11:10:34.786069490:Opened filelog queries.log
+2024-05-22T11:10:35.124395381:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:10:35.157318579:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:10:35.186692804:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:10:35.200893374:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:10:35.215631332:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:10:35.216104830:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:10:35.231312552:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:10:35.248868316:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:10:35.267839644:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:10:35.283968203:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:10:35.296564280:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:10:57.951653030:INSERT INTO rank (idRank,name) VALUES (0,'una');
+2024-05-22T11:10:57.969748001:Error en la bd -agrega-: 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank (idRank,name) VALUES (0,'una')' at line 1
+2024-05-22T11:19:47.685842188:Opened filelog queries.log
+2024-05-22T11:19:47.986180660:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:19:48.014393307:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:19:48.040012625:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:19:48.054336925:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:19:48.070626030:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:19:48.071152470:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:19:48.085589116:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:19:48.101001403:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:19:48.114801648:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:19:48.128532382:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:19:48.141138396:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:20:05.012328004:INSERT INTO odplanDDBB.rank (idRank,name) VALUES (0,'Una');
+2024-05-22T11:20:05.024348438:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'rank.PRIMARY'
+2024-05-22T11:21:06.884301543:Opened filelog queries.log
+2024-05-22T11:21:07.257030742:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:21:07.290093363:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:21:07.321534078:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:21:07.340609685:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:21:07.359430686:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:21:07.359899312:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:21:07.378250195:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:21:07.394264102:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:21:07.407068615:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:21:07.420481342:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:21:07.432327765:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:21:30.855072503:INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (3,'gru');
+2024-05-22T11:21:30.869337458:Accesdb.agrega(..) INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (3,'gru');
+2024-05-22T11:22:14.078475405:Accesdb.lligQuery(..)) ->SELECT * FROM odplanDDBB.liveTask WHERE idTask=1
+2024-05-22T11:22:14.089436212:Error en la bd -modifica-: 
+DELETE FROM odplanDDBB.taskType WHERE idRank = 1
+1054-Unknown column 'idRank' in 'where clause'
+2024-05-22T11:23:21.336446322:Opened filelog queries.log
+2024-05-22T11:23:21.764643327:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:23:21.804859759:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:23:21.837820320:Error en la bd -lligTaula- : 1064-You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank' at line 1
+2024-05-22T11:23:21.854663508:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:23:21.871799398:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:23:21.872456724:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:23:21.893085363:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:23:21.907811427:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:23:21.922719659:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:23:21.940846472:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:23:21.953659582:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:23:25.105077871:Accesdb.lligQuery(..)) ->SELECT * FROM odplanDDBB.liveTask WHERE idTask=3
+2024-05-22T11:23:25.121121035:Accesdb.modifica(DELETE FROM odplanDDBB.taskType WHERE idTask= 3)
+2024-05-22T11:23:47.032119776:INSERT INTO odplanDDBB.rank (idRank,name) VALUES (0,'keke');
+2024-05-22T11:23:47.044065683:Error en la bd -agrega-: 1062-Duplicate entry '0' for key 'rank.PRIMARY'
+2024-05-22T11:26:18.822308651:Opened filelog queries.log
+2024-05-22T11:26:19.188862220:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:26:19.232773922:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:26:19.260992377:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-22T11:26:19.287347648:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:26:19.314349200:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:26:19.316999705:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:26:19.343883371:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:26:19.374291743:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:26:19.392848546:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:26:19.419217084:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:26:19.442508260:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:27:33.953460962:Accesdb.modifica(DELETE FROM odplanDDBB.rank WHERE idRank = 0)
+2024-05-22T11:27:33.965056466:Accesdb.modifica(DELETE FROM odplanDDBB.rank WHERE idRank = 0)
+2024-05-22T11:27:49.838934608:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-22T11:28:01.161741016:Accesdb.lligQuery(..)) ->SELECT * FROM odplanDDBB.liveTask WHERE idTask=2
+2024-05-22T11:28:01.175941246:Accesdb.modifica(DELETE FROM odplanDDBB.taskType WHERE idTask= 2)
+2024-05-22T11:28:02.127228040:Accesdb.lligQuery(..)) ->SELECT * FROM odplanDDBB.liveTask WHERE idTask=1
+2024-05-22T11:28:02.144272635:Accesdb.modifica(DELETE FROM odplanDDBB.taskType WHERE idTask= 1)
+2024-05-22T11:28:03.084954176:Accesdb.lligQuery(..)) ->SELECT * FROM odplanDDBB.liveTask WHERE idTask=0
+2024-05-22T11:28:03.110490724:Accesdb.modifica(DELETE FROM odplanDDBB.taskType WHERE idTask= 0)
+2024-05-22T11:30:54.776606940:Opened filelog queries.log
+2024-05-22T11:30:55.083826250:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:30:55.113881983:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:30:55.132531218:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-22T11:30:55.146809478:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:30:55.162750152:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:30:55.163276621:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:30:55.177995008:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:30:55.192716411:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:30:55.205861885:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:30:55.221898566:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:30:55.236805743:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T11:31:07.773882504:Accesdb.modifica(DELETE FROM odplanDDBB.section WHERE idSection = 3)
+2024-05-22T11:31:07.790179853:Accesdb.modifica(DELETE FROM odplanDDBB.section WHERE idSection = 3)
+2024-05-22T11:31:22.158536150:INSERT INTO odplanDDBB.rank (idRank,name) VALUES (0,'Oficial 1ª');
+2024-05-22T11:31:22.174304388:Accesdb.agrega(..) INSERT INTO odplanDDBB.rank (idRank,name) VALUES (0,'Oficial 1ª');
+2024-05-22T11:31:31.357363758:INSERT INTO odplanDDBB.rank (idRank,name) VALUES (1,'Oficial 2ª');
+2024-05-22T11:31:31.372326155:Accesdb.agrega(..) INSERT INTO odplanDDBB.rank (idRank,name) VALUES (1,'Oficial 2ª');
+2024-05-22T11:31:42.456145095:INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (0,'FRESADO');
+2024-05-22T11:31:42.469875988:Accesdb.agrega(..) INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (0,'FRESADO');
+2024-05-22T11:32:01.159904185:INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (1,'ROTULACION');
+2024-05-22T11:32:01.175702322:Accesdb.agrega(..) INSERT INTO odplanDDBB.taskType (idTask,name) VALUES (1,'ROTULACION');
+2024-05-22T11:32:17.638504102:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-22T11:32:43.955848008:Opened filelog queries.log
+2024-05-22T11:32:44.291694735:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T11:32:44.326700687:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T11:32:44.348835032:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-22T11:32:44.369208744:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T11:32:44.387790791:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T11:32:44.388477597:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:32:44.403279164:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T11:32:44.417290838:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T11:32:44.434512082:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T11:32:44.450003683:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T11:32:44.463985984:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T12:22:28.697501737:Opened filelog queries.log
+2024-05-22T12:22:29.060848489:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T12:22:29.099897640:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T12:22:29.120879639:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-22T12:22:29.136816034:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T12:22:29.153268845:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T12:22:29.153582101:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T12:22:29.169768680:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T12:22:29.185657552:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T12:22:29.201169724:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T12:22:29.217142875:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T12:22:29.231935691:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-22T12:39:41.963528828:Opened filelog queries.log
+2024-05-22T12:39:42.268643649:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-22T12:39:42.295849511:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-22T12:39:42.314587971:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-22T12:39:42.329149320:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-22T12:39:42.343931295:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-22T12:39:42.344258319:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T12:39:42.358438972:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-22T12:39:42.372114929:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-22T12:39:42.386056427:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-22T12:39:42.399716075:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-22T12:39:42.411916901:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1

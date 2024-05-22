@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import com.model.Accesdb;
 import com.model.RolAndId;
-import com.model.Worker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +50,7 @@ public class loginController {
     @FXML
     void startSession(ActionEvent event) throws IOException {
         RolAndId rolAndId = Accesdb.trustWorker(user.getText(), passwd.getText());
-        if (rolAndId.getRol().equals("ADMIN")) {
+        if (rolAndId!=null && rolAndId.getRol().equals("ADMIN")) {
             App.setRoot("adminMenu");
             System.out.println("hola");
         } else {

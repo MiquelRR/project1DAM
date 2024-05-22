@@ -20,9 +20,9 @@ public class Accesdb {
 
     private static boolean logMode=true;
     private static LogToFile bbddlog = new LogToFile("queries");
-
-    private final static String bdcon = "jdbc:mysql://localhost:3306/odplanDDBB";
-    //private final static String bdcon = "jdbc:mysql://localhost:33006/CajeroNOVA";
+    private final static String BBDD_NAME="odplanDDBB";
+    private final static String bdcon = "jdbc:mysql://localhost:3306/"+BBDD_NAME;
+    //private final static String bdcon = "jdbc:mysql://localhost:33006/"+BBDD_NAME;
     private final static String us = "root";
     private final static String pw = "root";
     public final static String newAmount = "UPDATE Cuenta SET saldo = %s WHERE NIF ='%s';";
@@ -41,6 +41,43 @@ public class Accesdb {
         Accesdb.logMode=false;
     }
 
+    public static List<Section> getAllSections(){
+        List<Section> list = new ArrayList<>();
+        List<String[]> lst=lligTaula("section");
+        for (String[] reg : lst) {
+            Section section= new Section(Integer.parseInt(reg[0]),reg[1]);
+            list.add(section);
+        }
+        return list;
+    }
+
+    public static void addSection(Section sec){
+        agrega(BBDD_NAME+".section", new Object[] {"idSection",sec.getId(),"name",sec.toString()});
+    }
+    public static void addTask(TaskType task){
+        agrega(BBDD_NAME+".taskType", new Object[] {"idTask",task.getId(),"name",task.toString()});
+    }
+
+    public static void addRank(Rank rank){
+        agrega(BBDD_NAME+".rank", new Object[] {"idRank",rank.getId(),"name",rank.toString()});
+    }
+
+    public static void removeSection(Section sec){
+        modifica("DELETE FROM "+BBDD_NAME+".section WHERE idSection = "+sec.getId());
+    }
+
+    public static void removeRank(Rank rank){
+        modifica("DELETE FROM "+BBDD_NAME+".rank WHERE idRank = "+rank.getId());
+    }
+
+    public static void removeTask(TaskType task){
+        modifica("DELETE FROM "+BBDD_NAME+".taskType WHERE idTask= "+task.getId());
+    }
+
+    public static boolean isTaskinUse(TaskType task){
+        return lligQuery("SELECT * FROM "+BBDD_NAME+".liveTask WHERE idTask="+task.getId()).size()>0;        
+    }
+
     public static LocalDate readLastProcessedDate(){
         LocalDate lastDate=null;
         String gettedDate = lligString("SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;");
@@ -49,13 +86,15 @@ public class Accesdb {
         }
         return lastDate;
     }
-    public static Map<Integer,String> readRanks(){
-        Map<Integer,String> map = new HashMap<>();
-        List<String[]> lst = lligTaula("rank");
+
+     public static List<Rank> readRanks(){
+        List<Rank> list = new ArrayList<>();
+        List<String[]> lst=lligTaula(BBDD_NAME+".rank");
         for (String[] reg : lst) {
-            map.put(Integer.parseInt(reg[0]),reg[1]);
+            Rank rank= new Rank(Integer.parseInt(reg[0]),reg[1]);
+            list.add(rank);
         }
-        return map;
+        return list;
     }
     public static void writeLastProcessedDate(LocalDate date){
         agrega("lastGeneratedDates", new Object[]{"lastDate",date.toString()});
@@ -95,14 +134,14 @@ public class Accesdb {
         return returnList;
     }
 
-    public static Map<Integer, TaskType> readTaskTypes(){
-        Map<Integer,TaskType> returnMap = new HashMap<>();
-        List<String[]> list =  lligTaula("taskTypes");
-        for (String[] reg : list) {
-            TaskType taskType= new TaskType(reg[1]);
-            returnMap.put(Integer.parseInt(reg[0]),taskType);
+    public static List<TaskType> readTaskTypes(){
+        List<TaskType> list = new ArrayList<>();
+        List<String[]> lst =  lligTaula("taskType");
+        for (String[] reg : lst) {
+            TaskType taskType= new TaskType(Integer.parseInt(reg[0]),reg[1]);
+            list.add(taskType);
         }
-        return returnMap;
+        return list;
     }
 
     public static List<Worker> readWorkers(){
@@ -162,8 +201,7 @@ public class Accesdb {
         username=username.split(" ")[0]; // to prevent SQL attack
         pwd=pwd.split(" ")[0];
         String[] reg=lligReg("SELECT idWorker, workerRol FROM worker WHERE userName='"+username+"' AND password='"+pwd+"'");
-        
-        return new RolAndId(Integer.parseInt(reg[0]), reg[1]);
+        return (reg[0]!=null)? new RolAndId(Integer.parseInt(reg[0]), reg[1]): null;
     }
 
     public static void modifica(String query){
@@ -230,6 +268,7 @@ public class Accesdb {
         valors = valors.substring(0, valors.length() - 1);
         String query = "INSERT INTO " + taula + " (" + taules + ") VALUES (" + valors + ");";
         int idInsertat = -1;
+        if(logMode) bbddlog.log(query);
         try {
             Connection con = DriverManager.getConnection(bdcon, us, pw);
             Statement st = con.createStatement();

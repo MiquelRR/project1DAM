@@ -1,12 +1,19 @@
 package com.model;
 
 public class TaskType {
-    String name;
-    public TaskType(String name) {
+    Integer id;
+    public Integer getId() {
+        return id;
+    }
 
+    String name;
+    public TaskType(int id , String name) {
+        this.id = id;
         this.name = name;
     }
-    public String getName() {
+
+    @Override
+    public String toString() {
         return name;
     }
 

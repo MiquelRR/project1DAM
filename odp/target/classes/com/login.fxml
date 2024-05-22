@@ -17,7 +17,7 @@
             <Image url="@images/odeplan_logo.png" />
          </image>
       </ImageView>
-      <Button layoutY="446.0" mnemonicParsing="false" onAction="#startSession" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Iniciar sesión" textFill="#e1e5da">
+      <Button layoutY="446.0" mnemonicParsing="false" onAction="#startSession" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Iniciar sesión" textFill="#fbf9f1">
          <font>
             <Font name="Cantarell Bold" size="22.0" />
          </font>

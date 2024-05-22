@@ -3,12 +3,16 @@ package com.model;
 public class Section {
     int id;
     String name;
-    WeekTemplate weekTemplate;
+   /*  WeekTemplate weekTemplate; */
     
-    public Section(int id, String name, WeekTemplate weekTemplate) {
+    public Section(int id, String name) {
         this.id = id;
         this.name = name;
-        this.weekTemplate = weekTemplate;
+        /* this.weekTemplate = weekTemplate; */
+    }
+    @Override
+    public String toString(){
+        return name;
     }
 
     public int getId() {
@@ -27,12 +31,12 @@ public class Section {
         this.name = name;
     }
 
-    public WeekTemplate getWeekTemplate() {
+/*     public WeekTemplate getWeekTemplate() {
         return weekTemplate;
     }
 
     public void setWeekTemplate(WeekTemplate weekTemplate) {
         this.weekTemplate = weekTemplate;
-    }
+    } */
     
 }
