@@ -33,7 +33,7 @@ public class Worker {
     WeekTemplate weekTemplate;
     String rol;
 
-    
+    public Worker(){}
     
     public Worker(String idWorker, String userName, String fullName, String passwd, String since, String ssNum,
             String dni, String section, String rank, String address, String telNum, String mail, String contact,

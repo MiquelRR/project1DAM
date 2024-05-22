@@ -21,8 +21,8 @@ public class Accesdb {
     private static boolean logMode=true;
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME="odplanDDBB";
-    private final static String bdcon = "jdbc:mysql://localhost:3306/"+BBDD_NAME;
-    //private final static String bdcon = "jdbc:mysql://localhost:33006/"+BBDD_NAME;
+    //private final static String bdcon = "jdbc:mysql://localhost:3306/"+BBDD_NAME;
+    private final static String bdcon = "jdbc:mysql://localhost:33006/"+BBDD_NAME;
     private final static String us = "root";
     private final static String pw = "root";
     public final static String newAmount = "UPDATE Cuenta SET saldo = %s WHERE NIF ='%s';";

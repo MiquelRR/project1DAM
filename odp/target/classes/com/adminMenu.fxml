@@ -34,12 +34,12 @@
       <Rectangle fill="#aad7d9" height="52.0" layoutY="380.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <Rectangle fill="#aad7d9" height="52.0" layoutY="450.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <Rectangle fill="#aad7d9" height="52.0" layoutY="310.0" stroke="TRANSPARENT" width="600.0" />
-      <Button layoutX="182.0" layoutY="534.0" mnemonicParsing="false" onAction="#toCalendars" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰ calendarios" textFill="#7c7c7c">
+      <Button layoutX="182.0" layoutY="534.0" mnemonicParsing="false" onAction="#toCalendars" prefHeight="52.0" prefWidth="159.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰ calendarios" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="479.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="︽ volver" textFill="#7c7c7c">
+      <Button fx:id="returnButton" layoutX="459.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="︽ volver" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
