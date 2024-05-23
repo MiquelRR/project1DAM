@@ -43,7 +43,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"), 600, 600);
+        scene = new Scene(loadFXML("workerProfile"), 600, 600);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OndPlan Beta MiquelRRdev");

@@ -41,7 +41,7 @@ public class workerProfileController {
     private URL location;
 
     @FXML
-    private CheckBox activeChecbox;
+    private CheckBox activeCheckbox;
 
     @FXML
     private TextField adressField;
@@ -133,12 +133,12 @@ public class workerProfileController {
             App.editedWorker.setContact(otherField.getText());
             App.editedWorker.setUserName(nikField.getText().strip());
             App.editedWorker.setPasswd(passField.getText().strip());
-            //AUN FALTA
+            App.editedWorker.setActive(activeCheckbox.isSelected());
+            adminModel.addNewWorker(App.editedWorker);
         } else {
             App.showDialog(alert);
         }
         App.editedWorker.setFullName(alert);
-        App.showDialog("REQUIRED TRUE "+ required);
 
     }
 
@@ -188,8 +188,8 @@ public class workerProfileController {
         prevButton.setDisable(true);
         nextButton.setDisable(true);
         nameField.requestFocus();
-        assert activeChecbox != null
-                : "fx:id=\"activeChecbox\" was not injected: check your FXML file 'workerProfile.fxml'.";
+        assert activeCheckbox != null
+                : "fx:id=\"activeCheckbox\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert adressField != null
                 : "fx:id=\"adressField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert applyButton != null

@@ -88,6 +88,12 @@ public class AdminModel {
 
     }
 
+    public void addNewWorker(Worker worker){
+        worker.setIdWorker(staffList.size());
+        staffList.add(worker);
+        Accesdb.addWorker(worker);
+    }
+
     private int getNextSection() {
         int next = -1;
         for (Section section : sections) {

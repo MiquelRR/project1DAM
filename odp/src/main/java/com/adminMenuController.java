@@ -124,16 +124,6 @@ public class adminMenuController {
 
     }
 
-    private void showDialog(String st) {
-        if (st == null)
-            st = "null";
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Operación no posible");
-        alert.setHeaderText("revise las siguientes condiciones");
-        alert.setContentText(st);
-        alert.showAndWait();
-    }
-
     @FXML
     void addSection(ActionEvent event) {
         if (sectionField.getText().length() > 1) {
@@ -210,7 +200,7 @@ public class adminMenuController {
                 taskChoice.getItems().remove(taskChoice.getValue());
                 refresh();
             } else
-                showDialog("Intentas borrar una tarea en uso");
+                App.showDialog("Intentas borrar una tarea en uso");
         }
 
     }
@@ -235,7 +225,7 @@ public class adminMenuController {
                 rankChooser.getItems().remove(rankChooser.getValue());
                 refresh();
             } else
-                showDialog("Intentas borrar una categoria con trabajadores");
+                App.showDialog("Intentas borrar una categoria con trabajadores");
         }
 
     }
@@ -250,7 +240,7 @@ public class adminMenuController {
                 sectionChooser.getItems().remove(sectionChooser.getValue());
                 refresh();
             } else
-                showDialog("Intentas borrar una sección con trabajadores");
+                App.showDialog("Intentas borrar una sección con trabajadores");
         }
     }
 

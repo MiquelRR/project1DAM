@@ -1050,3 +1050,84 @@ DELETE FROM odplanDDBB.taskType WHERE idRank = 1
 2024-05-22T19:54:36.833168782:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
 2024-05-22T19:54:36.852240131:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
 2024-05-22T19:54:36.871865257:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T16:31:47.238427309:Opened filelog queries.log
+2024-05-23T16:31:47.721250173:Error en la bd -lligReg-: 1698-Access denied for user 'root'@'localhost'
+2024-05-23T16:32:17.985685483:Opened filelog queries.log
+2024-05-23T16:32:18.326628820:Error en la bd -lligReg-: 1698-Access denied for user 'root'@'localhost'
+2024-05-23T16:32:57.697842865:Opened filelog queries.log
+2024-05-23T16:32:58.078105877:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-23T16:32:58.118065507:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T16:32:58.152310235:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T16:32:58.185983853:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T16:32:58.206881277:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T16:32:58.227860823:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T16:32:58.228379291:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T16:32:58.247188679:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T16:32:58.266370801:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T16:32:58.281882429:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T16:32:58.297577814:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T16:32:58.311160699:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T18:02:20.167384484:Opened filelog queries.log
+2024-05-23T18:02:20.556052202:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-23T18:02:20.581052443:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T18:02:20.604431431:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T18:02:20.623396110:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T18:02:20.639911489:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T18:02:20.657573154:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T18:02:20.657985675:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:02:20.674305211:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:02:20.690578502:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T18:02:20.705649801:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T18:02:20.719768783:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T18:02:20.735368657:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T18:06:18.475572729:Opened filelog queries.log
+2024-05-23T18:06:18.855202890:Accesdb.lligReg(SELECT idWorker, workerRol FROM worker WHERE userName='ADMIN' AND password='1234')
+2024-05-23T18:06:18.883595851:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T18:06:18.912314552:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T18:06:18.933070798:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T18:06:18.950661199:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T18:06:18.967896896:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T18:06:18.968435160:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:06:18.983626644:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:06:18.999550181:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T18:06:19.013889724:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T18:06:19.029386365:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T18:06:19.043208951:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T18:09:53.212061380:Opened filelog queries.log
+2024-05-23T18:09:53.608433933:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T18:09:53.644137910:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T18:09:53.668104202:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T18:09:53.685328737:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T18:09:53.702295330:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T18:09:53.702786466:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:09:53.720374300:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:09:53.741826262:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T18:09:53.755915372:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T18:09:53.769526426:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T18:09:53.781949825:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T18:10:52.563361241:Opened filelog queries.log
+2024-05-23T18:10:52.946100479:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T18:10:52.977624417:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T18:10:52.999126387:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T18:10:53.016162352:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T18:10:53.033532456:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T18:10:53.034025276:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:10:53.051627128:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:10:53.067480545:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T18:10:53.082142154:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T18:10:53.095065863:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T18:10:53.108464709:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
+2024-05-23T18:11:39.577777303:INSERT INTO worker (idWorker,userName,fullName,password,sinceDate,ss,dni,idSection,idRank,address,telNum,email,contact,docFolder,active,workerType,workerRol) VALUES (2,'Uno','','dos',2024-05-23,'12345678','33409897M',1,0,'Cosica','1654654654','miquel@no.es','Pepe',null,false,null,null);
+2024-05-23T18:11:39.666925349:Error en la bd -agrega-: 1292-Data truncation: Incorrect date value: '1996' for column 'sinceDate' at row 1
+2024-05-23T18:15:53.212468348:Opened filelog queries.log
+2024-05-23T18:15:53.595722230:Accesdb.lligtaula(weekTemplate) ->SELECT * FROM weekTemplate
+2024-05-23T18:15:53.627911868:Accesdb.lligtaula(worker) ->SELECT * FROM worker
+2024-05-23T18:15:53.648501757:Accesdb.lligtaula(odplanDDBB.rank) ->SELECT * FROM odplanDDBB.rank
+2024-05-23T18:15:53.666785044:Accesdb.lligtaula(taskType) ->SELECT * FROM taskType
+2024-05-23T18:15:53.684932210:Accesdb.lligtaula(section) ->SELECT * FROM section
+2024-05-23T18:15:53.685467727:Accesdb.lligString(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:15:53.701824819:Accesdb.lligReg(SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;)
+2024-05-23T18:15:53.720477563:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=0
+2024-05-23T18:15:53.735944082:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 0
+2024-05-23T18:15:53.751920345:Accesdb.lligQuery(..)) ->SELECT date, workTime FROM calendar WHERE idWorker=1
+2024-05-23T18:15:53.765279122:Accesdb.lligQuery(..)) ->SELECT idTask FROM abilities WHERE idWorker = 1
