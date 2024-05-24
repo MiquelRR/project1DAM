@@ -19,12 +19,25 @@ import com.model.Worker;
  */
 public class App extends Application {
 
+    @SuppressWarnings("exports")
     public static Worker editedWorker = new Worker();
+    public static boolean workerProfModeAdd;
+    public static boolean isWorkerProfModeAdd() {
+        return workerProfModeAdd;
+    }
+
+    public static void setWorkerProfModeAdd(boolean workerProfModeAdd) {
+        App.workerProfModeAdd = workerProfModeAdd;
+    }
+
     private static Scene scene;
 
+    @SuppressWarnings("exports")
     public static Rank defaultRank = null;
+    @SuppressWarnings("exports")
     public static Section defaulSection = null;
 
+    @SuppressWarnings("exports")
     public static Section getDefaulSection() {
         return defaulSection;
     }
@@ -37,13 +50,15 @@ public class App extends Application {
         defaultRank = rank;
     }
 
+    @SuppressWarnings("exports")
     public static Rank getDefaultRank() {
         return defaultRank;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("workerProfile"), 600, 600);
+        //scene = new Scene(loadFXML("workerProfile"), 600, 600);
+        scene = new Scene(loadFXML("adminMenu"), 600, 600);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OndPlan Beta MiquelRRdev");

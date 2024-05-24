@@ -146,6 +146,7 @@ public class adminMenuController {
     void editWorker(ActionEvent event) throws IOException {
         App.setDefaulSection(sectionChooser.getValue());
         App.setDefaultRank(rankChooser.getValue());
+        App.setWorkerProfModeAdd(true);
         App.setRoot("workerProfile");
 
     }
@@ -320,16 +321,15 @@ public class adminMenuController {
         }
 
 
-        if (adminModel.getFilteredStaff().isEmpty()) {
-            //
-        }
+        // if (adminModel.getStaff().isEmpty()) { }
+        
         editWorkerButton.setVisible(posibleWorkers);
 
     }
 
     @FXML
     void initialize() {
-        adminModel.filterStaff(null, null);
+        //adminModel.filterStaff(null, null);
         refresh();
 
        

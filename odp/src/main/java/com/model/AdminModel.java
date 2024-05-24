@@ -65,7 +65,7 @@ public class AdminModel {
 
     }
 
-    public List<Worker> getFilteredStaff() {
+  /*   public List<Worker> getFilteredStaff() {
         return filteredStaff;
     }
 
@@ -74,11 +74,11 @@ public class AdminModel {
         for (Worker worker : staffList) {
             if ((sec == null || sec.getId() == worker.getSection())
                     && (rank == null || rank.getId() == worker.getRank())
-                    && (worker.getRol().equals("WORKER")))
+                    && (worker.getRol()!=null && worker.getRol().equals("WORKER")))
                 filteredStaff.add(worker);
         }
     }
-
+ */
     private int getNextRank() {
         int next = -1;
         for (Rank rank : ranks) {
@@ -88,10 +88,34 @@ public class AdminModel {
 
     }
 
+    public Rank getRankById(int id){
+        for (Rank r : ranks) {
+            if (r.getId()==id) return r;
+        }
+        return null;
+    }
+    public Section getSectionById(int id){
+        for (Section s : sections) {
+            if (s.getId()==id) return s;
+        }
+        return null;
+    }
+
+
+    public Worker getWorkerById(int id){
+        return staffList.get(id);
+    }
+
     public void addNewWorker(Worker worker){
+        worker.setRol("WORKER");
+        
         worker.setIdWorker(staffList.size());
         staffList.add(worker);
         Accesdb.addWorker(worker);
+    }
+
+    public int getWorkerStafSize(){
+        return staffList.size();
     }
 
     private int getNextSection() {

@@ -14,26 +14,23 @@ import java.util.Map;
 
 public class Accesdb {
 
+    //DEBUGGING:
+    private static boolean local = true;
     private static boolean logMode = true;
+    
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME = "odplanDDBB";
-    // private final static String bdcon = "jdbc:mysql://localhost:3306/"+BBDD_NAME;
-    private final static String bdcon = "jdbc:mysql://localhost:33006/" + BBDD_NAME;
+    private final static String bdcon =(local)? "jdbc:mysql://localhost:3306/"+BBDD_NAME:"jdbc:mysql://localhost:33006/" + BBDD_NAME;
     private final static String us = "root";
     private final static String pw = "root";
-    public final static String newAmount = "UPDATE Cuenta SET saldo = %s WHERE NIF ='%s';";
-    public final static String deleteFact = "DELETE FROM Factura WHERE Num_Fra = %d ;";
 
-    // public final static String addEmployee="INSERT INTO empleados (nombre,
-    // apellidos, telefono, cargo) VALUES ('-', '-', '-', '-', '-');";
-    // public static Scanner sc = new Scanner(System.in);
 
     public static void setLogOn() {
-        Accesdb.logMode = true;
+       logMode = true;
     }
 
     public static void setLogOff() {
-        Accesdb.logMode = false;
+        logMode = false;
     }
 
     public static List<Section> getAllSections() {
@@ -62,9 +59,9 @@ public class Accesdb {
             "email",worker.getMail(),
             "contact",worker.getContact(),
             "docFolder",worker.getDocFolder(),
-            "active",worker.getActive(),
-            "workerType",worker.getType(),
-            "workerRol",worker.getRol()
+            "active",(worker.getActive())?"NO":"YES",
+            "workerType","WORKER",
+            "workerRol","WORKER"
         };
 
         agrega("worker",ob);

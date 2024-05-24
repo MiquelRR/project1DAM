@@ -31,6 +31,8 @@ public class workerProfileController {
         return matcher.matches();
     }
 
+    private static int workerIdx;
+
     AdminModel adminModel = AdminModel.getaAdminModel();
     Worker worker;
 
@@ -92,36 +94,67 @@ public class workerProfileController {
     private TextField telField;
 
     @FXML
+    private void showWorker(Worker worker) {
+        nikField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
+        nikField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
+        nameField.setText((worker.getFullName() == null) ? "" : worker.getFullName());
+        passField.setText((worker.getPasswd() == null) ? "" : worker.getPasswd());
+        if (worker.getSince() == null)
+            datePicker.setValue(LocalDate.now());
+        else
+            datePicker.setValue(worker.getSince());
+        ssField.setText((worker.getSsNum() == null) ? "" : worker.getSsNum());
+        ssDniField.setText((worker.getDni() == null) ? "" : worker.getDni());
+
+        if (worker.getSection() == null)
+            sectionChoice.setValue(App.getDefaulSection());
+        else
+            sectionChoice.setValue(adminModel.getSectionById(worker.getSection()));
+
+        if (worker.getRank() == null)
+            rankChoice.setValue(App.getDefaultRank());
+        else
+            rankChoice.setValue(adminModel.getRankById(worker.getRank()));
+        adressField.setText((worker.getAddress() == null) ? "" : worker.getAddress());
+        telField.setText((worker.getTelNum() == null) ? "" : worker.getTelNum());
+        mailField.setText((worker.getMail() == null) ? "" : worker.getMail());
+        otherField.setText((worker.getContact() == null) ? "" : worker.getContact());
+    }
+
+    @FXML
     void applyButtonPressed(ActionEvent event) {
-        String alert="";
-        Boolean required=true;
-        if(nameField.getText().isBlank()){
-            alert+="Rellena el Nombre completo\n";
+        String alert = "";
+        Boolean required = true;
+        if (nameField.getText().isBlank()) {
+            alert += "Rellena el Nombre completo\n";
             required = false;
-        };
-        if (!validate(ssField.getText(),SS)){
-            alert+="El numero de la ss son 8 dígitos\n";
-            required=false;
         }
-        if (!validate(ssDniField.getText(),DNI)){
-            alert+="El DNI no es válido\n";
-            required=false;
+        ;
+        if (!validate(ssField.getText(), SS)) {
+            alert += "El numero de la ss son 8 dígitos\n";
+            required = false;
+        }
+        if (!validate(ssDniField.getText(), DNI)) {
+            alert += "El DNI no es válido\n";
+            required = false;
         }
 
-        if (!validate(mailField.getText(),EMAIL)){
-            alert+="El email es incorrecto\n";
-            required=false;
+        if (!validate(mailField.getText(), EMAIL)) {
+            alert += "El email es incorrecto\n";
+            required = false;
         }
-        if(!validate(nikField.getText(),NO_SPACES)){
-            alert+="El nick no puede tener espacios\n";
+        if (!validate(nikField.getText(), NO_SPACES)) {
+            alert += "El nick no puede tener espacios\n";
             required = false;
-        };
-        if(!validate(passField.getText(),NO_SPACES)){
-            alert+="La password no puede tener espacios\n";
+        }
+        ;
+        if (!validate(passField.getText(), NO_SPACES)) {
+            alert += "La password no puede tener espacios\n";
             required = false;
-        };
-        if (required){
-            App.editedWorker.setFullName(alert);
+        }
+        ;
+        if (required) {
+            App.editedWorker.setFullName(nameField.getText());
             App.editedWorker.setSince(datePicker.getValue());
             App.editedWorker.setSsNum(ssField.getText());
             App.editedWorker.setDni(ssDniField.getText());
@@ -135,11 +168,11 @@ public class workerProfileController {
             App.editedWorker.setPasswd(passField.getText().strip());
             App.editedWorker.setActive(activeCheckbox.isSelected());
             adminModel.addNewWorker(App.editedWorker);
+            App.setWorkerProfModeAdd(false);
+            refresh();
         } else {
             App.showDialog(alert);
         }
-        App.editedWorker.setFullName(alert);
-
     }
 
     @FXML
@@ -179,15 +212,37 @@ public class workerProfileController {
     }
 
     @FXML
+    void refresh() {
+        if (App.isWorkerProfModeAdd()) {
+            activeCheckbox.setDisable(true);
+            datePicker.setValue(LocalDate.now());
+            prevButton.setVisible(false);
+            nextButton.setVisible(false);
+            nameField.requestFocus();
+
+        } else {
+            activeCheckbox.setDisable(false);
+            prevButton.setVisible(true);
+            nextButton.setVisible(true);
+            App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker());
+            int idx = App.editedWorker.getIdWorker();
+            int lastIdx = adminModel.getWorkerStafSize() - 1;
+            prevButton.setDisable(idx <= 3);
+            nextButton.setText((idx >= lastIdx) ? "+" : ">");
+        }
+
+    }
+
+    @FXML
     void initialize() {
+
         sectionChoice.getItems().setAll(adminModel.getSections());
         rankChoice.getItems().setAll(adminModel.getRanks());
         sectionChoice.getSelectionModel().select(App.getDefaulSection());
         rankChoice.getSelectionModel().select(App.getDefaultRank());
-        datePicker.setValue(LocalDate.now());
-        prevButton.setDisable(true);
-        nextButton.setDisable(true);
-        nameField.requestFocus();
+        workerIdx = App.editedWorker.getIdWorker();
+        refresh();
+
         assert activeCheckbox != null
                 : "fx:id=\"activeCheckbox\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert adressField != null
