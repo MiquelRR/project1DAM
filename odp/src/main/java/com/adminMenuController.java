@@ -144,9 +144,10 @@ public class adminMenuController {
 
     @FXML
     void editWorker(ActionEvent event) throws IOException {
-        App.setDefaulSection(sectionChooser.getValue());
+        App.editedWorker=adminModel.getLastWorker();
+     /*    App.setDefaulSection(sectionChooser.getValue());
         App.setDefaultRank(rankChooser.getValue());
-        App.setWorkerProfModeAdd(true);
+        App.setWorkerProfModeAdd(true); */
         App.setRoot("workerProfile");
 
     }

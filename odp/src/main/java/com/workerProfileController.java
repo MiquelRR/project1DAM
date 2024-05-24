@@ -1,5 +1,6 @@
 package com;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -106,9 +107,10 @@ public class workerProfileController {
         ssField.setText((worker.getSsNum() == null) ? "" : worker.getSsNum());
         ssDniField.setText((worker.getDni() == null) ? "" : worker.getDni());
 
-        if (worker.getSection() == null)
+        if (worker.getSection() == null) {
+            App.setWorkerProfModeAdd(true);
             sectionChoice.setValue(App.getDefaulSection());
-        else
+        } else
             sectionChoice.setValue(adminModel.getSectionById(worker.getSection()));
 
         if (worker.getRank() == null)
@@ -119,6 +121,7 @@ public class workerProfileController {
         telField.setText((worker.getTelNum() == null) ? "" : worker.getTelNum());
         mailField.setText((worker.getMail() == null) ? "" : worker.getMail());
         otherField.setText((worker.getContact() == null) ? "" : worker.getContact());
+        refresh();
     }
 
     @FXML
@@ -182,16 +185,31 @@ public class workerProfileController {
 
     @FXML
     void next(ActionEvent event) {
+        if (nextButton.getText().equals(">"))
+            nextWorker();
+        else
+            addNewWorker();
+    }
 
+    private void addNewWorker() {
+        App.editedWorker = new Worker();
+        showWorker(App.editedWorker);
+    }
+
+    private void nextWorker() {
+        App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker() + 1);
+        showWorker(App.editedWorker);
     }
 
     @FXML
     void prev(ActionEvent event) {
-
+        App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker() - 1);
+        showWorker(App.editedWorker);
     }
 
     @FXML
-    void returnButtonPressed(ActionEvent event) {
+    void returnButtonPressed(ActionEvent event) throws IOException {
+        App.setRoot("adminMenu");
 
     }
 

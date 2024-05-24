@@ -15,12 +15,13 @@ import java.util.Map;
 public class Accesdb {
 
     //DEBUGGING:
-    private static boolean local = true;
+    private static boolean local = false;
     private static boolean logMode = true;
     
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME = "odplanDDBB";
     private final static String bdcon =(local)? "jdbc:mysql://localhost:3306/"+BBDD_NAME:"jdbc:mysql://localhost:33006/" + BBDD_NAME;
+    //private final static String bdcon = "jdbc:mysql://localhost:33006/"+BBDD_NAME;
     private final static String us = "root";
     private final static String pw = "root";
 

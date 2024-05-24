@@ -2,5 +2,8 @@
 .init-button:hover {
     -fx-text-fill: #92c7cF;
 }
+.init-button {
+    -fx-text-fill: #7c7c7c;
+}
 
 

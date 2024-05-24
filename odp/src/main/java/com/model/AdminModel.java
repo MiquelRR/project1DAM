@@ -88,6 +88,14 @@ public class AdminModel {
 
     }
 
+    public int getNewWorkerIndex(){
+        return staffList.size();
+    }
+
+    public Worker getLastWorker(){
+        return staffList.get(staffList.size()-1);
+    }
+
     public Rank getRankById(int id){
         for (Rank r : ranks) {
             if (r.getId()==id) return r;
