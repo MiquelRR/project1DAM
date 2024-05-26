@@ -21,4 +21,8 @@ public class Day {
     public void setWorkTime(int workTime) {
         this.workTime = workTime;
     }
+    @Override
+    public String toString() {
+        return "Day [date=" + date + ", workTime=" + workTime + "]";
+    }
 }

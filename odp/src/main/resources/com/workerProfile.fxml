@@ -23,7 +23,7 @@
       </ImageView>
       <Rectangle fill="#aad7d9" height="52.0" layoutY="534.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <Rectangle fill="#aad7d9" height="52.0" layoutY="463.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Button layoutX="38.0" layoutY="534.0" mnemonicParsing="false" onAction="#toAbilities" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="capacidades" textFill="#7c7c7c">
+      <Button fx:id="abilitiesButton" layoutX="38.0" layoutY="534.0" mnemonicParsing="false" onAction="#toAbilities" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰ capacidades" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
@@ -157,7 +157,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="applyButton" layoutX="343.0" layoutY="534.0" mnemonicParsing="false" onAction="#applyButtonPressed" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar" textFill="#7c7c7c">
+      <Button fx:id="applyButton" layoutX="325.0" layoutY="534.0" mnemonicParsing="false" onAction="#applyButtonPressed" prefHeight="52.0" prefWidth="136.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Aplicar" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
@@ -169,7 +169,7 @@
       <TextField fx:id="telField" layoutX="52.0" layoutY="310.0" prefHeight="52.0" prefWidth="114.0" promptText="6111111111" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <TextField fx:id="mailField" layoutX="237.0" layoutY="310.0" prefHeight="52.0" prefWidth="125.0" promptText="nombre@dominio.es" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <TextField fx:id="otherField" layoutX="451.0" layoutY="310.0" prefHeight="52.0" prefWidth="148.0" promptText="Carlota, tel 123456789" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
-      <Button layoutY="389.0" mnemonicParsing="false" onAction="#chooseWorkerFolder" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="JUSTIFICANTES, EPIS, FORMACION, CONSENTIMIENTOS" textFill="#7c7c7c">
+      <Button fx:id="folderButton" layoutY="389.0" mnemonicParsing="false" onAction="#chooseWorkerFolder" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="JUSTIFICANTES, EPIS, FORMACION, CONSENTIMIENTOS" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>

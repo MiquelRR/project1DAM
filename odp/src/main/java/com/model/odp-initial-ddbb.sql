@@ -87,7 +87,7 @@ CREATE TABLE `lastGeneratedDates` (
 
 LOCK TABLES `lastGeneratedDates` WRITE;
 /*!40000 ALTER TABLE `lastGeneratedDates` DISABLE KEYS */;
-INSERT INTO `lastGeneratedDates` VALUES ('2025-05-25');
+-- INSERT INTO `lastGeneratedDates` VALUES ('2025-05-25');
 /*!40000 ALTER TABLE `lastGeneratedDates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `rank` (
 
 LOCK TABLES `rank` WRITE;
 /*!40000 ALTER TABLE `rank` DISABLE KEYS */;
-INSERT INTO `rank` VALUES (0,'Oficial 1ª'),(1,'Oficial 2ª');
+-- INSERT INTO `rank` VALUES (0,'Oficial 1ª'),(1,'Oficial 2ª');
 /*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `section` (
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES (0,'CERRAJERIA'),(1,'ROTULACION'),(2,'DISEÑO');
+-- INSERT INTO `section` VALUES (0,'CERRAJERIA'),(1,'ROTULACION'),(2,'DISEÑO');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +255,7 @@ CREATE TABLE `taskType` (
 
 LOCK TABLES `taskType` WRITE;
 /*!40000 ALTER TABLE `taskType` DISABLE KEYS */;
-INSERT INTO `taskType` VALUES (0,'FRESADO'),(1,'ROTULACION');
+-- INSERT INTO `taskType` VALUES (0,'FRESADO'),(1,'ROTULACION');
 /*!40000 ALTER TABLE `taskType` ENABLE KEYS */;
 UNLOCK TABLES;
 

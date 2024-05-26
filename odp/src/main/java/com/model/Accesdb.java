@@ -15,7 +15,7 @@ import java.util.Map;
 public class Accesdb {
 
     //DEBUGGING:
-    private static boolean local = false;
+    private static boolean local = true;
     private static boolean logMode = true;
     
     private static LogToFile bbddlog = new LogToFile("queries");
@@ -60,12 +60,33 @@ public class Accesdb {
             "email",worker.getMail(),
             "contact",worker.getContact(),
             "docFolder",worker.getDocFolder(),
-            "active",(worker.getActive())?"NO":"YES",
+            "active",(worker.getActive())?"YES":"NO",
             "workerType","WORKER",
             "workerRol","WORKER"
         };
 
         agrega("worker",ob);
+
+    }
+
+    public static void updateWorker(Worker worker) { ////
+        String query="UPDATE worker SET";
+        query+=" userName = '"+worker.getUserName();
+        query+="', fullName = '"+worker.getFullName();
+        query+="', password = '"+worker.getPasswd();
+        query+="', sinceDate = '"+worker.getSince().toString();
+        query+="', ss = '"+worker.getSsNum();
+        query+="', dni = '"+worker.getDni();
+        query+="', idSection = "+worker.getSection();
+        query+=", idRank = "+worker.getRank();
+        query+=", address = '"+worker.getAddress();
+        query+="', telNum = '"+worker.getTelNum();
+        query+="', email = '"+worker.getMail();
+        query+="', contact = '"+worker.getContact();
+        query+="', docFolder = '"+worker.getDocFolder();
+        query+="', active = "+((worker.getActive())?"'YES'":"'NO'");
+        query+=" WHERE idWorker = "+worker.getIdWorker();
+        modifica(query);
 
     }
 
@@ -120,9 +141,17 @@ public class Accesdb {
         agrega("lastGeneratedDates", new Object[] { "lastDate", date.toString() });
     }
 
+    public static void  modifyWorkerSkills(Worker worker){
+        String query =  "DELETE FROM abilities WHERE idWorker = "+worker.getIdWorker();
+        modifica(query);
+        for (TaskType skill : worker.abilities) {
+            agrega("abilities",new Object[]{"idTask",skill.getId(),"idWorker",worker.getIdWorker()});
+        }
+    }
+
     public static Map<Integer, WeekTemplate> readWeekTemplates() {
         Map<Integer, WeekTemplate> readedList = new HashMap<>();
-        List<String[]> lst = lligTaula("weekTemplate");
+        List<String[]> lst = lligTaula("weekTemplate"); 
         for (String[] reg : lst) {
             int idWeek = Integer.parseInt(reg[0]);
             int idWorker = Integer.parseInt(reg[1]);
@@ -252,6 +281,7 @@ public class Accesdb {
     public static String lligString(String query) {
         if (logMode)
             bbddlog.log("Accesdb.lligString(" + query + ")");
+        if (lligReg(query)==null) return null;
         return lligReg(query)[0];
     }
 

@@ -1,5 +1,12 @@
 package com;
 
+import java.io.IOException;
+
+import com.model.AdminModel;
+import com.model.Rank;
+import com.model.Section;
+import com.model.Worker;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,16 +15,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-import com.model.Rank;
-import com.model.Section;
-import com.model.Worker;
-
 /**
  * JavaFX App
  */
 public class App extends Application {
+
+    public static final String WORKERS_FOLDER="../doc_empleados";
+    static AdminModel adminModel = AdminModel.getAdminModel();
+
 
     @SuppressWarnings("exports")
     public static Worker editedWorker = new Worker();
@@ -35,15 +40,17 @@ public class App extends Application {
     @SuppressWarnings("exports")
     public static Rank defaultRank = null;
     @SuppressWarnings("exports")
-    public static Section defaulSection = null;
+    public static Section defaultSection = null;
 
     @SuppressWarnings("exports")
-    public static Section getDefaulSection() {
-        return defaulSection;
+    public static Section getDefaultSection() {
+        if(defaultSection==null) 
+        defaultSection=adminModel.getLastSection();
+        return defaultSection;
     }
 
-    public static void setDefaulSection(Section defaulSection) {
-        App.defaulSection = defaulSection;
+    public static void setDefaultSection(Section defaulSection) {
+        App.defaultSection = defaulSection;
     }
 
     static void setDefaultRank(Rank rank) {
@@ -52,12 +59,17 @@ public class App extends Application {
 
     @SuppressWarnings("exports")
     public static Rank getDefaultRank() {
+        if(defaultRank==null)
+        defaultRank=adminModel.getLastRank();
         return defaultRank;
     }
+
+    public static Stage st;
 
     @Override
     public void start(Stage stage) throws IOException {
         //scene = new Scene(loadFXML("workerProfile"), 600, 600);
+        st=stage;
         scene = new Scene(loadFXML("adminMenu"), 600, 600);
         stage.setScene(scene);
         stage.setResizable(false);

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abilitiesController">
    <children>
       <Label fx:id="workerLabel" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="Francisco Lorin Colorado" textFill="WHITE">
          <font>
@@ -44,7 +44,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="capacitaciones" textAlignment="RIGHT" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="capacitaciones" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>

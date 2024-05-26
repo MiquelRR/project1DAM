@@ -1,5 +1,6 @@
 package com;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.model.Accesdb;
 import com.model.AdminModel;
 import com.model.Rank;
 import com.model.Section;
@@ -19,6 +21,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
+import javafx.stage.DirectoryChooser;
 
 public class workerProfileController {
     private static final String EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
@@ -34,8 +38,8 @@ public class workerProfileController {
 
     private static int workerIdx;
 
-    AdminModel adminModel = AdminModel.getaAdminModel();
-    Worker worker;
+    AdminModel adminModel = AdminModel.getAdminModel();
+    // Worker worker;
 
     @FXML
     private ResourceBundle resources;
@@ -77,10 +81,16 @@ public class workerProfileController {
     private Button prevButton;
 
     @FXML
+    private Button abilitiesButton;
+
+    @FXML
     private ChoiceBox<Rank> rankChoice;
 
     @FXML
     private Button returnButton;
+
+    @FXML
+    private Button folderButton;
 
     @FXML
     private ChoiceBox<Section> sectionChoice;
@@ -100,32 +110,36 @@ public class workerProfileController {
         nikField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
         nameField.setText((worker.getFullName() == null) ? "" : worker.getFullName());
         passField.setText((worker.getPasswd() == null) ? "" : worker.getPasswd());
-        if (worker.getSince() == null)
+        if (worker.getSince() == null) {
             datePicker.setValue(LocalDate.now());
-        else
+            worker.setSince(LocalDate.now());
+        } else
             datePicker.setValue(worker.getSince());
         ssField.setText((worker.getSsNum() == null) ? "" : worker.getSsNum());
         ssDniField.setText((worker.getDni() == null) ? "" : worker.getDni());
 
         if (worker.getSection() == null) {
             App.setWorkerProfModeAdd(true);
-            sectionChoice.setValue(App.getDefaulSection());
+            sectionChoice.setValue(App.getDefaultSection());
+            App.editedWorker.setSection(App.getDefaultSection().getId());
         } else
             sectionChoice.setValue(adminModel.getSectionById(worker.getSection()));
 
-        if (worker.getRank() == null)
+        if (worker.getRank() == null) {
             rankChoice.setValue(App.getDefaultRank());
-        else
+            App.editedWorker.setRank(App.getDefaultRank().getId());
+        } else
             rankChoice.setValue(adminModel.getRankById(worker.getRank()));
         adressField.setText((worker.getAddress() == null) ? "" : worker.getAddress());
         telField.setText((worker.getTelNum() == null) ? "" : worker.getTelNum());
         mailField.setText((worker.getMail() == null) ? "" : worker.getMail());
         otherField.setText((worker.getContact() == null) ? "" : worker.getContact());
+        activeCheckbox.setSelected(worker.getActive() == null || !worker.getActive());
         refresh();
     }
 
     @FXML
-    void applyButtonPressed(ActionEvent event) {
+    Boolean applyButtonPressed(ActionEvent event) {
         String alert = "";
         Boolean required = true;
         if (nameField.getText().isBlank()) {
@@ -169,18 +183,33 @@ public class workerProfileController {
             App.editedWorker.setContact(otherField.getText());
             App.editedWorker.setUserName(nikField.getText().strip());
             App.editedWorker.setPasswd(passField.getText().strip());
-            App.editedWorker.setActive(activeCheckbox.isSelected());
-            adminModel.addNewWorker(App.editedWorker);
-            App.setWorkerProfModeAdd(false);
+            App.editedWorker.setActive(!activeCheckbox.isSelected());
+            if (App.workerProfModeAdd) {
+                adminModel.addNewWorker(App.editedWorker);
+                App.setWorkerProfModeAdd(false);
+            } else {
+                adminModel.updateWorker(App.editedWorker);
+            }
             refresh();
         } else {
             App.showDialog(alert);
         }
+        return required;
     }
 
     @FXML
-    void chooseWorkerFolder(ActionEvent event) {
-
+    void chooseWorkerFolder(ActionEvent event) throws IOException {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Selecciona una carpeta");
+        if (App.editedWorker.getDocFolder() == null)
+            App.editedWorker.setDocFolder(App.WORKERS_FOLDER);
+        directoryChooser.setInitialDirectory(new File(App.editedWorker.getDocFolder()));
+        File selectedDirectory = directoryChooser.showDialog(App.st);
+        if (selectedDirectory != null) {
+            App.editedWorker.setDocFolder(selectedDirectory.getPath());
+            adminModel.updateWorker(App.editedWorker);
+        }
+        refresh();
     }
 
     @FXML
@@ -203,7 +232,12 @@ public class workerProfileController {
 
     @FXML
     void prev(ActionEvent event) {
-        App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker() - 1);
+        if (!App.workerProfModeAdd)
+            App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker() - 1);
+        else {
+            App.workerProfModeAdd = false;
+            App.editedWorker = adminModel.getLastWorker();
+        }
         showWorker(App.editedWorker);
     }
 
@@ -214,13 +248,20 @@ public class workerProfileController {
     }
 
     @FXML
-    void toAbilities(ActionEvent event) {
+    void toAbilities(ActionEvent event) throws IOException {
+        if (applyButtonPressed(event))
+            App.setRoot("workerAbilities");
 
     }
 
     @FXML
     void toggleActive(ActionEvent event) {
-
+        App.editedWorker.setActive(!activeCheckbox.isSelected());
+        refresh();
+        if (activeCheckbox.isSelected())
+            adminModel.updateWorker(App.editedWorker);
+        else
+            applyButtonPressed(event);
     }
 
     @SuppressWarnings("exports")
@@ -231,10 +272,22 @@ public class workerProfileController {
 
     @FXML
     void refresh() {
+        String color;
+        if (App.editedWorker.getDocFolder().equals(App.WORKERS_FOLDER))
+            color = "-fx-text-fill: orange;";
+        else
+            color = "#c7c7c7";
+        folderButton.setStyle(color);
+        if (App.editedWorker.getAbilities() == null)
+            color = "-fx-text-fill: orange;";
+        else
+            color = "#c7c7c7";
+        abilitiesButton.setStyle(color);
+        applyButton.setText((App.workerProfModeAdd) ? "Añadir" : "Actualiza");
         if (App.isWorkerProfModeAdd()) {
             activeCheckbox.setDisable(true);
             datePicker.setValue(LocalDate.now());
-            prevButton.setVisible(false);
+            prevButton.setVisible(true);
             nextButton.setVisible(false);
             nameField.requestFocus();
 
@@ -245,9 +298,24 @@ public class workerProfileController {
             App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker());
             int idx = App.editedWorker.getIdWorker();
             int lastIdx = adminModel.getWorkerStafSize() - 1;
-            prevButton.setDisable(idx <= 3);
+            prevButton.setDisable(idx <= 2);
             nextButton.setText((idx >= lastIdx) ? "+" : ">");
         }
+        Boolean is = activeCheckbox.isSelected();
+        nameField.setDisable(is);
+        datePicker.setDisable(is);
+        ssField.setDisable(is);
+        ssDniField.setDisable(is);
+        sectionChoice.setDisable(is);
+        rankChoice.setDisable(is);
+        adressField.setDisable(is);
+        telField.setDisable(is);
+        mailField.setDisable(is);
+        otherField.setDisable(is);
+        folderButton.setDisable(is);
+        nikField.setDisable(is);
+        passField.setDisable(is);
+        abilitiesButton.setDisable(is);
 
     }
 
@@ -256,9 +324,10 @@ public class workerProfileController {
 
         sectionChoice.getItems().setAll(adminModel.getSections());
         rankChoice.getItems().setAll(adminModel.getRanks());
-        sectionChoice.getSelectionModel().select(App.getDefaulSection());
+        sectionChoice.getSelectionModel().select(App.getDefaultSection());
         rankChoice.getSelectionModel().select(App.getDefaultRank());
         workerIdx = App.editedWorker.getIdWorker();
+        showWorker(App.editedWorker);
         refresh();
 
         assert activeCheckbox != null

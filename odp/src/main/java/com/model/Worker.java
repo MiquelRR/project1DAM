@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.App;
+
 public class Worker {
     int idWorker;
 
@@ -30,13 +32,15 @@ public class Worker {
     String docFolder;
     String type;
 
-    Boolean active;
-    List<Day> calendar;
-    List<TaskType> abilities;
+    Boolean active = true;
+    List<Day> calendar = new ArrayList<>();
+    List<TaskType> abilities = new ArrayList<>();
     WeekTemplate weekTemplate;
     String rol;
 
     public Worker() {
+        this.docFolder=App.WORKERS_FOLDER;
+        
     }
 
     public Worker(String idWorker, String userName, String fullName, String passwd, String since, String ssNum,
@@ -62,6 +66,7 @@ public class Worker {
         this.active = active != null && active.equals("YES");
         this.type = type;
         this.rol = rol;
+        
     }
 
     public Worker(int idWorker, String userName, String fullName, String passwd, String ssNum, String dni,
@@ -82,13 +87,21 @@ public class Worker {
         this.docFolder = docFolder;
         this.active = active;
         this.rol = rol;
-        this.abilities = new ArrayList<>();
+        
     }
 
     public String getUserName() {
         return userName;
     }
 
+    public void addSkill(TaskType skill){
+        this.abilities.add(skill);
+    }
+    public boolean removeSkill(TaskType skill){
+        return this.abilities.remove(skill);
+    }
+
+    
     public void setUserName(String userName) {
         this.userName = userName;
     }

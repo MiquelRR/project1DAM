@@ -19,42 +19,53 @@ public class AdminModel {
 
     private AdminModel() {
         weekTemplates = Accesdb.readWeekTemplates();
+
         staffList = Accesdb.readWorkers();
         ranks = Accesdb.readRanks();
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.getAllSections();
-
         LocalDate lastDate = Accesdb.readLastProcessedDate();
+
         LocalDate today = LocalDate.now();
+
         LocalDate expected = getExpected(today);
-        if (lastDate.isBefore(expected)) {
+        ;
+        if (lastDate == null || lastDate.isBefore(expected)) {
             for (Worker worker : staffList) {
+
                 List<Day> calendar = new ArrayList<>();
-                Integer key = 0;
+                Integer key = 1;
+
                 if (weekTemplates.keySet().contains(worker.getIdWorker()))
                     key = worker.getIdWorker();
                 else if (weekTemplates.keySet().contains(worker.getSection()))
                     key = worker.getSection();
-                WeekTemplate wt = weekTemplates.get(key);
+
+                WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(1));
+
                 for (LocalDate date = today; !date.isAfter(expected); date = date.plusDays(1)) {
+
                     Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
+
                     calendar.add(day);
                 }
                 worker.setCalendar(calendar);
                 Accesdb.writeCalendar(worker.getIdWorker(), calendar);
-                Accesdb.writeLastProcessedDate(expected);
             }
+            Accesdb.writeLastProcessedDate(expected);
         } else {
             for (Worker worker : staffList) {
                 List<Day> calendar = Accesdb.readCalendarOf(worker.getIdWorker());
-                List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
-                List<TaskType> abilities = new ArrayList<>();
-                for (Integer key : list) {
-                    abilities.add(taskTypes.get(key));
-                }
-                worker.setAbilities(abilities);
                 worker.setCalendar(calendar);
             }
+        }
+        for (Worker worker : staffList) {
+            List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
+            List<TaskType> abilities = new ArrayList<>();
+            for (Integer key : list) {
+                abilities.add(taskTypes.get(key));
+            }
+            worker.setAbilities(abilities);
         }
 
     }
@@ -65,20 +76,21 @@ public class AdminModel {
 
     }
 
-  /*   public List<Worker> getFilteredStaff() {
-        return filteredStaff;
-    }
-
-    public void filterStaff(Section sec, Rank rank) {
-        filteredStaff.clear();
-        for (Worker worker : staffList) {
-            if ((sec == null || sec.getId() == worker.getSection())
-                    && (rank == null || rank.getId() == worker.getRank())
-                    && (worker.getRol()!=null && worker.getRol().equals("WORKER")))
-                filteredStaff.add(worker);
-        }
-    }
- */
+    /*
+     * public List<Worker> getFilteredStaff() {
+     * return filteredStaff;
+     * }
+     * 
+     * public void filterStaff(Section sec, Rank rank) {
+     * filteredStaff.clear();
+     * for (Worker worker : staffList) {
+     * if ((sec == null || sec.getId() == worker.getSection())
+     * && (rank == null || rank.getId() == worker.getRank())
+     * && (worker.getRol()!=null && worker.getRol().equals("WORKER")))
+     * filteredStaff.add(worker);
+     * }
+     * }
+     */
     private int getNextRank() {
         int next = -1;
         for (Rank rank : ranks) {
@@ -88,51 +100,75 @@ public class AdminModel {
 
     }
 
-    public int getNewWorkerIndex(){
+    public int getNewWorkerIndex() {
         return staffList.size();
     }
 
-    public Worker getLastWorker(){
-        return staffList.get(staffList.size()-1);
+    public Section getLastSection() {
+        if (!sections.isEmpty())
+            return sections.get(sections.size() - 1);
+        else
+            return null;
     }
 
-    public Rank getRankById(int id){
+    public Rank getLastRank() {
+        if (!ranks.isEmpty())
+            return ranks.get(ranks.size() - 1);
+        else
+            return null;
+    }
+
+    public Worker getLastWorker() {
+        if (staffList.size() > 2)
+            return staffList.get(staffList.size() - 1);
+        else
+            return null;
+    }
+
+    public Rank getRankById(int id) {
         for (Rank r : ranks) {
-            if (r.getId()==id) return r;
+            if (r.getId() == id)
+                return r;
         }
         return null;
     }
-    public Section getSectionById(int id){
+
+    public Section getSectionById(int id) {
         for (Section s : sections) {
-            if (s.getId()==id) return s;
+            if (s.getId() == id)
+                return s;
         }
         return null;
     }
 
-
-    public Worker getWorkerById(int id){
+    public Worker getWorkerById(int id) {
         return staffList.get(id);
     }
 
-    public void addNewWorker(Worker worker){
+    public void addNewWorker(Worker worker) {
         worker.setRol("WORKER");
-        
+
         worker.setIdWorker(staffList.size());
         staffList.add(worker);
         Accesdb.addWorker(worker);
     }
 
-    public int getWorkerStafSize(){
+    public int getWorkerStafSize() {
         return staffList.size();
     }
 
+    public void updateWorker(Worker worker) {
+        Accesdb.updateWorker(worker);
+    }
+
     private int getNextSection() {
-        int next = -1;
+        int next = 9999;
         for (Section section : sections) {
             next = (section.getId() > next) ? section.getId() : next;
         }
         return ++next;
     }
+
     private int getNextTaskType() {
         int next = -1;
         for (TaskType task : taskTypes) {
@@ -179,7 +215,7 @@ public class AdminModel {
                 break; // Patxi!!
             }
         }
-        clearTask=clearTask && !Accesdb.isTaskinUse(task);
+        clearTask = clearTask && !Accesdb.isTaskinUse(task);
         if (clearTask) {
             taskTypes.remove(task);
             Accesdb.removeTask(task);
@@ -192,6 +228,7 @@ public class AdminModel {
         sections.add(newSect);
         Accesdb.addSection(newSect);
     }
+
     public void addTask(String newTaskName) {
         TaskType task = new TaskType(getNextTaskType(), newTaskName);
         taskTypes.add(task);
@@ -204,14 +241,14 @@ public class AdminModel {
         Accesdb.addRank(newRank);
     }
 
-    public static AdminModel getaAdminModel() {
+    public static AdminModel getAdminModel() {
         if (adminModel == null)
             adminModel = new AdminModel();
         return adminModel;
     }
 
-    public static AdminModel getAdminModel() {
-        return adminModel;
+    public void modifyWorkerSkills(Worker worker) {
+        Accesdb.modifyWorkerSkills(worker);
     }
 
     public List<Worker> getStaffList() {

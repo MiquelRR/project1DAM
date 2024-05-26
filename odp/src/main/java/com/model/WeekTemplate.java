@@ -12,6 +12,7 @@ public class WeekTemplate {
     }
 
     int[] workingMinutes;
+
     public static final Map<String, Integer> DAYS_OF_WEEK = new HashMap<>() {
         {
             put("monday", 0);
@@ -26,7 +27,16 @@ public class WeekTemplate {
 
     public WeekTemplate(int monday, int tuesday, int wednesday, int thursday, int friday,
             int saturday) {
-        this.workingMinutes = new int[] { monday, tuesday, wednesday, thursday, friday, saturday };
+        this.workingMinutes = new int[] { monday, tuesday, wednesday, thursday, friday, saturday ,0};
+    }
+@Override
+    public String toString(){
+    String st = "";
+    for (String dayname : DAYS_OF_WEEK.keySet()) {
+        st += " "+dayname+" : "+this.workingMinutes[DAYS_OF_WEEK.get(dayname)];
+    }
+    return st;
+
     }
 
     public int getTotalTime(int weekday) {
