@@ -31,27 +31,11 @@ public class AdminModel {
         LocalDate expected = getExpected(today);
         ;
         if (lastDate == null || lastDate.isBefore(expected)) {
+            LocalDate sinceDate = (today.isAfter(lastDate)) ? today : lastDate;
             for (Worker worker : staffList) {
-
-                List<Day> calendar = new ArrayList<>();
-                Integer key = 1;
-
-                if (weekTemplates.keySet().contains(worker.getIdWorker()))
-                    key = worker.getIdWorker();
-                else if (weekTemplates.keySet().contains(worker.getSection()))
-                    key = worker.getSection();
-
-                WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(1));
-
-                for (LocalDate date = today; !date.isAfter(expected); date = date.plusDays(1)) {
-
-                    Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
-
-                    calendar.add(day);
-                }
-                worker.setCalendar(calendar);
-                Accesdb.writeCalendar(worker.getIdWorker(), calendar);
+                generateCalendar(sinceDate, expected, worker);
             }
+            lastDate = expected;
             Accesdb.writeLastProcessedDate(expected);
         } else {
             for (Worker worker : staffList) {
@@ -68,6 +52,23 @@ public class AdminModel {
             worker.setAbilities(abilities);
         }
 
+    }
+
+    private void generateCalendar(LocalDate sinceDate, LocalDate toDate, Worker worker) {
+        List<Day> calendar = new ArrayList<>();
+        Integer key = 1;
+        if (weekTemplates.keySet().contains(worker.getIdWorker()))
+            key = worker.getIdWorker();
+        else if (weekTemplates.keySet().contains(worker.getSection()))
+            key = worker.getSection();
+
+        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(1));
+        for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
+            Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
+            calendar.add(day);
+        }
+        worker.setCalendar(calendar);
+        Accesdb.writeCalendar(worker.getIdWorker(), calendar);
     }
 
     private LocalDate getExpected(LocalDate today) {
@@ -147,10 +148,11 @@ public class AdminModel {
 
     public void addNewWorker(Worker worker) {
         worker.setRol("WORKER");
-
         worker.setIdWorker(staffList.size());
         staffList.add(worker);
         Accesdb.addWorker(worker);
+        generateCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), worker);
+
     }
 
     public int getWorkerStafSize() {
@@ -158,7 +160,8 @@ public class AdminModel {
     }
 
     public void updateWorker(Worker worker) {
-        Accesdb.updateWorker(worker);
+        if (worker.getIdWorker() > 1)
+            Accesdb.updateWorker(worker);
     }
 
     private int getNextSection() {
