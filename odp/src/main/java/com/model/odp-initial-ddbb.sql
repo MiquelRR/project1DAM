@@ -87,7 +87,7 @@ CREATE TABLE `lastGeneratedDates` (
 
 LOCK TABLES `lastGeneratedDates` WRITE;
 /*!40000 ALTER TABLE `lastGeneratedDates` DISABLE KEYS */;
--- INSERT INTO `lastGeneratedDates` VALUES ('2025-05-25');
+-- INSERT INTO `lastGeneratedDates` VALUES ('1973-03-24');
 /*!40000 ALTER TABLE `lastGeneratedDates` ENABLE KEYS */;
 UNLOCK TABLES;
 

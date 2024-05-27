@@ -203,6 +203,7 @@ public class workerProfileController {
         directoryChooser.setTitle("Selecciona una carpeta");
         if (App.editedWorker.getDocFolder() == null)
             App.editedWorker.setDocFolder(App.WORKERS_FOLDER);
+            System.out.println(App.editedWorker.getDocFolder());
         directoryChooser.setInitialDirectory(new File(App.editedWorker.getDocFolder()));
         File selectedDirectory = directoryChooser.showDialog(App.st);
         if (selectedDirectory != null) {

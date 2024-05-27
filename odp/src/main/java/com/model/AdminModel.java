@@ -25,11 +25,11 @@ public class AdminModel {
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.getAllSections();
         LocalDate lastDate = Accesdb.readLastProcessedDate();
-
+        System.out.println(lastDate);
         LocalDate today = LocalDate.now();
 
         LocalDate expected = getExpected(today);
-        ;
+
         if (lastDate == null || lastDate.isBefore(expected)) {
             LocalDate sinceDate = (today.isAfter(lastDate)) ? today : lastDate;
             for (Worker worker : staffList) {

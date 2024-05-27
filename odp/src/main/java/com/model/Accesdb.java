@@ -15,7 +15,7 @@ import java.util.Map;
 public class Accesdb {
 
     //DEBUGGING:
-    private static boolean local = true;
+    private static boolean local = false;
     private static boolean logMode = true;
     
     private static LogToFile bbddlog = new LogToFile("queries");
@@ -119,7 +119,7 @@ public class Accesdb {
     }
 
     public static LocalDate readLastProcessedDate() {
-        LocalDate lastDate = null;
+        LocalDate lastDate = LocalDate.of(1973, 3, 24);
         String gettedDate = lligString("SELECT * FROM lastGeneratedDates ORDER BY lastDate DESC LIMIT 1;");
         if (gettedDate != null) {
             lastDate = LocalDate.parse(gettedDate);

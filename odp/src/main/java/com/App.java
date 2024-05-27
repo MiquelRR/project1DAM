@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-    public static final String WORKERS_FOLDER="../doc_empleados";
+    public static final String WORKERS_FOLDER=".";
     static AdminModel adminModel = AdminModel.getAdminModel();
 
 
