@@ -2,21 +2,27 @@ package com;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.model.AdminModel;
 import com.model.Rank;
 import com.model.Section;
 import com.model.TaskType;
+import com.model.Type;
 import com.model.Worker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class adminMenuController {
     AdminModel adminModel = AdminModel.getAdminModel();
@@ -39,13 +45,13 @@ public class adminMenuController {
     private Button addSectionButton;
 
     @FXML
-    private Button editOrNewModelButton1;
+    private Button addModelButton;
 
     @FXML
-    private Button editOrNewOrderButton;
+    private Button addOrderButton;
 
     @FXML
-    private Button editOrNewTypeButton;
+    private Button addTypeButton;
 
     @FXML
     private Button editWorkerButton;
@@ -54,7 +60,13 @@ public class adminMenuController {
     private Button removeTaskButton;
 
     @FXML
-    private ChoiceBox<?> modelChoice;
+    private Button editTypeButton;
+
+    @FXML
+    private Button editModelButton;
+
+    @FXML
+    private ChoiceBox<Type> modelChoice;
 
     @FXML
     private ChoiceBox<TaskType> taskChoice;
@@ -102,7 +114,7 @@ public class adminMenuController {
     private TextField unitsField;
 
     @FXML
-    private ChoiceBox<?> typeChoice;
+    private ChoiceBox<Type> typeChoice;
 
     @FXML
     void addRank(ActionEvent event) {
@@ -166,7 +178,40 @@ public class adminMenuController {
     }
 
     @FXML
+    void addNewType(ActionEvent event) {
+        if (typeField.getText().length() > 1) {
+            adminModel.addType(typeField.getText());
+            typeField.setText("");
+            addTypeButton.setDisable(false);
+            addTypeButton.setText("+");
+            refresh();
+        } else {
+            addTypeButton.setDisable(true);
+            typeChoice.setVisible(false);
+            typeField.setVisible(true);
+            typeField.requestFocus();
+            editTypeButton.setVisible(false);
+        }
+
+    }
+
+    @FXML
     void addWorker(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editType(ActionEvent event) throws IOException {
+        Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("OpendPlan: Edición de tipos");
+        stage.setX(parentWindow.getX());
+        stage.setY(parentWindow.getY() + parentWindow.getHeight());
+        stage.show();
 
     }
 
@@ -189,17 +234,12 @@ public class adminMenuController {
     }
 
     @FXML
-    void editOrNewModel(ActionEvent event) {
+    void addNewModel(ActionEvent event) {
 
     }
 
     @FXML
-    void editOrNewType(ActionEvent event) {
-
-    }
-
-    @FXML
-    void editOrNewOrder(ActionEvent event) {
+    void editOrder(ActionEvent event) {
 
     }
 
@@ -219,12 +259,7 @@ public class adminMenuController {
     }
 
     @FXML
-    void removeType(ActionEvent event) {
-
-    }
-
-    @FXML
-    void removeModel(ActionEvent event) {
+    void editModel(ActionEvent event) {
 
     }
 
@@ -275,6 +310,13 @@ public class adminMenuController {
     }
 
     @FXML
+    void showAddTypeButton(KeyEvent event) {
+        addTypeButton.setVisible(true);
+        addTypeButton.setDisable(false);
+        addTypeButton.setText(OK);
+    }
+
+    @FXML
     void showAddRankButton(KeyEvent event) {
         addRankButton.setVisible(true);
         addRankButton.setDisable(false);
@@ -289,11 +331,19 @@ public class adminMenuController {
     }
 
     @FXML
+    void showAddModelButton(KeyEvent event) {
+        addModelButton.setVisible(true);
+        addModelButton.setDisable(false);
+        addModelButton.setText(OK);
+    }
+
+    @FXML
     void refresh() {
-        boolean posibleWorkers = true;
-        boolean posibleTypes = true;
+        boolean possibleWorkers = true;
+        boolean possibleTypes = true;
+        boolean possibleModels = true;
         if (adminModel.getSections().isEmpty()) {
-            posibleWorkers = false;
+            possibleWorkers = false;
             removeSectionButton.setVisible(false);
             addSectionButton.setVisible(false);
             sectionField.setVisible(true);
@@ -309,7 +359,7 @@ public class adminMenuController {
         }
 
         if (adminModel.getRanks().isEmpty()) {
-            posibleWorkers = false;
+            possibleWorkers = false;
             removeRankButton.setVisible(false);
             addRankButton.setVisible(false);
             rankField.setVisible(true);
@@ -325,7 +375,7 @@ public class adminMenuController {
         }
 
         if (adminModel.getTaskTypes().isEmpty()) {
-            posibleTypes = false;
+            possibleTypes = false;
             removeTaskButton.setVisible(false);
             addTaskButton.setVisible(false);
             taskField.setVisible(true);
@@ -333,16 +383,49 @@ public class adminMenuController {
         } else {
             removeTaskButton.setVisible(true);
             taskChoice.getItems().clear();
-            // taskChoice.getItems().add(new TaskType(-1, "TODAS"));
+            possibleTypes = true;
             taskChoice.getItems().addAll(adminModel.getTaskTypes());
             taskChoice.setVisible(true);
             taskChoice.getSelectionModel().select(taskChoice.getItems().size() - 1);
             addTaskButton.setVisible(true);
         }
 
-        // if (adminModel.getStaff().isEmpty()) { }
+        // TYPES
+        if (adminModel.getTypes().isEmpty()) {
+            possibleModels = false;
+            editTypeButton.setVisible(false);
+            addTypeButton.setVisible(false);
+            typeField.setVisible(true);
+            typeChoice.setVisible(false);
+        } else {
+            editTypeButton.setVisible(true);
+            possibleModels = true;
+            typeChoice.getItems().clear();
+            typeChoice.getItems().addAll(adminModel.getTypes());
+            typeChoice.setVisible(true);
+            typeChoice.getSelectionModel().select(typeChoice.getItems().size() - 1);
+            addTypeButton.setVisible(true);
+        }
 
-        editWorkerButton.setVisible(posibleWorkers);
+        List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
+
+        if (!possibleModels || modelsOfType.isEmpty()) {
+            editModelButton.setVisible(false);
+            addModelButton.setVisible(false);
+            modelField.setVisible(true);
+            modelChoice.setVisible(false);
+        } else {
+            editModelButton.setVisible(true);
+            modelChoice.getItems().clear();
+            modelChoice.getItems().addAll(modelsOfType);
+            modelChoice.setVisible(true);
+            modelChoice.getSelectionModel().select(modelChoice.getItems().size() - 1);
+            addModelButton.setVisible(true);
+        }
+
+        typeField.setVisible(possibleTypes);
+        modelField.setVisible(possibleModels);
+        editWorkerButton.setVisible(possibleWorkers);
 
     }
 
@@ -351,11 +434,11 @@ public class adminMenuController {
         // adminModel.filterStaff(null, null);
         refresh();
 
-        assert editOrNewModelButton1 != null
+        assert addModelButton != null
                 : "fx:id=\"editOrNewModelButton1\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert editOrNewOrderButton != null
+        assert addOrderButton != null
                 : "fx:id=\"editOrNewOrderButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert editOrNewTypeButton != null
+        assert addTypeButton != null
                 : "fx:id=\"editOrNewTypeButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
         assert editWorkerButton != null
                 : "fx:id=\"editWorkerButton\" was not injected: check your FXML file 'adminMenu.fxml'.";

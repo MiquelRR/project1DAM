@@ -11,10 +11,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typeEditController">
    <children>
-      <Rectangle fill="#aad7d9" height="52.0" layoutX="787.0" layoutY="17.0" stroke="TRANSPARENT" strokeType="INSIDE" width="413.0" />
-      <Label alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="295.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="nombre tipo:" textFill="WHITE">
+      <Rectangle fill="#aad7d9" height="52.0" layoutX="572.0" layoutY="17.0" stroke="TRANSPARENT" strokeType="INSIDE" width="628.0" />
+      <Label alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="tipo:" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="20.0" />
          </font>
@@ -36,24 +36,13 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="addDepChoice" layoutX="415.0" layoutY="534.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Button fx:id="saveButton" layoutX="850.0" layoutY="17.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Guardar" textFill="#7c7c7c">
+      <ChoiceBox fx:id="addDepChoice" layoutX="519.0" layoutY="534.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <Button fx:id="saveButton" layoutX="939.0" layoutY="17.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Guardar" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label alignment="CENTER_RIGHT" layoutX="476.0" layoutY="17.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="carpeta base" textFill="WHITE">
-         <font>
-            <Font name="Cantarell Regular" size="20.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Button fx:id="typeFolderButton" layoutX="624.0" layoutY="17.0" mnemonicParsing="false" onAction="#chooseTypeFolder" prefHeight="52.0" prefWidth="212.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="x:/tipos/catalina" textFill="#7c7c7c">
+      <Button fx:id="typeFolderButton" layoutX="689.0" layoutY="17.0" mnemonicParsing="false" onAction="#chooseTypeFolder" prefHeight="52.0" prefWidth="212.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="DOCUMENTOS BASE" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
@@ -69,7 +58,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label fx:id="depAddLabel" alignment="CENTER_RIGHT" layoutX="314.0" layoutY="534.0" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="+ depend:" textFill="WHITE">
+      <Label fx:id="depAddLabel" alignment="CENTER_RIGHT" layoutX="314.0" layoutY="534.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="después de :" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -80,23 +69,11 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="addTaskButton" layoutX="265.0" layoutY="534.0" mnemonicParsing="false" onAction="#addTask" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addTaskButton" layoutX="251.0" layoutY="534.0" mnemonicParsing="false" onAction="#addTask" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="remDepChoice" layoutX="664.0" layoutY="534.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Label fx:id="depRemoveLabel" alignment="CENTER_RIGHT" layoutX="563.0" layoutY="534.0" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="- depend:" textFill="WHITE">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
       <Label alignment="CENTER_RIGHT" layoutX="808.0" layoutY="534.0" prefHeight="52.0" prefWidth="174.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="instrucciones tarea:" textFill="WHITE">
          <font>
             <Font size="16.0" />
@@ -108,19 +85,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="taskFileButton" layoutX="982.0" layoutY="534.0" mnemonicParsing="false" onAction="#chooseTaskFile" prefHeight="52.0" prefWidth="212.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="corteCatalina.pdf" textFill="#7c7c7c">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <TextField fx:id="typeNameField" layoutX="295.0" layoutY="16.0" prefHeight="52.0" prefWidth="181.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="Mesa  Catalina" />
-      <TextField fx:id="taskNameField" layoutX="86.0" layoutY="534.0" onAction="#editedTaskName" prefHeight="52.0" prefWidth="174.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="Corte" />
-      <Button fx:id="addButton" layoutX="89.0" layoutY="17.0" mnemonicParsing="false" onAction="#add" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
-      <Button fx:id="deleteButton" layoutX="961.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteButtonPressed" prefHeight="52.0" prefWidth="101.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="Borrar" textFill="#7c7c7c">
+      <Button fx:id="taskFileButton" layoutX="982.0" layoutY="534.0" mnemonicParsing="false" onAction="#chooseTaskFile" prefHeight="52.0" prefWidth="212.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="DOCUMENTO TAREA" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
@@ -136,7 +101,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <TextField fx:id="itemTime" layoutX="1141.0" layoutY="471.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="10" />
+      <TextField fx:id="itemTime" layoutX="1141.0" layoutY="471.0" onKeyTyped="#refreshTimes" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="10" />
       <Label alignment="CENTER_RIGHT" layoutX="841.0" layoutY="471.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="preparacion" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="20.0" />
@@ -148,7 +113,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <TextField fx:id="prepTime" layoutX="989.0" layoutY="471.0" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="30" />
+      <TextField fx:id="prepTime" layoutX="989.0" layoutY="471.0" onKeyTyped="#refreshTimes" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="30" />
       <Label alignment="CENTER_RIGHT" layoutX="841.0" layoutY="409.0" prefHeight="52.0" prefWidth="360.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="escandallos tiempo (minutos)" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="20.0" />
@@ -160,6 +125,28 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
+      <Label fx:id="nameLabel" layoutX="148.0" layoutY="17.0" prefHeight="52.0" prefWidth="424.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="el nombre" textFill="#7c7c7c">
+         <font>
+            <Font name="Cantarell Regular" size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <ChoiceBox fx:id="taskAddChoice" layoutX="94.0" layoutY="534.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <Button fx:id="addDependButton" layoutX="462.0" layoutY="534.0" mnemonicParsing="false" onAction="#addDepend" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="removeDependButton" layoutX="672.0" layoutY="534.0" mnemonicParsing="false" onAction="#removeDepend" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="-" textFill="#7c7c7c">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
 
    </children>
 </Pane>

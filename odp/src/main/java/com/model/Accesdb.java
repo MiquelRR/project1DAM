@@ -14,27 +14,52 @@ import java.util.Map;
 
 public class Accesdb {
 
-    //DEBUGGING:
-    private static boolean local = false;
+    // DEBUGGING:
+    private static boolean local = true;
     private static boolean logMode = true;
-    
+
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME = "odplanDDBB";
-    private final static String bdcon =(local)? "jdbc:mysql://localhost:3306/"+BBDD_NAME:"jdbc:mysql://localhost:33006/" + BBDD_NAME;
-    //private final static String bdcon = "jdbc:mysql://localhost:33006/"+BBDD_NAME;
+    private final static String bdcon = (local) ? "jdbc:mysql://localhost:3306/" + BBDD_NAME
+            : "jdbc:mysql://localhost:33006/" + BBDD_NAME;
+    // private final static String bdcon =
+    // "jdbc:mysql://localhost:33006/"+BBDD_NAME;
     private final static String us = "root";
     private final static String pw = "root";
 
-
     public static void setLogOn() {
-       logMode = true;
+        logMode = true;
     }
 
     public static void setLogOff() {
         logMode = false;
     }
 
-    public static List<Section> getAllSections() {
+    public static List<Type> readAllTypes() {
+        List<Type> list = new ArrayList<>();
+        List<String[]> lst = lligTaula("productType");
+        for (String[] reg : lst) {
+            if (reg[4].equals("TYPE")) {
+                Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2]);
+                list.add(type);
+            }
+        }
+        return list;
+    }
+
+    public static List<Type> readAllModels() {
+        List<Type> list = new ArrayList<>();
+        List<String[]> lst = lligTaula("productType");
+        for (String[] reg : lst) {
+            if (reg[4].equals("MODEL")) {
+                Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2]);
+                list.add(type);
+            }
+        }
+        return list;
+    }
+
+    public static List<Section> readAllSections() {
         List<Section> list = new ArrayList<>();
         List<String[]> lst = lligTaula("section");
         for (String[] reg : lst) {
@@ -46,46 +71,57 @@ public class Accesdb {
 
     public static void addWorker(Worker worker) { ////
         Object[] ob = new Object[] {
-            "idWorker",worker.getIdWorker(),
-            "userName",worker.getUserName(),
-            "fullName",worker.getFullName(),
-            "password",worker.getPasswd(),
-            "sinceDate",worker.getSince().toString(),
-            "ss",worker.getSsNum(),
-            "dni",worker.getDni(),
-            "idSection",worker.getSection(),
-            "idRank",worker.getRank(),
-            "address",worker.getAddress(),
-            "telNum",worker.getTelNum(),
-            "email",worker.getMail(),
-            "contact",worker.getContact(),
-            "docFolder",worker.getDocFolder(),
-            "active",(worker.getActive())?"YES":"NO",
-            "workerType","WORKER",
-            "workerRol","WORKER"
+                "idWorker", worker.getIdWorker(),
+                "userName", worker.getUserName(),
+                "fullName", worker.getFullName(),
+                "password", worker.getPasswd(),
+                "sinceDate", worker.getSince().toString(),
+                "ss", worker.getSsNum(),
+                "dni", worker.getDni(),
+                "idSection", worker.getSection(),
+                "idRank", worker.getRank(),
+                "address", worker.getAddress(),
+                "telNum", worker.getTelNum(),
+                "email", worker.getMail(),
+                "contact", worker.getContact(),
+                "docFolder", worker.getDocFolder(),
+                "active", (worker.getActive()) ? "YES" : "NO",
+                "workerType", "WORKER",
+                "workerRol", "WORKER"
         };
 
-        agrega("worker",ob);
+        agrega("worker", ob);
 
     }
 
     public static void updateWorker(Worker worker) { ////
-        String query="UPDATE worker SET";
-        query+=" userName = '"+worker.getUserName();
-        query+="', fullName = '"+worker.getFullName();
-        query+="', password = '"+worker.getPasswd();
-        query+="', sinceDate = '"+worker.getSince().toString();
-        query+="', ss = '"+worker.getSsNum();
-        query+="', dni = '"+worker.getDni();
-        query+="', idSection = "+worker.getSection();
-        query+=", idRank = "+worker.getRank();
-        query+=", address = '"+worker.getAddress();
-        query+="', telNum = '"+worker.getTelNum();
-        query+="', email = '"+worker.getMail();
-        query+="', contact = '"+worker.getContact();
-        query+="', docFolder = '"+worker.getDocFolder();
-        query+="', active = "+((worker.getActive())?"'YES'":"'NO'");
-        query+=" WHERE idWorker = "+worker.getIdWorker();
+        String query = "UPDATE worker SET";
+        query += " userName = '" + worker.getUserName();
+        query += "', fullName = '" + worker.getFullName();
+        query += "', password = '" + worker.getPasswd();
+        query += "', sinceDate = '" + worker.getSince().toString();
+        query += "', ss = '" + worker.getSsNum();
+        query += "', dni = '" + worker.getDni();
+        query += "', idSection = " + worker.getSection();
+        query += ", idRank = " + worker.getRank();
+        query += ", address = '" + worker.getAddress();
+        query += "', telNum = '" + worker.getTelNum();
+        query += "', email = '" + worker.getMail();
+        query += "', contact = '" + worker.getContact();
+        query += "', docFolder = '" + worker.getDocFolder();
+        query += "', active = " + ((worker.getActive()) ? "'YES'" : "'NO'");
+        query += " WHERE idWorker = " + worker.getIdWorker();
+        modifica(query);
+
+    }
+
+    public static void updateType(Type type){
+        String query = "UPDATE productType SET";
+        query += " name = '" + type.getName();
+        query += "', mainFolderPath = '" + type.getDocFolder();
+        query += "', modelOf = " + type.getModelOf();
+        query += ", type = " + ((type.getModelOf()==null)?"'TYPE'":"'MODEL'");
+        query += " WHERE idproductType = " + type.getIdType();
         modifica(query);
 
     }
@@ -101,6 +137,13 @@ public class Accesdb {
     public static void addRank(Rank rank) {
         agrega(BBDD_NAME + ".rank", new Object[] { "idRank", rank.getId(), "name", rank.toString() });
     }
+
+    public static void addType(Type type){
+        String typeString = (type.getModelOf()==null)?"TYPE":"MODEL"; 
+        agrega(BBDD_NAME + ".productType", new Object[] { "idProductType", type.getIdType(), "name", type.toString(), "mainFolderPath", type.getDocFolder(), "modelOf", type.getModelOf(), "type", typeString});
+    }
+
+
 
     public static void removeSection(Section sec) {
         modifica("DELETE FROM " + BBDD_NAME + ".section WHERE idSection = " + sec.getId());
@@ -141,17 +184,17 @@ public class Accesdb {
         agrega("lastGeneratedDates", new Object[] { "lastDate", date.toString() });
     }
 
-    public static void  modifyWorkerSkills(Worker worker){
-        String query =  "DELETE FROM abilities WHERE idWorker = "+worker.getIdWorker();
+    public static void modifyWorkerSkills(Worker worker) {
+        String query = "DELETE FROM abilities WHERE idWorker = " + worker.getIdWorker();
         modifica(query);
         for (TaskType skill : worker.abilities) {
-            agrega("abilities",new Object[]{"idTask",skill.getId(),"idWorker",worker.getIdWorker()});
+            agrega("abilities", new Object[] { "idTask", skill.getId(), "idWorker", worker.getIdWorker() });
         }
     }
 
     public static Map<Integer, WeekTemplate> readWeekTemplates() {
         Map<Integer, WeekTemplate> readedList = new HashMap<>();
-        List<String[]> lst = lligTaula("weekTemplate"); 
+        List<String[]> lst = lligTaula("weekTemplate");
         for (String[] reg : lst) {
             int idWeek = Integer.parseInt(reg[0]);
             int idWorker = Integer.parseInt(reg[1]);
@@ -281,7 +324,8 @@ public class Accesdb {
     public static String lligString(String query) {
         if (logMode)
             bbddlog.log("Accesdb.lligString(" + query + ")");
-        if (lligReg(query)==null) return null;
+        if (lligReg(query) == null)
+            return null;
         return lligReg(query)[0];
     }
 

@@ -50,12 +50,12 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="typeField" layoutX="244.0" layoutY="310.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
+      <TextField fx:id="typeField" layoutX="244.0" layoutY="310.0" onKeyTyped="#showAddTypeButton" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="modelField" layoutX="244.0" layoutY="380.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
+      <TextField fx:id="modelField" layoutX="244.0" layoutY="380.0" onKeyTyped="#showAddModelButton" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
          <font>
             <Font size="18.0" />
          </font>
@@ -131,7 +131,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="editOrNewTypeButton" layoutX="182.0" layoutY="310.0" mnemonicParsing="false" onAction="#editOrNewType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addTypeButton" layoutX="182.0" layoutY="310.0" mnemonicParsing="false" onAction="#addNewType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -148,7 +148,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="editOrNewModelButton1" layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#editOrNewModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addModelButton" layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#addNewModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -165,7 +165,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="editOrNewOrderButton" layoutX="538.0" layoutY="450.0" mnemonicParsing="false" onAction="#editOrNewOrder" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addOrderButton" layoutX="538.0" layoutY="450.0" mnemonicParsing="false" onAction="#editOrder" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -191,12 +191,12 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="removeTypeButton" layoutX="482.0" layoutY="310.0" mnemonicParsing="false" onAction="#removeType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="-" textFill="#7c7c7c">
+      <Button fx:id="editTypeButton" layoutX="482.0" layoutY="310.0" mnemonicParsing="false" onAction="#editType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="removeModelButton" layoutX="482.0" layoutY="380.0" mnemonicParsing="false" onAction="#removeModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="-" textFill="#7c7c7c">
+      <Button fx:id="editModelButton" layoutX="482.0" layoutY="380.0" mnemonicParsing="false" onAction="#editModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

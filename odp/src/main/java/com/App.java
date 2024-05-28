@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.model.AdminModel;
 import com.model.Rank;
 import com.model.Section;
+import com.model.Type;
 import com.model.Worker;
 
 import javafx.application.Application;
@@ -27,6 +28,10 @@ public class App extends Application {
     @SuppressWarnings("exports")
     public static Worker editedWorker = new Worker();
     public static boolean workerProfModeAdd;
+    @SuppressWarnings("exports")
+    public static Type editedType = new Type();
+    @SuppressWarnings("exports")
+    public static Type editedModel = new Type();
     public static boolean isWorkerProfModeAdd() {
         return workerProfModeAdd;
     }

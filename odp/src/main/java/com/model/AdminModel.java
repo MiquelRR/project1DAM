@@ -16,6 +16,8 @@ public class AdminModel {
     private List<Rank> ranks;
     private List<TaskType> taskTypes;
     private List<Section> sections;
+    private List<Type> types;
+    private List<Type> models;
 
     private AdminModel() {
         weekTemplates = Accesdb.readWeekTemplates();
@@ -23,11 +25,12 @@ public class AdminModel {
         staffList = Accesdb.readWorkers();
         ranks = Accesdb.readRanks();
         taskTypes = Accesdb.readTaskTypes();
-        sections = Accesdb.getAllSections();
+        sections = Accesdb.readAllSections();
+        types = Accesdb.readAllTypes();
+        models = Accesdb.readAllModels();
         LocalDate lastDate = Accesdb.readLastProcessedDate();
         System.out.println(lastDate);
         LocalDate today = LocalDate.now();
-
         LocalDate expected = getExpected(today);
 
         if (lastDate == null || lastDate.isBefore(expected)) {
@@ -52,6 +55,29 @@ public class AdminModel {
             worker.setAbilities(abilities);
         }
 
+    }
+
+    private int getNextTypeIdx() {
+        return types.size() + models.size();
+    }
+
+    public List<Type> getTypes() {
+        return types;
+    }
+
+    public List<Type> getModels() {
+        return models;
+    }
+
+    public List<Type> getModelsOf(Type type) {
+        List<Type> list = new ArrayList<>();
+        if (type != null) {
+            for (Type t : this.types) {
+                if (type.getModelOf()== t.getIdType())
+                    list.add(t);
+            }
+        }
+        return list;
     }
 
     private void generateCalendar(LocalDate sinceDate, LocalDate toDate, Worker worker) {
@@ -164,6 +190,10 @@ public class AdminModel {
             Accesdb.updateWorker(worker);
     }
 
+    public void updateType(Type type){
+        Accesdb.updateType(type);
+    }
+
     private int getNextSection() {
         int next = 9999;
         for (Section section : sections) {
@@ -242,6 +272,18 @@ public class AdminModel {
         Rank newRank = new Rank(getNextRank(), newRankName);
         ranks.add(newRank);
         Accesdb.addRank(newRank);
+    }
+
+    public void addType(String typeName){
+        Type newType = new Type(getNextTypeIdx(), typeName);
+        types.add(newType);
+        Accesdb.addType(newType);
+    }
+
+    public void addType(String typeName, Type modelOf){
+        Type newType = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
+        types.add(newType);
+        Accesdb.addType(newType);
     }
 
     public static AdminModel getAdminModel() {
