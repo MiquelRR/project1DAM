@@ -159,6 +159,7 @@ public class typeEditController {
     @FXML
     void initialize() {
         taskAddChoice.getItems().setAll(adminModel.getTaskTypes());
+        taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size()-1));
         taskAddChoice.requestFocus();
         boardSelectedTask = null;
         nameLabel.setText(App.editedType.getName());
