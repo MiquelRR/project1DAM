@@ -15,7 +15,7 @@ import java.util.Map;
 public class Accesdb {
 
     // DEBUGGING:
-    private static boolean local = true;
+    private static boolean local = false;
     private static boolean logMode = true;
 
     private static LogToFile bbddlog = new LogToFile("queries");

@@ -115,49 +115,64 @@ public class typeEditController {
         int[] order() {
                 int maxY = 0;
                 List<Integer> columns = new ArrayList<>();
-                Integer lastColumnIdx = 0;
-                List<Integer> ordered = new ArrayList<>();
+                Integer lastColumn = 0;
+                List<Integer> orderedIds = new ArrayList<>();
                 List<TaskType> taskListCp = new ArrayList<>();
                 taskListCp.addAll(taskList);
-                // next columns
+                System.out.println("Original>" + taskList);
+                System.out.println("Inicial >" + taskListCp);
+
                 while (!taskListCp.isEmpty()) {
                         System.out.println(taskListCp);
                         List<Integer> taskColumn = new ArrayList<>();
                         columns.add(0);
                         for (TaskType tk : taskListCp) {
-                                System.out.println("tk>" + tk);
-                                if (ordered.containsAll(tk.getDependsOnIds())) {
-                                        taskColumn.add(tk.getId());
-                                        tk.setX(lastColumnIdx);
-                                        Integer y = columns.get(lastColumnIdx);
+                                System.out.println("tk?" + tk + "DEPS " + tk.getDependsOnIds());
+                                if (orderedIds.containsAll(tk.getDependsOnIds())) {
+                                        tk.setX(lastColumn);
+                                        Integer y = columns.get(lastColumn);
+                                        System.out.println("asign x:" + lastColumn + " y:" + y + " to task "
+                                                        + tk.getName());
                                         tk.setY(y);
                                         y++;
                                         maxY = (y > maxY) ? y : maxY;
-                                        columns.set(lastColumnIdx, y);
+                                        columns.set(lastColumn, y);
                                         System.out.println("Y = " + y);
                                         taskColumn.add(tk.getId());
+                                } else {
+                                        System.out.println("unnasigned: " + tk);
                                 }
                         }
-                        System.out.println("DD>"+taskListCp);
+                        System.out.println("D1>" + taskListCp);
+                        System.out.println("taskColumn: " + taskColumn);
                         for (int i = 0; i < taskListCp.size(); i++) {
-                                if(taskColumn.contains(taskListCp.get(i).getId()))
-                                taskListCp.remove(i);
+                                if (taskColumn.contains(taskListCp.get(i).getId())) {
+                                        System.out.println("remove idx :"+i+" value "+taskListCp.get(i));
+                                        taskListCp.remove(taskColumn);
+                                        //se borra mal no indices
+                                        
+                                } else {
+                                        System.out.println("NO *** idx :"+i+" value "+taskListCp.get(i));
+                                }
                         }
+                        System.out.println("DD>" + taskListCp);
 
-                        /* for (TaskType tss : taskListCp) {
-                                
-
-                                if (tss.getId() != null && taskColumn.contains(tss.getId()))
-                                        taskListCp.remove(tss);
-
-                        } */
-                        ordered.addAll(taskColumn);
-                        lastColumnIdx++;
+                        /*
+                         * for (TaskType tss : taskListCp) {
+                         * 
+                         * 
+                         * if (tss.getId() != null && taskColumn.contains(tss.getId()))
+                         * taskListCp.remove(tss);
+                         * 
+                         * }
+                         */
+                        orderedIds.addAll(taskColumn);
+                        lastColumn++;
                 }
 
                 // taskList.addAll(ordered);
 
-                return new int[] { lastColumnIdx, maxY };
+                return new int[] { lastColumn, maxY };
 
         }
 
