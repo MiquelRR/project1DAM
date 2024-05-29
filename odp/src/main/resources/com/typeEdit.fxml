@@ -11,8 +11,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typeEditController">
+<Pane fx:id="UNO" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.typeEditController">
    <children>
+      <Pane fx:id="root" prefHeight="600.0" prefWidth="1200.0" />
       <Rectangle fill="#aad7d9" height="52.0" layoutX="572.0" layoutY="17.0" stroke="TRANSPARENT" strokeType="INSIDE" width="628.0" />
       <Label alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="tipo:" textFill="WHITE">
          <font>

@@ -202,6 +202,7 @@ public class adminMenuController {
 
     @FXML
     void editType(ActionEvent event) throws IOException {
+        App.editedType=typeChoice.getValue();
         Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));

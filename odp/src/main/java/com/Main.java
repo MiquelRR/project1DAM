@@ -56,7 +56,7 @@ public class Main extends Application {
         // Configurar la escena y el stage
         Scene scene = new Scene(root, 400, 400);
         primaryStage.setTitle("Ejemplo de ToggleButton");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene); 
         primaryStage.show();
     }
 
