@@ -19,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
@@ -26,10 +27,11 @@ public class typeEditController {
 
         AdminModel adminModel = AdminModel.getAdminModel();
         List<TaskType> depChoice;
-        TaskType boardSelectedTask;
         static Integer h[] = new Integer[] { 0, 152, 304, 456, 608, 760, 912, 1064 };
         static Integer v[] = new Integer[] { 100, 170, 240, 310, 380, 450 };
         List<TaskType> taskList = new ArrayList<>();
+        static TaskType selectedTask = null;
+        static Boolean selectMode;
 
         @FXML
         private Pane root;
@@ -41,22 +43,10 @@ public class typeEditController {
         private URL location;
 
         @FXML
-        private ToggleButton TOGGLE;
-
-        @FXML
-        private ChoiceBox<TaskType> addDepChoice;
-
-        @FXML
         private Button addDependButton;
 
         @FXML
         private Button addTaskButton;
-
-        @FXML
-        private Label depAddLabel;
-
-        @FXML
-        private Label employeeName1;
 
         @FXML
         private Button exitButton;
@@ -69,9 +59,6 @@ public class typeEditController {
 
         @FXML
         private TextField prepTime;
-
-        @FXML
-        private Button removeDependButton;
 
         @FXML
         private Button saveButton;
@@ -103,6 +90,7 @@ public class typeEditController {
                 if (!taskAddChoice.getItems().isEmpty()) {
                         taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
                 }
+                selectedTask = tsk;
                 refresh();
         }
 
@@ -199,12 +187,21 @@ public class typeEditController {
         }
 
         private void refresh() {
-                generateButtons(order());
-                boolean noSel = boardSelectedTask != null;
+                if (selectMode) {
+                        generateButtons(order());
+                        if (!root.getChildren().isEmpty())
+                                for (var node : root.getChildren()) {
+
+                                        ToggleButton tskButton = (ToggleButton) node;
+                                        String idBt = tskButton.getId();
+                                        System.out.println(idBt + "==" + "b:" + selectedTask.getId() + " - "
+                                                        + selectedTask.getName());
+                                        tskButton.setSelected(idBt.equals("b:" + selectedTask.getId()));
+                                }
+                }
+                boolean noSel = selectedTask != null;
                 addTaskButton.setVisible(!taskAddChoice.getItems().isEmpty());
                 addDependButton.setVisible(noSel);
-                addDepChoice.setVisible(noSel);
-                removeDependButton.setVisible(noSel);
                 taskFileButton.setVisible(noSel);
                 prepTime.setVisible(noSel);
                 itemTime.setVisible(noSel);
@@ -224,7 +221,7 @@ public class typeEditController {
                         toggleButton.setLayoutY(v[y]);
                         toggleButton.setPrefWidth(135);
                         toggleButton.setPrefHeight(52);
-                        toggleButton.setId(tsk.toString());
+                        toggleButton.setId("b:" + tsk.getId());
                         toggleButton.setStyle("-fx-text-fill: #7c7c7c;");
                         toggleButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
                                 @Override
@@ -238,34 +235,37 @@ public class typeEditController {
         }
 
         private void pressed(TaskType tsk) {
-                System.out.println(tsk);
+                if (selectMode) {
+                        selectedTask = tsk;
+                        refresh();
+                }
         }
 
         @FXML
         void initialize() {
+                selectMode = true;
+                Tooltip addDependButtonTooltip = new Tooltip("Activa selección tareas previas a esta");
+                addDependButtonTooltip.setStyle("-fx-font-size: 16px; ");
+                Tooltip.install(addDependButton, addDependButtonTooltip);
+                Tooltip taskChoiceTooltip = new Tooltip("Selecciona una tarea para añadir");
+                taskChoiceTooltip.setStyle("-fx-font-size: 16px; ");
+                Tooltip.install(taskAddChoice, taskChoiceTooltip);
+                Tooltip addTaskTooltip = new Tooltip("Añade tarea al modelo");
+                addTaskTooltip.setStyle("-fx-font-size: 16px; ");
+                Tooltip.install(taskAddChoice, addTaskTooltip);
                 taskAddChoice.getItems().setAll(adminModel.getTaskTypes());
                 taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
                 taskAddChoice.requestFocus();
-                boardSelectedTask = null;
                 nameLabel.setText(App.editedType.toString());
                 depChoice = new ArrayList<>();
                 refresh();
 
-                assert TOGGLE != null : "fx:id=\"TOGGLE\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert addDepChoice != null
-                                : "fx:id=\"addDepChoice\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert addDependButton != null
                                 : "fx:id=\"addDependButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert depAddLabel != null
-                                : "fx:id=\"depAddLabel\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert employeeName1 != null
-                                : "fx:id=\"employeeName1\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert exitButton != null
                                 : "fx:id=\"exitButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert itemTime != null : "fx:id=\"itemTime\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert prepTime != null : "fx:id=\"prepTime\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert removeDependButton != null
-                                : "fx:id=\"removeDependButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert saveButton != null
                                 : "fx:id=\"saveButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert taskAddChoice != null
