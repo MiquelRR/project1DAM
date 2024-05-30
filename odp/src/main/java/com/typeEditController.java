@@ -2,8 +2,11 @@ package com;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.security.auth.RefreshFailedException;
 
 import com.model.AdminModel;
 import com.model.TaskType;
@@ -97,18 +100,19 @@ public class typeEditController {
                 TaskType tsk = taskAddChoice.getValue();
                 taskList.add(tsk);
                 taskAddChoice.getItems().remove(tsk);
-                taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
-                root.getChildren().clear();
-                generateButtons(order());
+                if (!taskAddChoice.getItems().isEmpty()) {
+                        taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
+                }
+                refresh();
         }
 
         @FXML
         void generateButtons(int[] coord) {
+                root.getChildren().clear();
                 int x = (h.length - coord[0]) / 2;
                 int y = (v.length - coord[1]) / 2;
                 for (TaskType tk : taskList) {
-                        ToggleButton tb = genToggleButton(tk, 0, 0);
-                        root.getChildren().add(tb);
+                        genToggleButton(tk, x, y);
                 }
         }
 
@@ -127,7 +131,7 @@ public class typeEditController {
                         List<Integer> taskColumn = new ArrayList<>();
                         columns.add(0);
                         for (TaskType tk : taskListCp) {
-                                System.out.println("tk?" + tk + "DEPS " + tk.getDependsOnIds());
+                                System.out.println("tk?" + tk + " WITH DEPENDENCES " + tk.getDependsOnIds());
                                 if (orderedIds.containsAll(tk.getDependsOnIds())) {
                                         tk.setX(lastColumn);
                                         Integer y = columns.get(lastColumn);
@@ -145,27 +149,15 @@ public class typeEditController {
                         }
                         System.out.println("D1>" + taskListCp);
                         System.out.println("taskColumn: " + taskColumn);
-                        for (int i = 0; i < taskListCp.size(); i++) {
-                                if (taskColumn.contains(taskListCp.get(i).getId())) {
-                                        System.out.println("remove idx :"+i+" value "+taskListCp.get(i));
-                                        taskListCp.remove(taskColumn);
-                                        //se borra mal no indices
-                                        
-                                } else {
-                                        System.out.println("NO *** idx :"+i+" value "+taskListCp.get(i));
-                                }
+                        Iterator<TaskType> iterator = taskListCp.iterator();
+                        while (iterator.hasNext()) {
+                                TaskType tk = iterator.next();
+                                if (taskColumn.contains(tk.getId()))
+                                        iterator.remove();
                         }
+
                         System.out.println("DD>" + taskListCp);
 
-                        /*
-                         * for (TaskType tss : taskListCp) {
-                         * 
-                         * 
-                         * if (tss.getId() != null && taskColumn.contains(tss.getId()))
-                         * taskListCp.remove(tss);
-                         * 
-                         * }
-                         */
                         orderedIds.addAll(taskColumn);
                         lastColumn++;
                 }
@@ -207,6 +199,7 @@ public class typeEditController {
         }
 
         private void refresh() {
+                generateButtons(order());
                 boolean noSel = boardSelectedTask != null;
                 addTaskButton.setVisible(!taskAddChoice.getItems().isEmpty());
                 addDependButton.setVisible(noSel);
@@ -219,31 +212,32 @@ public class typeEditController {
         }
 
         @FXML
-        private static ToggleButton genToggleButton(TaskType tsk, int x, int y) {
-                ToggleButton toggleButton = new ToggleButton(tsk.toString());
-                int xt = 0, yt = 0;
+        private void genToggleButton(TaskType tsk, int x, int y) {
+                ToggleButton toggleButton = null;
                 if (tsk.getX() != null) {
-                        xt = tsk.getX();
-                        yt = tsk.getY();
+                        x += tsk.getX();
+                        y += tsk.getY();
                 }
-                toggleButton.setLayoutX(h[x + xt]);
-                toggleButton.setLayoutY(v[y + yt]);
-                toggleButton.setPrefWidth(135);
-                toggleButton.setPrefHeight(52);
-                toggleButton.setId(tsk.toString());
-                toggleButton.setStyle("-fx-text-fill: #7c7c7c;");
-                toggleButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                                pressed(tsk);
-                        }
-                });
-
-                return toggleButton;
+                if (x >= 0 && x < h.length && y >= 0 && y < v.length) {
+                        toggleButton = new ToggleButton(tsk.toString());
+                        toggleButton.setLayoutX(h[x]);
+                        toggleButton.setLayoutY(v[y]);
+                        toggleButton.setPrefWidth(135);
+                        toggleButton.setPrefHeight(52);
+                        toggleButton.setId(tsk.toString());
+                        toggleButton.setStyle("-fx-text-fill: #7c7c7c;");
+                        toggleButton.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                        pressed(tsk);
+                                }
+                        });
+                        root.getChildren().add(toggleButton);
+                }
 
         }
 
-        private static void pressed(TaskType tsk) {
+        private void pressed(TaskType tsk) {
                 System.out.println(tsk);
         }
 
@@ -262,8 +256,6 @@ public class typeEditController {
                                 : "fx:id=\"addDepChoice\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert addDependButton != null
                                 : "fx:id=\"addDependButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert addTaskButton != null
-                                : "fx:id=\"addTaskButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert depAddLabel != null
                                 : "fx:id=\"depAddLabel\" was not injected: check your FXML file 'typeEdit.fxml'.";
                 assert employeeName1 != null

@@ -39,7 +39,7 @@ public class TaskType {
 
     @Override
     public String toString() {
-        return "("+id+")-"+name;
+        return name;
     }
     public void setId(Integer id) {
         this.id = id;
