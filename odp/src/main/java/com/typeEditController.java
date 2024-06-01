@@ -2,9 +2,11 @@ package com;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import com.model.AdminModel;
 import com.model.TaskType;
@@ -22,19 +24,27 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 public class typeEditController {
 
         AdminModel adminModel = AdminModel.getAdminModel();
-        List<TaskType> depChoice;
+        // List<TaskType> depChoice;
         static Integer h[] = new Integer[] { 0, 152, 304, 456, 608, 760, 912, 1064 };
         static Integer v[] = new Integer[] { 100, 170, 240, 310, 380, 450 };
         List<TaskType> taskList = new ArrayList<>();
         static TaskType selectedTask = null;
         static Boolean selectMode;
+        static int[] modelSize = new int[] { 0, 0 };
+        static Set<Integer> deps;
+        
 
         @FXML
         private Pane root;
+
+        @FXML
+        private Pane lineRoot;
 
         @FXML
         private ResourceBundle resources;
@@ -56,6 +66,15 @@ public class typeEditController {
 
         @FXML
         private Label nameLabel;
+
+        @FXML
+        private Label minuteItemLabel;
+
+        @FXML
+        private Label taskFileLabel;
+
+        @FXML
+        private Label minutePrepLabel;
 
         @FXML
         private Label dependenciesLabel;
@@ -87,12 +106,13 @@ public class typeEditController {
         void dropTask(ActionEvent event) {
                 if (selectedTask != null) {
                         Boolean clearTask = true;
-                        String msg = "Imposible borrar " + selectedTask.toString() + " existen dependencias con ";
+                        String msg = "Imposible borrar '" + selectedTask.toString() + "' existen dependencias con : ";
                         List<String> dependencies = new ArrayList<>();
                         for (TaskType tk : taskList) {
-                                if (tk.getDependsOnIds().contains(selectedTask.getId()))
+                                if (tk.getDependsOnIds().contains(selectedTask.getId())) {
                                         clearTask = false;
-                                dependencies.add(tk.toString());
+                                        dependencies.add(tk.toString());
+                                }
                         }
                         if (clearTask) {
                                 taskList.remove(selectedTask);
@@ -118,6 +138,7 @@ public class typeEditController {
 
         @FXML
         void toSelectMode(ActionEvent event) {
+                deps = new HashSet<>();
                 selectMode = true;
                 selectedTask = null;
                 refresh();
@@ -146,20 +167,15 @@ public class typeEditController {
                 List<Integer> orderedIds = new ArrayList<>();
                 List<TaskType> taskListCp = new ArrayList<>();
                 taskListCp.addAll(taskList);
-                System.out.println("Original>" + taskList);
-                System.out.println("Inicial >" + taskListCp);
 
                 while (!taskListCp.isEmpty()) {
                         System.out.println(taskListCp);
                         List<Integer> taskColumn = new ArrayList<>();
                         columns.add(0);
                         for (TaskType tk : taskListCp) {
-                                System.out.println("tk?" + tk + " WITH DEPENDENCES " + tk.getDependsOnIds());
                                 if (orderedIds.containsAll(tk.getDependsOnIds())) {
                                         tk.setX(lastColumn);
                                         Integer y = columns.get(lastColumn);
-                                        System.out.println("asign x:" + lastColumn + " y:" + y + " to task "
-                                                        + tk.getName());
                                         tk.setY(y);
                                         y++;
                                         maxY = (y > maxY) ? y : maxY;
@@ -167,11 +183,10 @@ public class typeEditController {
                                         System.out.println("Y = " + y);
                                         taskColumn.add(tk.getId());
                                 } else {
-                                        System.out.println("unnasigned: " + tk);
+                                        // "unnasigned: ";
                                 }
                         }
-                        System.out.println("D1>" + taskListCp);
-                        System.out.println("taskColumn: " + taskColumn);
+
                         Iterator<TaskType> iterator = taskListCp.iterator();
                         while (iterator.hasNext()) {
                                 TaskType tk = iterator.next();
@@ -179,15 +194,13 @@ public class typeEditController {
                                         iterator.remove();
                         }
 
-                        System.out.println("DD>" + taskListCp);
-
                         orderedIds.addAll(taskColumn);
                         lastColumn++;
                 }
 
                 // taskList.addAll(ordered);
-
-                return new int[] { lastColumn, maxY };
+                modelSize = new int[] { lastColumn, maxY };
+                return modelSize;
 
         }
 
@@ -239,14 +252,27 @@ public class typeEditController {
                 int x = (h.length - coord[0]) / 2;
                 int y = (v.length - coord[1]) / 2;
                 normalBorder = (coord[1] > v.length || coord[0] > h.length) ? App.RED_BORDER : null;
-                System.out.println("Y------------------------------------ > " + y);
+                //metaDependences = new ArrayList<>();
                 for (TaskType tk : taskList) {
                         genToggleButton(tk, x, y);
                 }
         }
 
+        @SuppressWarnings("exports")
+        @FXML //RECURSIVE
+        public Set<Integer> depsOf(TaskType task, Set<Integer> set) {
+                for (TaskType tk : taskList) {
+                        if (tk.getDependsOnIds().contains(task.getId())) {
+                                set.add(tk.getId());
+                                set.addAll(depsOf(tk, set));
+                        }
+                }
+                return set;
+        }
+
         @FXML
         private void genToggleButton(TaskType tsk, int x, int y) {
+
                 ToggleButton toggleButton = null;
                 if (tsk.getX() != null) {
                         x += tsk.getX();
@@ -261,8 +287,7 @@ public class typeEditController {
                         String idString = "" + tsk.getId();
                         toggleButton.setId(idString);
                         toggleButton.setSelected(selectedTask != null && tsk.getId() == selectedTask.getId());
-                        toggleButton.setDisable(
-                                        selectedTask != null && tsk.getDependsOnIds().contains(selectedTask.getId()));
+                        toggleButton.setDisable((deps.contains(tsk.getId())));
 
                         toggleButton.setStyle("-fx-font-size: 12px;-fx-text-fill: #7c7c7c;");
                         String ttText;
@@ -325,6 +350,29 @@ public class typeEditController {
                                 bt.setBorder(App.ORANGE_BORDER_B);
 
                 }
+                lineRoot.getChildren().clear();
+                int x = (h.length - modelSize[0]) / 2;
+                int y = (v.length - modelSize[1]) / 2;
+                for (TaskType tk : taskList) {
+                        int valX=tk.getX() + x;
+                        if (valX<0) valX=0;
+                        if (valX>=h.length) valX=h.length-1;
+                        int valY=tk.getY() + y;
+                        if (valY<0) valY=0;
+                        if (valY>=v.length) valY=v.length-1;
+
+                        int x1 = h[valX], y1 = v[valY] + 26;
+                        for (TaskType t : tk.getDependsOn()) {
+                                int x2 = h[t.getX() + x] + 135, y2 = v[t.getY() + y] + 26;
+                                Line line = new Line(x1, y1, x2, y2);
+                                line.setStroke((selectedTask != null && selectedTask.getId() == tk.getId())
+                                                ? Color.ORANGE
+                                                : Color.GRAY);
+                                line.setStrokeWidth(2);
+                                lineRoot.getChildren().add(line);
+                        }
+
+                }
 
                 prepTime.setBorder((errorOrCero(prepTime.getText())) ? App.ORANGE_BORDER : null);
                 itemTime.setBorder((errorOrCero(itemTime.getText())) ? App.ORANGE_BORDER : null);
@@ -341,6 +389,9 @@ public class typeEditController {
                 addTaskButton.setVisible(!taskAddChoice.getItems().isEmpty());
                 toSelectModeButton.setVisible(noSel);
                 taskFileButton.setVisible(noSel);
+                minutePrepLabel.setVisible(noSel);
+                minuteItemLabel.setVisible(noSel);
+                taskFileLabel.setVisible(noSel);
                 prepTime.setVisible(noSel);
                 itemTime.setVisible(noSel);
                 dropTaskButton.setVisible(noSel);
@@ -358,17 +409,20 @@ public class typeEditController {
 
         private void pressed(TaskType tsk) {
                 if (selectMode) {
+                        deps = new HashSet<>();
                         selectMode = false;
                         selectedTask = tsk;
+                        deps=depsOf(tsk, deps);
                         generateButtons(order());
                         refresh();
                 } else {
-
+                        System.out.println("D.E.P ------ "+deps);
                         if (tsk.equals(selectedTask)) {
                                 toSelectMode(null);
                         } else {
                                 if (tsk.getDependsOnIds().contains(selectedTask.getId())) {
                                         System.out.println("circular dependency");
+                                        
                                 } else {
                                         if (selectedTask.getDependsOnIds().contains(tsk.getId())) {
                                                 selectedTask.removeDependecy(tsk);
@@ -393,6 +447,7 @@ public class typeEditController {
         @FXML
         void initialize() {
                 selectMode = true;
+                deps=new HashSet<>();
                 dependenciesLabel.setBorder(App.ORANGE_BORDER);
                 Tooltip toSelecModeButtonTooltip = new Tooltip("Finaliza la seleccion de dependencias");
                 toSelecModeButtonTooltip.setStyle("-fx-font-size: 10px; ");
@@ -426,7 +481,7 @@ public class typeEditController {
                 taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
                 taskAddChoice.requestFocus();
                 nameLabel.setText(App.editedType.toString());
-                depChoice = new ArrayList<>();
+                // depChoice = new ArrayList<>();
                 refresh();
 
                 assert exitButton != null

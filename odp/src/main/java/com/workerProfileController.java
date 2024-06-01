@@ -197,8 +197,8 @@ public class workerProfileController {
         return required;
     }
 
-    @FXML
-    void chooseWorkerFolder(ActionEvent event) throws IOException {
+/*     @FXML
+    void chooseWorkerFolderr(ActionEvent event) throws IOException {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Selecciona una carpeta");
         if (App.editedWorker.getDocFolder() == null)
@@ -208,6 +208,18 @@ public class workerProfileController {
         File selectedDirectory = directoryChooser.showDialog(App.st);
         if (selectedDirectory != null) {
             App.editedWorker.setDocFolder(selectedDirectory.getPath());
+            adminModel.updateWorker(App.editedWorker);
+        }
+        refresh();
+    } */
+
+    @FXML
+    void chooseWorkerFolder(ActionEvent event) throws IOException {
+        if (App.editedWorker.getDocFolder() == null)
+            App.editedWorker.setDocFolder(App.WORKERS_FOLDER);
+        String selectedDirectory=App.chooseDir(App.editedWorker.getDocFolder());
+        if (selectedDirectory != null) {
+            App.editedWorker.setDocFolder(selectedDirectory);
             adminModel.updateWorker(App.editedWorker);
         }
         refresh();

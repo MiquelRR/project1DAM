@@ -1,5 +1,6 @@
 package com;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.model.AdminModel;
@@ -9,6 +10,7 @@ import com.model.Type;
 import com.model.Worker;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 /**
@@ -66,6 +69,15 @@ public class App extends Application {
 
     public static void setWorkerProfModeAdd(boolean workerProfModeAdd) {
         App.workerProfModeAdd = workerProfModeAdd;
+    }
+
+    @FXML
+    public static String chooseDir(String base) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Selecciona una carpeta");
+        directoryChooser.setInitialDirectory(new File(base));
+        File selectedDirectory = directoryChooser.showDialog(st);
+        return (selectedDirectory == null) ? null : selectedDirectory.getPath();
     }
 
     private static Scene scene;
