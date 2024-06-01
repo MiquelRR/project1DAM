@@ -14,6 +14,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -21,9 +27,30 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-    public static final String WORKERS_FOLDER=".";
+    public static final String WORKERS_FOLDER = ".";
     static AdminModel adminModel = AdminModel.getAdminModel();
 
+    private static BorderStroke borderStroke = new BorderStroke(
+            Color.ORANGE, // Color del borde
+            BorderStrokeStyle.SOLID, // Estilo del borde (puedes usar DASHED, DOTTED, etc.)
+            CornerRadii.EMPTY, // Esquinas redondeadas (puedes definir un radio para las esquinas)
+            new BorderWidths(1.5)// Ancho del borde
+    );
+    protected final static Border ORANGE_BORDER = new Border(borderStroke);
+    private static BorderStroke borderStroke2 = new BorderStroke(
+            Color.RED, // Color del borde
+            BorderStrokeStyle.SOLID, // Estilo del borde (puedes usar DASHED, DOTTED, etc.)
+            CornerRadii.EMPTY, // Esquinas redondeadas (puedes definir un radio para las esquinas)
+            new BorderWidths(1.5) // Ancho del borde
+    );
+    protected final static Border RED_BORDER = new Border(borderStroke2);
+    private static BorderStroke borderStroke3 = new BorderStroke(
+            Color.ORANGE, // Color del borde
+            BorderStrokeStyle.SOLID, // Estilo del borde (puedes usar DASHED, DOTTED, etc.)
+            CornerRadii.EMPTY, // Esquinas redondeadas (puedes definir un radio para las esquinas)
+            new BorderWidths(2.5)// Ancho del borde
+    );
+    protected final static Border ORANGE_BORDER_B = new Border(borderStroke3);
 
     @SuppressWarnings("exports")
     public static Worker editedWorker = new Worker();
@@ -32,6 +59,7 @@ public class App extends Application {
     public static Type editedType = new Type();
     @SuppressWarnings("exports")
     public static Type editedModel = new Type();
+
     public static boolean isWorkerProfModeAdd() {
         return workerProfModeAdd;
     }
@@ -49,8 +77,8 @@ public class App extends Application {
 
     @SuppressWarnings("exports")
     public static Section getDefaultSection() {
-        if(defaultSection==null) 
-        defaultSection=adminModel.getLastSection();
+        if (defaultSection == null)
+            defaultSection = adminModel.getLastSection();
         return defaultSection;
     }
 
@@ -64,8 +92,8 @@ public class App extends Application {
 
     @SuppressWarnings("exports")
     public static Rank getDefaultRank() {
-        if(defaultRank==null)
-        defaultRank=adminModel.getLastRank();
+        if (defaultRank == null)
+            defaultRank = adminModel.getLastRank();
         return defaultRank;
     }
 
@@ -73,10 +101,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //scene = new Scene(loadFXML("workerProfile"), 600, 600);
-        st=stage;
+        // scene = new Scene(loadFXML("workerProfile"), 600, 600);
+        st = stage;
         scene = new Scene(loadFXML("login"), 600, 600);
-        //scene = new Scene(loadFXML("typeEdit"), 1200, 600);
+        // scene = new Scene(loadFXML("typeEdit"), 1200, 600);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OndPlan Beta MiquelRRdev");

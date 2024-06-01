@@ -10,11 +10,33 @@ public class TaskType {
     List<TaskType> dependsOn;
     Integer x;
     Integer y;
+    Integer prepTime;
+    Integer pieceTime;
+
+    public Integer getPieceTime() {
+        return pieceTime;
+    }
+    public void setPieceTime(Integer prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public Integer getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(Integer prepTime) {
+        this.prepTime = prepTime;
+    }
+    
  
 
  
     public List<TaskType> getDependsOn() {
         return dependsOn;
+    }
+
+    public void removeDependences(){
+        this.dependsOn =  new ArrayList<>();
     }
 
     public List<Integer> getDependsOnIds(){
@@ -27,6 +49,10 @@ public class TaskType {
     
     public void addDependency(TaskType depends) {
         this.dependsOn.add(depends);
+    }
+
+    public void removeDependecy(TaskType dep) {
+        this.dependsOn.remove(dep);
     }
     public Integer getId() {
         return id;

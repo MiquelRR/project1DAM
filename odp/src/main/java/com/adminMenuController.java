@@ -210,8 +210,8 @@ public class adminMenuController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OpendPlan: Edición de tipos");
-        stage.setX(parentWindow.getX());
-        stage.setY(parentWindow.getY() + parentWindow.getHeight());
+        stage.setX(parentWindow.getX()-300);
+        stage.setY(parentWindow.getY() + 150);
         stage.show();
 
     }

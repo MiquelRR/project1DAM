@@ -243,12 +243,12 @@ public class AdminModel {
     public boolean removeTaskType(TaskType task) {
         Boolean clearTask = true;
         for (Worker worker : staffList) {
-            if (!worker.getAbilities().isEmpty() || worker.getAbilities().contains(task)) {
+            if (!worker.getAbilities().isEmpty() && worker.getAbilities().contains(task)) { 
                 clearTask = false;
                 break; // Patxi!!
             }
         }
-        clearTask = clearTask && !Accesdb.isTaskinUse(task);
+        clearTask = clearTask && !Accesdb.isTaskinUse(task); // IMPROVE: SEE AT MEMORY, NOT DB.
         if (clearTask) {
             taskTypes.remove(task);
             Accesdb.removeTask(task);
