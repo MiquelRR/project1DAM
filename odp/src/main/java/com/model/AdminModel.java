@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javafx.concurrent.Task;
+
 //-------------------------------- Singleton 
 public class AdminModel {
     private static AdminModel adminModel; // ---- Singleton
@@ -14,23 +16,25 @@ public class AdminModel {
 
     private Map<Integer, WeekTemplate> weekTemplates;
     private List<Rank> ranks;
-    private List<TaskType> taskTypes;
+    private List<TaskSkill> taskTypes;
     private List<Section> sections;
     private List<Type> types;
     private List<Type> models;
+    private Integer lastIdtask;
 
     private AdminModel() {
+        lastIdtask=0;
         weekTemplates = Accesdb.readWeekTemplates();
-
         staffList = Accesdb.readWorkers();
         ranks = Accesdb.readRanks();
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.readAllSections();
         types = Accesdb.readAllTypes();
+        lastIdtask= Accesdb.getLastLiveIdTask();
         for (Type type : types) {
             type.setTaskList(Accesdb.readTaskListOfId(type.getIdType()));
             for (TaskType tp : type.getTaskList()) {
-                //tp.setDependsOn(new List<Integer>);                
+                //tp.setDependsOn(new List<Integer>);        TO DO        
             }
         }
         models = Accesdb.readAllModels();
@@ -54,7 +58,7 @@ public class AdminModel {
         }
         for (Worker worker : staffList) {
             List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
-            List<TaskType> abilities = new ArrayList<>();
+            List<TaskSkill> abilities = new ArrayList<>();
             for (Integer key : list) {
                 abilities.add(taskTypes.get(key));
             }
@@ -158,6 +162,11 @@ public class AdminModel {
             return null;
     }
 
+    public Integer getNextIdTask(){
+        return lastIdtask++;
+
+    }
+
     public Rank getRankById(int id) {
         for (Rank r : ranks) {
             if (r.getId() == id)
@@ -210,7 +219,7 @@ public class AdminModel {
 
     private int getNextTaskType() {
         int next = -1;
-        for (TaskType task : taskTypes) {
+        for (TaskSkill task : taskTypes) {
             next = (task.getId() > next) ? task.getId() : next;
         }
         return ++next;
@@ -246,7 +255,7 @@ public class AdminModel {
         return clearRank;
     }
 
-    public boolean removeTaskType(TaskType task) {
+    public boolean removeTaskType(TaskSkill task) {
         Boolean clearTask = true;
         for (Worker worker : staffList) {
             if (!worker.getAbilities().isEmpty() && worker.getAbilities().contains(task)) { 
@@ -269,8 +278,9 @@ public class AdminModel {
     }
 
     public void addTask(String newTaskName) {
-        TaskType task = new TaskType(getNextTaskType(), newTaskName);
+        TaskSkill task = new TaskSkill(getNextTaskType(), newTaskName);
         taskTypes.add(task);
+        System.out.println("<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>"+task.getName());
         Accesdb.addTask(task);
     }
 
@@ -314,8 +324,16 @@ public class AdminModel {
         return ranks;
     }
 
-    public List<TaskType> getTaskTypes() {
+    public List<TaskSkill> getTaskTypes() {
         return taskTypes;
+    }
+
+    public TaskSkill getTaskByName(String name){
+        for (TaskSkill tk : taskTypes) {
+            if (tk.getName().equals(name)) 
+            return tk;            
+        }
+        return null;
     }
 
     public List<Section> getSections() {

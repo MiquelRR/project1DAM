@@ -34,7 +34,7 @@ public class Worker {
 
     Boolean active = true;
     List<Day> calendar = new ArrayList<>();
-    List<TaskType> abilities = new ArrayList<>();
+    List<TaskSkill> abilities = new ArrayList<>();
     WeekTemplate weekTemplate;
     String rol;
 
@@ -94,10 +94,10 @@ public class Worker {
         return userName;
     }
 
-    public void addSkill(TaskType skill){
+    public void addSkill(TaskSkill skill){
         this.abilities.add(skill);
     }
-    public boolean removeSkill(TaskType skill){
+    public boolean removeSkill(TaskSkill skill){
         return this.abilities.remove(skill);
     }
 
@@ -218,11 +218,11 @@ public class Worker {
         this.calendar = calendar;
     }
 
-    public List<TaskType> getAbilities() {
+    public List<TaskSkill> getAbilities() {
         return abilities;
     }
 
-    public void setAbilities(List<TaskType> abilities) {
+    public void setAbilities(List<TaskSkill> abilities) {
         this.abilities = abilities;
     }
 

@@ -76,7 +76,7 @@ public class TaskType {
     }
 
     public TaskType(Integer id, Integer id_name,String path, Integer prepTime, Integer pieceTime){
-        
+
     }
     ;
     @Override

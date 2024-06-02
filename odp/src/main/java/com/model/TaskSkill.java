@@ -1,9 +1,11 @@
 package com.model;
 
 public class TaskSkill {
+
     Integer id;
     String name;
     public TaskSkill(Integer id, String name) {
+        //System.out.println("nooooooooooooooooooooooooooooooooooom   "+name);
         this.id = id;
         this.name = name;
     }
@@ -18,5 +20,9 @@ public class TaskSkill {
     }
     public void setName(String name) {
         this.name = name;
-    }    
+    }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

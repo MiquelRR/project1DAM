@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.model.AdminModel;
+import com.model.TaskSkill;
 import com.model.TaskType;
 
 import javafx.beans.value.ChangeListener;
@@ -34,15 +35,15 @@ import javafx.stage.Stage;
 public class typeEditController {
 
         AdminModel adminModel = AdminModel.getAdminModel();
-        // List<TaskType> depChoice;
+      
         static Integer h[] = new Integer[] { 0, 152, 304, 456, 608, 760, 912, 1064 };
         static Integer v[] = new Integer[] { 100, 170, 240, 310, 380, 450 };
-        List<TaskType> taskList = new ArrayList<>();
+
         static TaskType selectedTask = null;
         static Boolean selectMode;
         static int[] modelSize = new int[] { 0, 0 };
         static Set<Integer> deps;
-        // static String baseFolder;
+
 
         @FXML
         private Pane root;
@@ -93,7 +94,7 @@ public class typeEditController {
         private Button dropTaskButton;
 
         @FXML
-        private ChoiceBox<TaskType> taskAddChoice;
+        private ChoiceBox<TaskSkill> taskAddChoice;
 
         @FXML
         private Button taskFileButton;
@@ -112,14 +113,14 @@ public class typeEditController {
                         Boolean clearTask = true;
                         String msg = "Imposible borrar '" + selectedTask.toString() + "' existen dependencias con : ";
                         List<String> dependencies = new ArrayList<>();
-                        for (TaskType tk : taskList) {
+                        for (TaskType tk : App.editedType.getTaskList()) {
                                 if (tk.getDependsOnIds().contains(selectedTask.getId())) {
                                         clearTask = false;
                                         dependencies.add(tk.toString());
                                 }
                         }
                         if (clearTask) {
-                                taskList.remove(selectedTask);
+                                App.editedType.getTaskList().remove(selectedTask);
                                 if (!root.getChildren().isEmpty())
                                         for (var node : root.getChildren()) {
                                                 ToggleButton tskButton = (ToggleButton) node;
@@ -130,7 +131,7 @@ public class typeEditController {
                                                 }
                                         }
                                 selectedTask.removeDependences();
-                                taskAddChoice.getItems().add(selectedTask);
+                                taskAddChoice.getItems().add(adminModel.getTaskByName(selectedTask.getName()));
                                 selectedTask = null;
                                 selectMode = true;
                                 refresh();
@@ -144,21 +145,24 @@ public class typeEditController {
         void toSelectMode(ActionEvent event) {
                 deps = new HashSet<>();
                 selectMode = true;
-                selectedTask = null;
                 refreshTimes(null);
+                selectedTask = null;
                 refresh();
 
         }
 
+
         @FXML
         void addTask(ActionEvent event) {
-                TaskType tsk = taskAddChoice.getValue();
-                taskList.add(tsk);
-                taskAddChoice.getItems().remove(tsk);
+                TaskSkill skill=taskAddChoice.getValue();
+                TaskType tsk = new TaskType(adminModel.getNextIdTask(), skill.getName());
+                App.editedType.getTaskList().add(tsk);
+                taskAddChoice.getItems().remove(skill);
+
+
                 if (!taskAddChoice.getItems().isEmpty()) {
                         taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
                 }
-                // selectedTask = tsk;
                 refresh();
         }
 
@@ -171,7 +175,7 @@ public class typeEditController {
                 Integer lastColumn = 0;
                 List<Integer> orderedIds = new ArrayList<>();
                 List<TaskType> taskListCp = new ArrayList<>();
-                taskListCp.addAll(taskList);
+                taskListCp.addAll(App.editedType.getTaskList());
 
                 while (!taskListCp.isEmpty()) {
                         System.out.println(taskListCp);
@@ -203,7 +207,6 @@ public class typeEditController {
                         lastColumn++;
                 }
 
-                // taskList.addAll(ordered);
                 modelSize = new int[] { lastColumn, maxY };
                 return modelSize;
 
@@ -240,7 +243,9 @@ public class typeEditController {
 
         @FXML
         void refreshTimes(ActionEvent event) {
+                System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
                 if (selectedTask != null) {
+                        System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
                         if (tovalidInteger(prepTime.getText()) != null) {
                                 selectedTask.setPrepTime(tovalidInteger(prepTime.getText()));
                         }
@@ -294,7 +299,7 @@ public class typeEditController {
                 int y = (v.length - coord[1]) / 2;
                 normalBorder = (coord[1] > v.length || coord[0] > h.length) ? App.RED_BORDER : null;
                 // metaDependences = new ArrayList<>();
-                for (TaskType tk : taskList) {
+                for (TaskType tk : App.editedType.getTaskList()) {
                         genToggleButton(tk, x, y);
                 }
         }
@@ -302,7 +307,7 @@ public class typeEditController {
         @SuppressWarnings("exports")
         @FXML // RECURSIVE
         public Set<Integer> depsOf(TaskType task, Set<Integer> set) {
-                for (TaskType tk : taskList) {
+                for (TaskType tk : App.editedType.getTaskList()) {
                         if (tk.getDependsOnIds().contains(task.getId())) {
                                 set.add(tk.getId());
                                 set.addAll(depsOf(tk, set));
@@ -363,6 +368,7 @@ public class typeEditController {
 
                 generateButtons(order());
                 if (selectedTask != null) {
+                        System.out.println("************************"+selectedTask.getPieceTime()+"-"+selectedTask.getPrepTime());
                         itemTime.setText(Integer.toString(selectedTask.getPieceTime()));
                         prepTime.setText(Integer.toString(selectedTask.getPrepTime()));
                         taskFileButton.setBorder(
@@ -384,14 +390,14 @@ public class typeEditController {
                         // root.setCursor(Cursor.HAND);
 
                 }
-                dependenciesLabel.setVisible(!selectMode && taskList.size() > 1);
+                dependenciesLabel.setVisible(!selectMode && App.editedType.getTaskList().size() > 1);
 
                 // Iterator<Node> iterator = root.getChildren().iterator();
                 for (var node : root.getChildren()) {
                         // while (iterator.hasNext()) {
                         ToggleButton bt = (ToggleButton) node;
 
-                        if (selectedTask != null && taskList.size() > 1
+                        if (selectedTask != null && App.editedType.getTaskList().size() > 1
                                         && stringDepsListoOf(selectedTask).contains(bt.getId())) {
                                 bt.setBorder(App.ORANGE_BORDER);
                                 bt.setCursor(null);
@@ -410,7 +416,7 @@ public class typeEditController {
                 lineRoot.getChildren().clear();
                 int x = (h.length - modelSize[0]) / 2;
                 int y = (v.length - modelSize[1]) / 2;
-                for (TaskType tk : taskList) {
+                for (TaskType tk : App.editedType.getTaskList()) {
                         int valX = tk.getX() + x;
                         if (valX < 0)
                                 valX = 0;
@@ -437,7 +443,7 @@ public class typeEditController {
 
                 setTimesBorders();
 
-                toSelectModeButton.setBorder((taskList.size() == 1) ? null : App.ORANGE_BORDER);
+                toSelectModeButton.setBorder((App.editedType.getTaskList().size() == 1) ? null : App.ORANGE_BORDER);
 
                 addTaskButton.setDisable(!selectMode);
                 taskAddChoice.setDisable(!selectMode);

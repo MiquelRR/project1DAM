@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import com.model.AdminModel;
 import com.model.Rank;
 import com.model.Section;
-import com.model.TaskType;
+import com.model.TaskSkill;
 import com.model.Type;
 import com.model.Worker;
 
@@ -69,7 +69,7 @@ public class adminMenuController {
     private ChoiceBox<Type> modelChoice;
 
     @FXML
-    private ChoiceBox<TaskType> taskChoice;
+    private ChoiceBox<TaskSkill> taskChoice;
 
     @FXML
     private ChoiceBox<?> orderChoice;
@@ -162,6 +162,7 @@ public class adminMenuController {
     void addTask(ActionEvent event) {
 
         if (taskField.getText().length() > 1) {
+            System.out.println("--------------------------------------"+taskField.getText());
             adminModel.addTask(taskField.getText());
             taskField.setText("");
             addTaskButton.setDisable(false);
@@ -435,27 +436,6 @@ public class adminMenuController {
         // adminModel.filterStaff(null, null);
         refresh();
 
-        assert addModelButton != null
-                : "fx:id=\"editOrNewModelButton1\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert addOrderButton != null
-                : "fx:id=\"editOrNewOrderButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert addTypeButton != null
-                : "fx:id=\"editOrNewTypeButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert editWorkerButton != null
-                : "fx:id=\"editWorkerButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert modelChoice != null : "fx:id=\"modelChoice\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert orderChoice != null : "fx:id=\"orderChoice\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert rankChooser != null : "fx:id=\"rankChooser\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert rankField != null : "fx:id=\"rankField\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert removeSectionButton != null
-                : "fx:id=\"removeSectionButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert removeRankButton != null
-                : "fx:id=\"removeSectionButton1\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert returnButton != null : "fx:id=\"returnButton\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert sectionChooser != null
-                : "fx:id=\"sectionChooser\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert sectionField != null : "fx:id=\"sectionField\" was not injected: check your FXML file 'adminMenu.fxml'.";
-        assert typeChoice != null : "fx:id=\"typeChoice\" was not injected: check your FXML file 'adminMenu.fxml'.";
 
     }
 

@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.model.AdminModel;
-import com.model.TaskType;
+import com.model.TaskSkill;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,13 +23,13 @@ public class abilitiesController {
     private URL location;
 
     @FXML
-    private ListView<TaskType> abilities;
+    private ListView<TaskSkill> abilities;
 
     @FXML
     private Button addButton;
 
     @FXML
-    private ListView<TaskType> allAbilities;
+    private ListView<TaskSkill> allAbilities;
 
     @FXML
     private Button applyButton;
@@ -42,7 +42,7 @@ public class abilitiesController {
 
     @FXML
     void add(ActionEvent event) {
-        TaskType skill = allAbilities.getSelectionModel().getSelectedItem();
+        TaskSkill skill = allAbilities.getSelectionModel().getSelectedItem();
         if (skill == null)
             skill = allAbilities.getItems().get(0);
         App.editedWorker.addSkill(skill);
@@ -61,7 +61,7 @@ public class abilitiesController {
 
     @FXML
     void remove(ActionEvent event) {
-        TaskType skill = abilities.getSelectionModel().getSelectedItem();
+        TaskSkill skill = abilities.getSelectionModel().getSelectedItem();
         if (skill == null)
             skill = abilities.getItems().get(0);
         App.editedWorker.removeSkill(skill);
@@ -85,7 +85,7 @@ public class abilitiesController {
         // allAbilities.setEditable(false);
         if (App.editedWorker.getAbilities() != null) {
             abilities.getItems().setAll(App.editedWorker.getAbilities());
-            for (TaskType skill : App.editedWorker.getAbilities()) {
+            for (TaskSkill skill : App.editedWorker.getAbilities()) {
                 allAbilities.getItems().remove(skill);
             }
             abilities.getSelectionModel().select(0);

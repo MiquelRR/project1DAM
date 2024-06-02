@@ -59,6 +59,11 @@ public class Accesdb {
         return list;
     }
 
+    public static Integer getLastLiveIdTask(){
+        String[] n=lligReg("SELECT MAX(idLiveTask) FROM liveTask");
+        return (n[0]==null)?0:toInt(n[0]);
+    }
+
     public static List<TaskType> readTaskListOfId(Integer id){
         List<TaskType>  list = new ArrayList<>();
         List<String[]> lst = lligQuery("SELECT idLiveTask, idTask, taskInstructions, initTime, pieceTime FROM liveTask WHERE idproductType="+id+";");
@@ -148,7 +153,7 @@ public class Accesdb {
         agrega(BBDD_NAME + ".section", new Object[] { "idSection", sec.getId(), "name", sec.toString() });
     }
 
-    public static void addTask(TaskType task) {
+    public static void addTask(TaskSkill task) {
         agrega(BBDD_NAME + ".taskType", new Object[] { "idTask", task.getId(), "name", task.toString() });
     }
 
@@ -171,11 +176,11 @@ public class Accesdb {
         modifica("DELETE FROM " + BBDD_NAME + ".rank WHERE idRank = " + rank.getId());
     }
 
-    public static void removeTask(TaskType task) {
+    public static void removeTask(TaskSkill task) {
         modifica("DELETE FROM " + BBDD_NAME + ".taskType WHERE idTask= " + task.getId());
     }
 
-    public static boolean isTaskinUse(TaskType task) {
+    public static boolean isTaskinUse(TaskSkill task) {
         return lligQuery("SELECT * FROM " + BBDD_NAME + ".liveTask WHERE idTask=" + task.getId()).size() > 0;
     }
 
@@ -205,7 +210,7 @@ public class Accesdb {
     public static void modifyWorkerSkills(Worker worker) {
         String query = "DELETE FROM abilities WHERE idWorker = " + worker.getIdWorker();
         modifica(query);
-        for (TaskType skill : worker.abilities) {
+        for (TaskSkill skill : worker.abilities) {
             agrega("abilities", new Object[] { "idTask", skill.getId(), "idWorker", worker.getIdWorker() });
         }
     }
@@ -247,11 +252,12 @@ public class Accesdb {
         return returnList;
     }
 
-    public static List<TaskType> readTaskTypes() {
-        List<TaskType> list = new ArrayList<>();
+    public static List<TaskSkill> readTaskTypes() {
+        List<TaskSkill> list = new ArrayList<>();
         List<String[]> lst = lligTaula("taskType");
         for (String[] reg : lst) {
-            TaskType taskType = new TaskType(Integer.parseInt(reg[0]), reg[1]);
+            TaskSkill taskType = new TaskSkill(Integer.parseInt(reg[0]), reg[1]);
+            System.out.println(reg[0]+"-"+reg[1]+">>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<");
             list.add(taskType);
         }
         return list;
