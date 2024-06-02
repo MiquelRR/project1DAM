@@ -1,10 +1,24 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Type {
     Integer idType;
     String name;
     String docFolder;
     Integer modelOf;
+    List<TaskType> taskList;
+
+    public List<TaskType> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<TaskType> taskList) {
+        this.taskList = taskList;
+    }
+
+    final String DEFAULT_FOLDER=".";
     
     @Override
     public String toString() {
@@ -15,17 +29,23 @@ public class Type {
         this.idType = idType;
         this.name = name;
         this.docFolder = docFolder;
+        this.taskList=new ArrayList<>();
     }
+
 
 
     public Type(Integer idType, String name){
         this.idType = idType;
         this.name = name;
+        this.docFolder=DEFAULT_FOLDER;
+        this.taskList=new ArrayList<>();
     }
     public Type(Integer idType, String name, Integer modelOf) {
         this.idType = idType;
         this.name = name;
         this.modelOf = modelOf;
+        this.docFolder=DEFAULT_FOLDER;
+        this.taskList=new ArrayList<>();
     }
 
 
@@ -34,10 +54,12 @@ public class Type {
         this.name = name;
         this.docFolder = docFolder;
         this.modelOf = modelOf;
+        this.taskList=new ArrayList<>();
     }
 
     public Type() {
-
+        this.docFolder=DEFAULT_FOLDER;
+        this.taskList=new ArrayList<>();
     }
 
     public Integer getIdType() {
@@ -57,7 +79,7 @@ public class Type {
     }
 
     public String getDocFolder() {
-        return docFolder;
+        return (this.docFolder==null)?DEFAULT_FOLDER:docFolder;
     }
 
     public void setDocFolder(String docFolder) {

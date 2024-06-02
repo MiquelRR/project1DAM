@@ -52,7 +52,25 @@ public class Accesdb {
         List<String[]> lst = lligTaula("productType");
         for (String[] reg : lst) {
             if (reg[4].equals("MODEL")) {
-                Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2]);
+                Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2], Integer.parseInt(reg[3]));
+                list.add(type);
+            }
+        }
+        return list;
+    }
+
+    public static List<TaskType> readTaskListOfId(Integer id){
+        List<TaskType>  list = new ArrayList<>();
+        List<String[]> lst = lligQuery("SELECT idLiveTask, idTask, taskInstructions, initTime, pieceTime FROM liveTask WHERE idproductType="+id+";");
+        
+        for (String[] reg : lst) {
+            /* List<String[]> lst2 = lligQuery("SELECT idtaskInTypeDependency FROM taskDependency WHERE idtaskInType="+reg[0]);
+            List<Integer> dependsIds = new ArrayList<>();
+            for (String[] rg : lst2) {
+                dependsIds.add(Integer.parseInt(rg[0]));
+            } */
+            if (reg[4].equals("MODEL")) {
+                TaskType type = new TaskType(Integer.parseInt(reg[0]), Integer.parseInt(reg[1]), reg[2], Integer.parseInt(reg[3]),Integer.parseInt(reg[4]));
                 list.add(type);
             }
         }

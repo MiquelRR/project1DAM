@@ -14,6 +14,8 @@ import com.model.Rank;
 import com.model.Section;
 import com.model.Worker;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,16 +23,18 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Paint;
-import javafx.stage.DirectoryChooser;
+import javafx.scene.layout.Pane;
 
 public class workerProfileController {
     private static final String EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     private static final String SS = "^\\d{8}$";
     private static final String DNI = "^\\d{8}[A-Za-z]$";
-    private static final String NO_SPACES = "^\\S*$";
+    private static final String NMTOKEN = "^[a-zA-Z0-9._\\-:]+$";
 
     public static boolean validate(String string, String patt) {
+        if (string == null || string.isEmpty()) {
+            return false; // Retorna false si la cadena es nula o vacía
+        }
         Pattern pattern = Pattern.compile(patt);
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
@@ -69,7 +73,7 @@ public class workerProfileController {
     private Button nextButton;
 
     @FXML
-    private TextField nikField;
+    private TextField nickField;
 
     @FXML
     private TextField otherField;
@@ -85,6 +89,9 @@ public class workerProfileController {
 
     @FXML
     private ChoiceBox<Rank> rankChoice;
+
+    @FXML
+    private Pane root;
 
     @FXML
     private Button returnButton;
@@ -106,8 +113,8 @@ public class workerProfileController {
 
     @FXML
     private void showWorker(Worker worker) {
-        nikField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
-        nikField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
+        nickField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
+        nickField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
         nameField.setText((worker.getFullName() == null) ? "" : worker.getFullName());
         passField.setText((worker.getPasswd() == null) ? "" : worker.getPasswd());
         if (worker.getSince() == null) {
@@ -160,12 +167,12 @@ public class workerProfileController {
             alert += "El email es incorrecto\n";
             required = false;
         }
-        if (!validate(nikField.getText(), NO_SPACES)) {
+        if (!validate(nickField.getText(), NMTOKEN)) {
             alert += "El nick no puede tener espacios\n";
             required = false;
         }
         ;
-        if (!validate(passField.getText(), NO_SPACES)) {
+        if (!validate(passField.getText(), NMTOKEN)) {
             alert += "La password no puede tener espacios\n";
             required = false;
         }
@@ -181,7 +188,7 @@ public class workerProfileController {
             App.editedWorker.setTelNum(telField.getText());
             App.editedWorker.setMail(mailField.getText());
             App.editedWorker.setContact(otherField.getText());
-            App.editedWorker.setUserName(nikField.getText().strip());
+            App.editedWorker.setUserName(nickField.getText().strip());
             App.editedWorker.setPasswd(passField.getText().strip());
             App.editedWorker.setActive(!activeCheckbox.isSelected());
             if (App.workerProfModeAdd) {
@@ -197,27 +204,11 @@ public class workerProfileController {
         return required;
     }
 
-/*     @FXML
-    void chooseWorkerFolderr(ActionEvent event) throws IOException {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Selecciona una carpeta");
-        if (App.editedWorker.getDocFolder() == null)
-            App.editedWorker.setDocFolder(App.WORKERS_FOLDER);
-            System.out.println(App.editedWorker.getDocFolder());
-        directoryChooser.setInitialDirectory(new File(App.editedWorker.getDocFolder()));
-        File selectedDirectory = directoryChooser.showDialog(App.st);
-        if (selectedDirectory != null) {
-            App.editedWorker.setDocFolder(selectedDirectory.getPath());
-            adminModel.updateWorker(App.editedWorker);
-        }
-        refresh();
-    } */
-
     @FXML
     void chooseWorkerFolder(ActionEvent event) throws IOException {
         if (App.editedWorker.getDocFolder() == null)
             App.editedWorker.setDocFolder(App.WORKERS_FOLDER);
-        String selectedDirectory=App.chooseDir(App.editedWorker.getDocFolder());
+        String selectedDirectory = App.chooseFolder(App.editedWorker.getDocFolder(), App.st);
         if (selectedDirectory != null) {
             App.editedWorker.setDocFolder(selectedDirectory);
             adminModel.updateWorker(App.editedWorker);
@@ -326,14 +317,35 @@ public class workerProfileController {
         mailField.setDisable(is);
         otherField.setDisable(is);
         folderButton.setDisable(is);
-        nikField.setDisable(is);
+        nickField.setDisable(is);
         passField.setDisable(is);
         abilitiesButton.setDisable(is);
+        refreshBorders();
+    }
+    @FXML
+    void refreshBorders(){
+        nameField.setBorder(!nameField.getText().isBlank() ? null : App.ORANGE_BORDER);
+        ssField.setBorder(validate(ssField.getText(), SS) ? null : App.ORANGE_BORDER);
+        ssDniField.setBorder(validate(ssDniField.getText(), DNI) ? null : App.ORANGE_BORDER);
+        mailField.setBorder(validate(mailField.getText(), EMAIL) ? null : App.ORANGE_BORDER);
+        nickField.setBorder(validate(nickField.getText(), NMTOKEN) ? null : App.ORANGE_BORDER);
+        passField.setBorder(validate(passField.getText(), NMTOKEN) ? null : App.ORANGE_BORDER);
 
     }
 
     @FXML
     void initialize() {
+        for (javafx.scene.Node node : root.getChildren()) {
+            if (node instanceof TextField) {
+                TextField textField = (TextField) node;
+                textField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        refreshBorders();
+                    }
+                });
+            }
+        }
 
         sectionChoice.getItems().setAll(adminModel.getSections());
         rankChoice.getItems().setAll(adminModel.getRanks());
@@ -353,7 +365,7 @@ public class workerProfileController {
         assert mailField != null : "fx:id=\"mailField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert nameField != null : "fx:id=\"nameField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'workerProfile.fxml'.";
-        assert nikField != null : "fx:id=\"nikField\" was not injected: check your FXML file 'workerProfile.fxml'.";
+        assert nickField != null : "fx:id=\"nikField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert otherField != null : "fx:id=\"otherField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert passField != null : "fx:id=\"passField\" was not injected: check your FXML file 'workerProfile.fxml'.";
         assert prevButton != null : "fx:id=\"prevButton\" was not injected: check your FXML file 'workerProfile.fxml'.";

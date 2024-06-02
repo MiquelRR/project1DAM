@@ -27,6 +27,12 @@ public class AdminModel {
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.readAllSections();
         types = Accesdb.readAllTypes();
+        for (Type type : types) {
+            type.setTaskList(Accesdb.readTaskListOfId(type.getIdType()));
+            for (TaskType tp : type.getTaskList()) {
+                //tp.setDependsOn(new List<Integer>);                
+            }
+        }
         models = Accesdb.readAllModels();
         LocalDate lastDate = Accesdb.readLastProcessedDate();
         System.out.println(lastDate);

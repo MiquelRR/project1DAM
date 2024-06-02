@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workerProfileController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #92C7CF;" stylesheets="@own_styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.workerProfileController">
    <children>
       <Rectangle fill="#aad7d9" height="52.0" layoutY="17.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="14.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
@@ -163,20 +163,20 @@
          </font>
       </Button>
       <DatePicker fx:id="datePicker" layoutX="75.0" layoutY="100.0" prefHeight="52.0" prefWidth="114.0" />
-      <TextField fx:id="ssField" layoutX="279.0" layoutY="100.0" prefHeight="52.0" prefWidth="125.0" promptText="12345678" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
-      <TextField fx:id="ssDniField" layoutX="486.0" layoutY="100.0" prefHeight="52.0" prefWidth="114.0" promptText="12345678Z" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
+      <TextField fx:id="ssField" layoutX="279.0" layoutY="100.0" onAction="#refresh" prefHeight="52.0" prefWidth="125.0" promptText="12345678" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
+      <TextField fx:id="ssDniField" layoutX="486.0" layoutY="100.0" onAction="#refresh" prefHeight="52.0" prefWidth="114.0" promptText="12345678Z" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <TextField fx:id="adressField" layoutX="104.0" layoutY="240.0" prefHeight="52.0" prefWidth="496.0" promptText="Calle de la alegria numero 15, Villanueva del Badajo" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <TextField fx:id="telField" layoutX="52.0" layoutY="310.0" prefHeight="52.0" prefWidth="114.0" promptText="6111111111" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
-      <TextField fx:id="mailField" layoutX="237.0" layoutY="310.0" prefHeight="52.0" prefWidth="125.0" promptText="nombre@dominio.es" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
+      <TextField fx:id="mailField" layoutX="237.0" layoutY="310.0" onAction="#refresh" prefHeight="52.0" prefWidth="125.0" promptText="nombre@dominio.es" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <TextField fx:id="otherField" layoutX="451.0" layoutY="310.0" prefHeight="52.0" prefWidth="148.0" promptText="Carlota, tel 123456789" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
       <Button fx:id="folderButton" layoutY="389.0" mnemonicParsing="false" onAction="#chooseWorkerFolder" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="JUSTIFICANTES, EPIS, FORMACION, CONSENTIMIENTOS" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="nikField" layoutX="89.0" layoutY="463.0" prefHeight="52.0" prefWidth="164.0" promptText="Paquito" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
-      <TextField fx:id="passField" layoutX="325.0" layoutY="463.0" prefHeight="52.0" prefWidth="136.0" promptText="eJ3Mplo5" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
-      <TextField fx:id="nameField" alignment="CENTER_RIGHT" layoutX="82.0" layoutY="17.0" prefHeight="52.0" prefWidth="402.0" promptText="Nombre Completo" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
+      <TextField fx:id="nickField" layoutX="89.0" layoutY="463.0" onAction="#refresh" prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
+      <TextField fx:id="passField" layoutX="325.0" layoutY="463.0" onAction="#refresh" prefHeight="52.0" prefWidth="136.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" />
+      <TextField fx:id="nameField" alignment="CENTER_RIGHT" layoutX="82.0" layoutY="17.0" onAction="#refresh" prefHeight="52.0" prefWidth="402.0" promptText="Nombre Completo" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
          <font>
             <Font size="18.0" />
          </font>

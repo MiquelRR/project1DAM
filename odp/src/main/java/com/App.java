@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -71,13 +72,25 @@ public class App extends Application {
         App.workerProfModeAdd = workerProfModeAdd;
     }
 
+    @SuppressWarnings("exports")
     @FXML
-    public static String chooseDir(String base) {
+    public static String chooseFolder(String base, Stage sta) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Selecciona una carpeta");
         directoryChooser.setInitialDirectory(new File(base));
-        File selectedDirectory = directoryChooser.showDialog(st);
+        File selectedDirectory = directoryChooser.showDialog(sta);
         return (selectedDirectory == null) ? null : selectedDirectory.getPath();
+    }
+
+    @FXML
+    public static String chooseFile(String base, Stage sta) {
+        FileChooser fileChooser = new FileChooser();
+        File fold = new File(base);
+        fileChooser.setInitialDirectory(fold);
+        fileChooser.setTitle("Selecciona un archivo PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+        File selectedFile = fileChooser.showOpenDialog(sta);
+        return (selectedFile.getPath() == null) ? null : selectedFile.getPath();
     }
 
     private static Scene scene;

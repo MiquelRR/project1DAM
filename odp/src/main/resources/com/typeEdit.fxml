@@ -81,7 +81,7 @@
          </padding>
       </Label>
       <ChoiceBox fx:id="taskAddChoice" layoutX="537.0" layoutY="17.0" prefHeight="52.0" prefWidth="148.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-font-size: 12;" />
-      <TextField fx:id="itemTime" layoutX="805.0" layoutY="534.0" onKeyTyped="#refreshTimes" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
+      <TextField fx:id="itemTime" layoutX="805.0" layoutY="534.0" onAction="#refreshTimes" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
       <Label fx:id="minuteItemLabel" alignment="CENTER_RIGHT" layoutX="611.0" layoutY="534.0" prefHeight="52.0" prefWidth="194.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="minutos por pieza" textFill="WHITE">
          <font>
             <Font size="16.0" />
@@ -104,7 +104,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <TextField fx:id="prepTime" layoutX="593.0" layoutY="534.0" onKeyTyped="#refreshTimes" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
+      <TextField fx:id="prepTime" layoutX="593.0" layoutY="534.0" onAction="#refreshTimes" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
       <Label fx:id="dependenciesLabel" contentDisplay="CENTER" layoutX="86.0" layoutY="534.0" prefHeight="52.0" prefWidth="291.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="selecciona sus tareas  previas" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
