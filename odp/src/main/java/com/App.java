@@ -146,13 +146,13 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void showDialog(String st) {
-        if (st == null)
-            st = "null";
+    public static void showDialog(String showedText) {
+        if (showedText == null)
+            showedText = "null";
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Operación no posible");
         alert.setHeaderText("revise las siguientes condiciones");
-        alert.setContentText(st);
+        alert.setContentText(showedText);
         alert.showAndWait();
     }
 

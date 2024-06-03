@@ -12,7 +12,7 @@ import javafx.concurrent.Task;
 public class AdminModel {
     private static AdminModel adminModel; // ---- Singleton
     private List<Worker> staffList;
-    private List<Worker> filteredStaff = new ArrayList<>();
+    //private List<Worker> filteredStaff = new ArrayList<>();
 
     private Map<Integer, WeekTemplate> weekTemplates;
     private List<Rank> ranks;
@@ -23,20 +23,22 @@ public class AdminModel {
     private Integer lastIdtask;
 
     private AdminModel() {
-        lastIdtask=0;
         weekTemplates = Accesdb.readWeekTemplates();
         staffList = Accesdb.readWorkers();
         ranks = Accesdb.readRanks();
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.readAllSections();
         types = Accesdb.readAllTypes();
-        lastIdtask= Accesdb.getLastLiveIdTask();
-        for (Type type : types) {
-            type.setTaskList(Accesdb.readTaskListOfId(type.getIdType()));
-            for (TaskType tp : type.getTaskList()) {
-                //tp.setDependsOn(new List<Integer>);        TO DO        
-            }
+        Integer lt=Accesdb.getLastLiveIdTask();
+        lastIdtask= (lt==null)?0:lt;
+        Map<Integer,List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
+        // hereim
+        for (Type t : types) {
+            System.out.println("X".repeat(100)+t.getName()+"-"+t.getIdType());
+            t.setTaskList(toAttachInTypes.getOrDefault(t.idType,new ArrayList<>()));                    
         }
+        System.out.println("KeySet = "+toAttachInTypes.keySet());
+  
         models = Accesdb.readAllModels();
         LocalDate lastDate = Accesdb.readLastProcessedDate();
         System.out.println(lastDate);
@@ -65,6 +67,10 @@ public class AdminModel {
             worker.setAbilities(abilities);
         }
 
+    }
+
+    public void writeType(Type type){
+        Accesdb.updateType(type);
     }
 
     private int getNextTypeIdx() {
@@ -113,21 +119,7 @@ public class AdminModel {
 
     }
 
-    /*
-     * public List<Worker> getFilteredStaff() {
-     * return filteredStaff;
-     * }
-     * 
-     * public void filterStaff(Section sec, Rank rank) {
-     * filteredStaff.clear();
-     * for (Worker worker : staffList) {
-     * if ((sec == null || sec.getId() == worker.getSection())
-     * && (rank == null || rank.getId() == worker.getRank())
-     * && (worker.getRol()!=null && worker.getRol().equals("WORKER")))
-     * filteredStaff.add(worker);
-     * }
-     * }
-     */
+
     private int getNextRank() {
         int next = -1;
         for (Rank rank : ranks) {
@@ -278,7 +270,9 @@ public class AdminModel {
     }
 
     public void addTask(String newTaskName) {
+        System.out.println("MMMMMMMMMMMMMMMMMMMMMMMMMMMMM"+newTaskName);
         TaskSkill task = new TaskSkill(getNextTaskType(), newTaskName);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+task.getName());
         taskTypes.add(task);
         System.out.println("<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>"+task.getName());
         Accesdb.addTask(task);
@@ -334,6 +328,15 @@ public class AdminModel {
             return tk;            
         }
         return null;
+    }
+
+    public String getNameSkillById(Integer id){
+        for (TaskSkill tk : taskTypes) {
+            if (tk.getId()==id) 
+            return tk.getName();            
+        }
+        return null;
+
     }
 
     public List<Section> getSections() {

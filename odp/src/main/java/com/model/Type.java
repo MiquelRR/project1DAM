@@ -20,10 +20,16 @@ public class Type {
 
     final String DEFAULT_FOLDER=".";
     
+    public void setDefaultFlder() {
+        this.docFolder=DEFAULT_FOLDER;
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
+    
 
     public Type(Integer idType, String name, String docFolder) {
         this.idType = idType;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -20,7 +21,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -35,7 +40,7 @@ import javafx.stage.Stage;
 public class typeEditController {
 
         AdminModel adminModel = AdminModel.getAdminModel();
-      
+
         static Integer h[] = new Integer[] { 0, 152, 304, 456, 608, 760, 912, 1064 };
         static Integer v[] = new Integer[] { 100, 170, 240, 310, 380, 450 };
 
@@ -43,7 +48,6 @@ public class typeEditController {
         static Boolean selectMode;
         static int[] modelSize = new int[] { 0, 0 };
         static Set<Integer> deps;
-
 
         @FXML
         private Pane root;
@@ -151,14 +155,12 @@ public class typeEditController {
 
         }
 
-
         @FXML
         void addTask(ActionEvent event) {
-                TaskSkill skill=taskAddChoice.getValue();
-                TaskType tsk = new TaskType(adminModel.getNextIdTask(), skill.getName());
+                TaskSkill skill = taskAddChoice.getValue();
+                TaskType tsk = new TaskType(adminModel.getNextIdTask(), skill, App.editedType.getIdType());
                 App.editedType.getTaskList().add(tsk);
                 taskAddChoice.getItems().remove(skill);
-
 
                 if (!taskAddChoice.getItems().isEmpty()) {
                         taskAddChoice.setValue(taskAddChoice.getItems().get(taskAddChoice.getItems().size() - 1));
@@ -175,10 +177,10 @@ public class typeEditController {
                 Integer lastColumn = 0;
                 List<Integer> orderedIds = new ArrayList<>();
                 List<TaskType> taskListCp = new ArrayList<>();
+                System.out.println("#".repeat(100)+App.editedType.getTaskList());
                 taskListCp.addAll(App.editedType.getTaskList());
 
                 while (!taskListCp.isEmpty()) {
-                        System.out.println(taskListCp);
                         List<Integer> taskColumn = new ArrayList<>();
                         columns.add(0);
                         for (TaskType tk : taskListCp) {
@@ -189,7 +191,6 @@ public class typeEditController {
                                         y++;
                                         maxY = (y > maxY) ? y : maxY;
                                         columns.set(lastColumn, y);
-                                        System.out.println("Y = " + y);
                                         taskColumn.add(tk.getId());
                                 } else {
                                         // "unnasigned: ";
@@ -232,20 +233,32 @@ public class typeEditController {
                 Stage stage = (Stage) scene.getWindow();
                 App.editedType.setDocFolder(App.chooseFolder(App.editedType.getDocFolder(), stage));
                 typeFolderButton.setBorder((App.editedType.getDocFolder().equals(".")) ? App.ORANGE_BORDER : null);
-
                 // baseFolder = App.chooseFolder(baseFolder,stage);
         }
 
         @FXML
         void exitButtonPressed(ActionEvent event) {
-
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Operación no recuperable");
+                alert.setHeaderText("Vas a descartar la edición del modelo");
+                alert.setContentText("¿Estás seguro?");
+                ButtonType buttonTypeOne = new ButtonType("SI, perder edición");
+                ButtonType buttonTypeTwo = new ButtonType("NO, seguir editando");
+                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == buttonTypeOne) {
+                        App.editedType.setDefaultFlder();
+                        App.editedType.setTaskList(new ArrayList<>());
+                        Stage stage = (Stage) exitButton.getScene().getWindow();
+                        stage.close();
+                }
         }
 
         @FXML
         void refreshTimes(ActionEvent event) {
-                System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+
                 if (selectedTask != null) {
-                        System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
+
                         if (tovalidInteger(prepTime.getText()) != null) {
                                 selectedTask.setPrepTime(tovalidInteger(prepTime.getText()));
                         }
@@ -265,6 +278,11 @@ public class typeEditController {
 
         @FXML
         void saveButtonPressed(ActionEvent event) {
+                adminModel.writeType(App.editedType);
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                App.showDialog("Tipo guardado con éxito");                
+                stage.close();
+
 
         }
 
@@ -299,6 +317,7 @@ public class typeEditController {
                 int y = (v.length - coord[1]) / 2;
                 normalBorder = (coord[1] > v.length || coord[0] > h.length) ? App.RED_BORDER : null;
                 // metaDependences = new ArrayList<>();
+                System.out.println("#".repeat(70)+App.editedType.getName()+" tl size = "+App.editedModel.getTaskList().size());
                 for (TaskType tk : App.editedType.getTaskList()) {
                         genToggleButton(tk, x, y);
                 }
@@ -368,7 +387,6 @@ public class typeEditController {
 
                 generateButtons(order());
                 if (selectedTask != null) {
-                        System.out.println("************************"+selectedTask.getPieceTime()+"-"+selectedTask.getPrepTime());
                         itemTime.setText(Integer.toString(selectedTask.getPieceTime()));
                         prepTime.setText(Integer.toString(selectedTask.getPrepTime()));
                         taskFileButton.setBorder(
@@ -486,14 +504,13 @@ public class typeEditController {
                         generateButtons(order());
                         refresh();
                 } else {
-                        System.out.println("D.E.P ------ " + deps);
+        
 
                         if (tsk.equals(selectedTask)) {
                                 toSelectMode(null);
                         } else {
                                 if (tsk.getDependsOnIds().contains(selectedTask.getId())) {
                                         System.out.println("circular dependency");
-
                                 } else {
                                         if (selectedTask.getDependsOnIds().contains(tsk.getId())) {
                                                 selectedTask.removeDependecy(tsk);
@@ -506,7 +523,6 @@ public class typeEditController {
                                                 if (tgb.getId().equals(Integer.toString(tsk.getId())))
                                                         tgb.setSelected(false);
                                         }
-                                        System.out.println("*".repeat(100));
                                         generateButtons(order());
 
                                         refresh();
@@ -573,19 +589,6 @@ public class typeEditController {
                 });
 
                 refresh();
-
-                assert exitButton != null
-                                : "fx:id=\"exitButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert itemTime != null : "fx:id=\"itemTime\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert prepTime != null : "fx:id=\"prepTime\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert saveButton != null
-                                : "fx:id=\"saveButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert taskAddChoice != null
-                                : "fx:id=\"taskAddChoice\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert taskFileButton != null
-                                : "fx:id=\"taskFileButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
-                assert typeFolderButton != null
-                                : "fx:id=\"typeFolderButton\" was not injected: check your FXML file 'typeEdit.fxml'.";
 
         }
 

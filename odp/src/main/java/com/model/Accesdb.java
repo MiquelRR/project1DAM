@@ -41,6 +41,7 @@ public class Accesdb {
         for (String[] reg : lst) {
             if (reg[4].equals("TYPE")) {
                 Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2]);
+
                 list.add(type);
             }
         }
@@ -59,28 +60,49 @@ public class Accesdb {
         return list;
     }
 
-    public static Integer getLastLiveIdTask(){
-        String[] n=lligReg("SELECT MAX(idLiveTask) FROM liveTask");
-        return (n[0]==null)?0:toInt(n[0]);
+    public static Integer getLastLiveIdTask() {
+        String[] n = lligReg("SELECT MAX(idLiveTask) FROM liveTask;");
+        return (n[0] == null) ? 0 : toInt(n[0]);
     }
 
-    public static List<TaskType> readTaskListOfId(Integer id){
-        List<TaskType>  list = new ArrayList<>();
-        List<String[]> lst = lligQuery("SELECT idLiveTask, idTask, taskInstructions, initTime, pieceTime FROM liveTask WHERE idproductType="+id+";");
-        
+    /**
+     * Reading DDBB builds dependences of TaskTypes
+     * 
+     * @return a completed map to attach taskk with dependences to types or models
+     */
+    public static Map<Integer, List<TaskType>> readLivetaskModels() {
+
+        Map<Integer, TaskType> taskTypesMap = new HashMap<>();
+        Map<Integer, List<TaskType>> map = new HashMap<>();
+        List<String[]> lst = lligQuery(
+                "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime FROM " + BBDD_NAME
+                        + ".liveTask WHERE date IS null;");
         for (String[] reg : lst) {
-            /* List<String[]> lst2 = lligQuery("SELECT idtaskInTypeDependency FROM taskDependency WHERE idtaskInType="+reg[0]);
-            List<Integer> dependsIds = new ArrayList<>();
-            for (String[] rg : lst2) {
-                dependsIds.add(Integer.parseInt(rg[0]));
-            } */
-            if (reg[4].equals("MODEL")) {
-                TaskType type = new TaskType(Integer.parseInt(reg[0]), Integer.parseInt(reg[1]), reg[2], Integer.parseInt(reg[3]),Integer.parseInt(reg[4]));
-                list.add(type);
-            }
+            Integer idLliveTask = Integer.parseInt(reg[0]);
+            TaskType tt = new TaskType(
+                    idLliveTask,
+                    Integer.parseInt(reg[1]),
+                    Integer.parseInt(reg[2]),
+                    skill.get(Integer.parseInt(reg[2])),
+                    reg[3],
+                    Integer.parseInt(reg[4]),
+                    Integer.parseInt(reg[5]));
+            taskTypesMap.put(idLliveTask, tt);
         }
-        return list;
+        lst = lligQuery("SELECT * FROM " + BBDD_NAME + ".taskDependency;");
+        for (String[] reg : lst) {
+            Integer taskId = Integer.parseInt(reg[0]);
+            Integer depensOnId = Integer.parseInt(reg[1]);
+            taskTypesMap.get(taskId).addDependency(taskTypesMap.get(depensOnId));
+        }
+        for (TaskType tt : taskTypesMap.values()) {
+            if (!map.keySet().contains(tt.getTypeRef()))
+                map.put(tt.getTypeRef(), new ArrayList<>());
+            map.get(tt.getTypeRef()).add(tt);
+        }
+        return map;
     }
+
 
     public static List<Section> readAllSections() {
         List<Section> list = new ArrayList<>();
@@ -138,14 +160,32 @@ public class Accesdb {
 
     }
 
-    public static void updateType(Type type){
+    public static void updateType(Type type) {
         String query = "UPDATE productType SET";
         query += " name = '" + type.getName();
         query += "', mainFolderPath = '" + type.getDocFolder();
         query += "', modelOf = " + type.getModelOf();
-        query += ", type = " + ((type.getModelOf()==null)?"'TYPE'":"'MODEL'");
+        query += ", type = " + ((type.getModelOf() == null) ? "'TYPE'" : "'MODEL'");
         query += " WHERE idproductType = " + type.getIdType();
         modifica(query);
+        for (TaskType tk : type.getTaskList()) {
+            modifica("DELETE FROM " + BBDD_NAME + ".taskDependency WHERE idtaskInType = " + tk.getId());
+        }
+        List<Integer[]> bufferDependencies = new ArrayList<>(); // for Miquel on future : you must write on the ddbb
+                                                                // dependencies once task are written (Foreing Keys)
+        modifica("DELETE FROM " + BBDD_NAME + ".liveTask WHERE idproductType = " + type.getIdType());
+        for (TaskType tk : type.getTaskList()) {
+            agrega(BBDD_NAME + ".liveTask", new Object[] { "idLiveTask", tk.getId(), "idproductType", type.getIdType(),
+                    "idTask", tk.getTaskRef(), "taskInstructions", tk.getInfoFilePath(), "initTime", tk.getPrepTime(),
+                    "pieceTime", tk.getPieceTime() });
+            for (TaskType td : tk.getDependsOn()) {
+                bufferDependencies.add(new Integer[] { tk.getId(), td.getId() });
+            }
+        }
+        for (Integer[] dt : bufferDependencies) {
+            agrega(BBDD_NAME + ".taskDependency",
+                    new Object[] { "idtaskInType", dt[0], "idtaskInTypeDependeny", dt[1] });
+        }
 
     }
 
@@ -154,6 +194,7 @@ public class Accesdb {
     }
 
     public static void addTask(TaskSkill task) {
+
         agrega(BBDD_NAME + ".taskType", new Object[] { "idTask", task.getId(), "name", task.toString() });
     }
 
@@ -161,12 +202,11 @@ public class Accesdb {
         agrega(BBDD_NAME + ".rank", new Object[] { "idRank", rank.getId(), "name", rank.toString() });
     }
 
-    public static void addType(Type type){
-        String typeString = (type.getModelOf()==null)?"TYPE":"MODEL"; 
-        agrega(BBDD_NAME + ".productType", new Object[] { "idProductType", type.getIdType(), "name", type.toString(), "mainFolderPath", type.getDocFolder(), "modelOf", type.getModelOf(), "type", typeString});
+    public static void addType(Type type) {
+        String typeString = (type.getModelOf() == null) ? "TYPE" : "MODEL";
+        agrega(BBDD_NAME + ".productType", new Object[] { "idProductType", type.getIdType(), "name", type.toString(),
+                "mainFolderPath", type.getDocFolder(), "modelOf", type.getModelOf(), "type", typeString });
     }
-
-
 
     public static void removeSection(Section sec) {
         modifica("DELETE FROM " + BBDD_NAME + ".section WHERE idSection = " + sec.getId());
@@ -252,13 +292,18 @@ public class Accesdb {
         return returnList;
     }
 
+    private static Map<Integer,String> skill;
+
     public static List<TaskSkill> readTaskTypes() {
+        skill = new HashMap<>();
         List<TaskSkill> list = new ArrayList<>();
         List<String[]> lst = lligTaula("taskType");
         for (String[] reg : lst) {
             TaskSkill taskType = new TaskSkill(Integer.parseInt(reg[0]), reg[1]);
-            System.out.println(reg[0]+"-"+reg[1]+">>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<");
+            System.out.println(reg[0] + "-" + reg[1] + ">>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<");
+            skill.put(Integer.parseInt(reg[0]), reg[1]);
             list.add(taskType);
+
         }
         return list;
     }

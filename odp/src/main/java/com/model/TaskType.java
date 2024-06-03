@@ -6,12 +6,22 @@ import java.util.List;
 public class TaskType {
     Integer id;
     String name;
+    Integer taskRef;
     List<TaskType> dependsOn;
     Integer x;
     Integer y;
     Integer prepTime;
     Integer pieceTime;
     String  infoFilePath;
+    Integer typeRef;
+
+    public Integer getTypeRef() {
+        return typeRef;
+    }
+
+    public void setTypeRef(Integer typeRef) {
+        this.typeRef = typeRef;
+    }
 
     public String getInfoFilePath() {
         return infoFilePath;
@@ -66,19 +76,32 @@ public class TaskType {
         return id;
     }
 
-    public TaskType(int id, String name) {
+    public TaskType(int id, TaskSkill tk, Integer typeRef) {
         this.id = id;
-        this.name = name;
+        this.typeRef=typeRef;
+        this.taskRef= tk.getId();
+        this.name = tk.name;
         this.dependsOn = new ArrayList<>();
         this.pieceTime = 0;
         this.prepTime = 0;
         this.infoFilePath = "";
     }
 
-    public TaskType(Integer id, Integer id_name,String path, Integer prepTime, Integer pieceTime){
-
+    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime, Integer pieceTime ){
+        this.id = id;
+        this.typeRef=typeRef;
+        this.taskRef= taskRef;
+        this.name = name;
+        this.dependsOn = new ArrayList<>();
+        this.pieceTime = pieceTime;
+        this.prepTime = prepTime;
+        this.infoFilePath = infoFilePath;
     }
-    ;
+
+
+/*     public TaskType(Integer id, Integer id_name,String path, Integer prepTime, Integer pieceTime){
+
+    }; */
     @Override
     public String toString() {
         return name;
@@ -114,6 +137,10 @@ public class TaskType {
 
     public void setY(Integer y) {
         this.y = y;
+    }
+
+    public Integer getTaskRef() {
+        return taskRef;
     }
     /*
      * @Override

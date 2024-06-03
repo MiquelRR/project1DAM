@@ -203,7 +203,9 @@ public class adminMenuController {
 
     @FXML
     void editType(ActionEvent event) throws IOException {
+        System.out.println("~".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
         App.editedType=typeChoice.getValue();
+        System.out.println("~".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
         Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));
@@ -341,6 +343,7 @@ public class adminMenuController {
 
     @FXML
     void refresh() {
+        System.out.println("=".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
         boolean possibleWorkers = true;
         boolean possibleTypes = true;
         boolean possibleModels = true;
@@ -428,7 +431,7 @@ public class adminMenuController {
         typeField.setVisible(possibleTypes);
         modelField.setVisible(possibleModels);
         editWorkerButton.setVisible(possibleWorkers);
-
+        System.out.println("=".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
     }
 
     @FXML
