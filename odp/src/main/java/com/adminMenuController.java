@@ -33,6 +33,9 @@ public class adminMenuController {
     private Label title;
 
     @FXML
+    private Label arrow;
+
+    @FXML
     private ResourceBundle resources;
 
     @FXML
@@ -239,7 +242,21 @@ public class adminMenuController {
 
     @FXML
     void addNewModel(ActionEvent event) {
-
+        //HERE
+        App.editedType=typeChoice.getValue();
+        if (modelField.getText().length() > 1) {
+            adminModel.addModel(typeField.getText(), typeChoice.getValue());//--------
+            modelField.setText("");
+            addModelButton.setDisable(false);
+            addModelButton.setText("+");
+            refresh();
+        } else {
+            addModelButton.setDisable(true);
+            modelChoice.setVisible(false);
+            modelField.setVisible(true);
+            modelField.requestFocus();
+            editModelButton.setVisible(false);
+        }
     }
 
     @FXML
@@ -430,6 +447,7 @@ public class adminMenuController {
 
         typeField.setVisible(possibleTypes);
         modelField.setVisible(possibleModels);
+        arrow.setVisible(possibleModels);
         editWorkerButton.setVisible(possibleWorkers);
         System.out.println("=".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
     }

@@ -88,8 +88,8 @@ public class AdminModel {
     public List<Type> getModelsOf(Type type) {
         List<Type> list = new ArrayList<>();
         if (type != null) {
-            for (Type t : this.types) {
-                if (type.getModelOf()== t.getIdType())
+            for (Type t : this.models) {
+                if (t.getModelOf()==type.getIdType())
                     list.add(t);
             }
         }
@@ -290,9 +290,10 @@ public class AdminModel {
         Accesdb.addType(newType);
     }
 
-    public void addType(String typeName, Type modelOf){
+
+    public void addModel(String typeName, Type modelOf){
         Type newType = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
-        types.add(newType);
+        models.add(newType);
         Accesdb.addType(newType);
     }
 

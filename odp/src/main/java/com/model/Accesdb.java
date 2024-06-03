@@ -16,7 +16,7 @@ public class Accesdb {
 
     // DEBUGGING:
     private static boolean local = true;
-    private static boolean logMode = true;
+    private static boolean logMode = false;
 
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME = "odplanDDBB";
@@ -62,7 +62,9 @@ public class Accesdb {
 
     public static Integer getLastLiveIdTask() {
         String[] n = lligReg("SELECT MAX(idLiveTask) FROM liveTask;");
-        return (n[0] == null) ? 0 : toInt(n[0]);
+        if(n == null) return 0;
+        if(n[0] == null) return 0;
+        return toInt(n[0]);
     }
 
     /**
@@ -369,7 +371,7 @@ public class Accesdb {
         pwd = pwd.split(" ")[0];
         String[] reg = lligReg(
                 "SELECT idWorker, workerRol FROM worker WHERE userName='" + username + "' AND password='" + pwd + "'");
-        return (reg[0] != null) ? new RolAndId(Integer.parseInt(reg[0]), reg[1]) : null;
+        return (reg != null) ? new RolAndId(Integer.parseInt(reg[0]), reg[1]) : null;
     }
 
     public static void modifica(String query) {

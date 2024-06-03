@@ -461,7 +461,7 @@ public class typeEditController {
 
                 setTimesBorders();
 
-                toSelectModeButton.setBorder((App.editedType.getTaskList().size() == 1) ? null : App.ORANGE_BORDER);
+                // toSelectModeButton.setBorder((App.editedType.getTaskList().size() == 1) ? null : App.ORANGE_BORDER);
 
                 addTaskButton.setDisable(!selectMode);
                 taskAddChoice.setDisable(!selectMode);

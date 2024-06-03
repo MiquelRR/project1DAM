@@ -180,7 +180,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Label alignment="CENTER_RIGHT" layoutX="-2.0" layoutY="240.0" prefHeight="52.0" prefWidth="183.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="producto : tarea" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="-2.0" layoutY="240.0" prefHeight="52.0" prefWidth="183.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text=" tarea" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -211,6 +211,17 @@
             <Font size="18.0" />
          </font>
       </TextField>
+      <Label fx:id="arrow" alignment="CENTER_RIGHT" layoutX="538.0" layoutY="345.0" prefHeight="61.0" prefWidth="46.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="⤸" textFill="#7c7c7c">
+         <font>
+            <Font size="43.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
 
    </children>
 </Pane>

@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `odplanDDBB` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `odplanDDBB`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: odplanDDBB
 -- ------------------------------------------------------
--- Server version	8.0.36-0ubuntu0.23.10.1
+-- Server version	8.0.36-2ubuntu3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +18,8 @@ USE `odplanDDBB`;
 --
 -- Table structure for table `abilities`
 --
+CREATE DATABASE  IF NOT EXISTS `odplanDDBB` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `odplanDDBB`;
 
 DROP TABLE IF EXISTS `abilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -33,15 +33,6 @@ CREATE TABLE `abilities` (
   CONSTRAINT `fk_abilities_2` FOREIGN KEY (`idTask`) REFERENCES `taskType` (`idTask`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `abilities`
---
-
-LOCK TABLES `abilities` WRITE;
-/*!40000 ALTER TABLE `abilities` DISABLE KEYS */;
-/*!40000 ALTER TABLE `abilities` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `calendar`
@@ -60,15 +51,6 @@ CREATE TABLE `calendar` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `calendar`
---
-
-LOCK TABLES `calendar` WRITE;
-/*!40000 ALTER TABLE `calendar` DISABLE KEYS */;
-/*!40000 ALTER TABLE `calendar` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `lastGeneratedDates`
 --
 
@@ -81,16 +63,11 @@ CREATE TABLE `lastGeneratedDates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `lastGeneratedDates`
---
-
 LOCK TABLES `lastGeneratedDates` WRITE;
 /*!40000 ALTER TABLE `lastGeneratedDates` DISABLE KEYS */;
--- INSERT INTO `lastGeneratedDates` VALUES ('1973-03-24');
+INSERT INTO `lastGeneratedDates` VALUES ('1973-03-24');
 /*!40000 ALTER TABLE `lastGeneratedDates` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `liveTask`
 --
@@ -102,20 +79,20 @@ CREATE TABLE `liveTask` (
   `idLiveTask` int NOT NULL,
   `idproductType` int DEFAULT NULL,
   `idTask` int DEFAULT NULL,
-  `taskInstructions` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `taskInstructions` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `initTime` int DEFAULT NULL,
   `pieceTime` int DEFAULT NULL,
   `nextTask` int DEFAULT NULL,
   `date` date DEFAULT NULL,
   `idWorker` int DEFAULT NULL,
-  `done` enum('YES','NO','MODEL') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `done` enum('YES','NO','MODEL') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `idOrder` int DEFAULT NULL,
   `finalInitTime` int DEFAULT NULL,
   `finalPieceTime` int DEFAULT NULL,
-  `qualityFlag` enum('RED','GREEN','YELLOW') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `timeFlag` enum('RED','GREEN','YELLOW') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `qualityReport` varchar(1024) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `timeReport` varchar(1024) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `qualityFlag` enum('RED','GREEN','YELLOW') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `timeFlag` enum('RED','GREEN','YELLOW') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `qualityReport` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `timeReport` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idLiveTask`),
   KEY `fk_taskInType_2_idx` (`idproductType`),
   KEY `fk_taskInType_1_idx` (`idTask`),
@@ -127,15 +104,6 @@ CREATE TABLE `liveTask` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `liveTask`
---
-
-LOCK TABLES `liveTask` WRITE;
-/*!40000 ALTER TABLE `liveTask` DISABLE KEYS */;
-/*!40000 ALTER TABLE `liveTask` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `productType`
 --
 
@@ -144,22 +112,13 @@ DROP TABLE IF EXISTS `productType`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productType` (
   `idproductType` int NOT NULL,
-  `name` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `mainFolderPath` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `mainFolderPath` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `modelOf` int DEFAULT NULL,
-  `type` enum('TYPE','MODEL','ORDER') COLLATE utf8mb3_spanish_ci DEFAULT NULL COMMENT 'if null is not an order, is a model or a type',
+  `type` enum('TYPE','MODEL','ORDER') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL COMMENT 'if null is not an order, is a model or a type',
   PRIMARY KEY (`idproductType`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productType`
---
-
-LOCK TABLES `productType` WRITE;
-/*!40000 ALTER TABLE `productType` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productType` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `rank`
@@ -170,20 +129,10 @@ DROP TABLE IF EXISTS `rank`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rank` (
   `idRank` int NOT NULL,
-  `name` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idRank`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rank`
---
-
-LOCK TABLES `rank` WRITE;
-/*!40000 ALTER TABLE `rank` DISABLE KEYS */;
--- INSERT INTO `rank` VALUES (0,'Oficial 1ª'),(1,'Oficial 2ª');
-/*!40000 ALTER TABLE `rank` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `section`
@@ -194,20 +143,10 @@ DROP TABLE IF EXISTS `section`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `section` (
   `idSection` int NOT NULL,
-  `name` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idSection`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `section`
---
-
-LOCK TABLES `section` WRITE;
-/*!40000 ALTER TABLE `section` DISABLE KEYS */;
--- INSERT INTO `section` VALUES (0,'CERRAJERIA'),(1,'ROTULACION'),(2,'DISEÑO');
-/*!40000 ALTER TABLE `section` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `taskDependency`
@@ -217,23 +156,14 @@ DROP TABLE IF EXISTS `taskDependency`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `taskDependency` (
-  `idtaskInType` int NOT NULL,
+  `idtaskInType` int DEFAULT NULL,
   `idtaskInTypeDependeny` int DEFAULT NULL,
-  PRIMARY KEY (`idtaskInType`),
   KEY `fk_taskDependency_2_idx` (`idtaskInTypeDependeny`),
-  CONSTRAINT `fk_taskDependency_1` FOREIGN KEY (`idtaskInType`) REFERENCES `liveTask` (`idLiveTask`),
+  KEY `fk_taskDependency_1` (`idtaskInType`),
+  CONSTRAINT `fk_taskDependency_1` FOREIGN KEY (`idtaskInType`) REFERENCES `liveTask` (`idLiveTask`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_taskDependency_2` FOREIGN KEY (`idtaskInTypeDependeny`) REFERENCES `liveTask` (`idLiveTask`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `taskDependency`
---
-
-LOCK TABLES `taskDependency` WRITE;
-/*!40000 ALTER TABLE `taskDependency` DISABLE KEYS */;
-/*!40000 ALTER TABLE `taskDependency` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `taskType`
@@ -244,20 +174,10 @@ DROP TABLE IF EXISTS `taskType`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `taskType` (
   `idTask` int NOT NULL,
-  `name` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idTask`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `taskType`
---
-
-LOCK TABLES `taskType` WRITE;
-/*!40000 ALTER TABLE `taskType` DISABLE KEYS */;
--- INSERT INTO `taskType` VALUES (0,'FRESADO'),(1,'ROTULACION');
-/*!40000 ALTER TABLE `taskType` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `weekTemplate`
@@ -281,17 +201,11 @@ CREATE TABLE `weekTemplate` (
   CONSTRAINT `fk_weekTemplate_1` FOREIGN KEY (`idWorker`) REFERENCES `worker` (`idWorker`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `weekTemplate`
---
-
 LOCK TABLES `weekTemplate` WRITE;
 /*!40000 ALTER TABLE `weekTemplate` DISABLE KEYS */;
 INSERT INTO `weekTemplate` VALUES (0,1,0000000510,0000000510,0000000510,0000000510,0000000360,0000000000,0000000000);
 /*!40000 ALTER TABLE `weekTemplate` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `worker`
 --
@@ -301,22 +215,22 @@ DROP TABLE IF EXISTS `worker`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `worker` (
   `idWorker` int NOT NULL,
-  `userName` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `fullName` varchar(120) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `password` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `userName` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `fullName` varchar(120) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `password` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `sinceDate` date DEFAULT NULL,
-  `ss` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `dni` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `ss` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `dni` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `idSection` int DEFAULT NULL,
   `idRank` int DEFAULT NULL,
-  `address` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `telNum` varchar(15) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `email` varchar(45) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `contact` varchar(100) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `docFolder` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `active` enum('YES','NO') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `workerType` enum('WORKER','SECTION','ALL') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `workerRol` enum('ADMIN','WORKER') COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `address` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `telNum` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `contact` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `docFolder` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `active` enum('YES','NO') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `workerType` enum('WORKER','SECTION','ALL') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `workerRol` enum('ROOT','ADMIN','WORKER') CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idWorker`),
   KEY `fk_worker_section_idx` (`idSection`),
   KEY `fk_worker_rank_idx` (`idRank`),
@@ -324,16 +238,6 @@ CREATE TABLE `worker` (
   CONSTRAINT `fk_worker_section` FOREIGN KEY (`idSection`) REFERENCES `section` (`idSection`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `worker`
---
-
-LOCK TABLES `worker` WRITE;
-/*!40000 ALTER TABLE `worker` DISABLE KEYS */;
-INSERT INTO `worker` VALUES (0,'ADMIN',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ADMIN'),(1,'GENERAL',NULL,NULL,'2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ALL','ADMIN');
-/*!40000 ALTER TABLE `worker` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -344,4 +248,10 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-22 12:48:52
+LOCK TABLES `worker` WRITE;
+/*!40000 ALTER TABLE `worker` DISABLE KEYS */;
+INSERT INTO `worker` VALUES (-1,'root',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ROOT'), (0,'admin',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ADMIN'),(1,'GENERAL',NULL,NULL,'2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ALL','ADMIN');
+/*!40000 ALTER TABLE `worker` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- Dump completed on 2024-06-03 11:53:29
