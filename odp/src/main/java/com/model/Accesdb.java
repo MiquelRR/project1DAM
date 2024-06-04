@@ -16,7 +16,7 @@ public class Accesdb {
 
     // DEBUGGING:
     private static boolean local = true;
-    private static boolean logMode = false;
+    private static boolean logMode = true;
 
     private static LogToFile bbddlog = new LogToFile("queries");
     private final static String BBDD_NAME = "odplanDDBB";
@@ -70,7 +70,7 @@ public class Accesdb {
     /**
      * Reading DDBB builds dependences of TaskTypes
      * 
-     * @return a completed map to attach taskk with dependences to types or models
+     * @return a completed map to attach task with dependences to types or models
      */
     public static Map<Integer, List<TaskType>> readLivetaskModels() {
 
@@ -79,6 +79,7 @@ public class Accesdb {
         List<String[]> lst = lligQuery(
                 "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime FROM " + BBDD_NAME
                         + ".liveTask WHERE date IS null;");
+        System.out.println("~".repeat(100)+"found"+lst.size());
         for (String[] reg : lst) {
             Integer idLliveTask = Integer.parseInt(reg[0]);
             TaskType tt = new TaskType(
@@ -371,7 +372,7 @@ public class Accesdb {
         pwd = pwd.split(" ")[0];
         String[] reg = lligReg(
                 "SELECT idWorker, workerRol FROM worker WHERE userName='" + username + "' AND password='" + pwd + "'");
-        return (reg != null) ? new RolAndId(Integer.parseInt(reg[0]), reg[1]) : null;
+        return (reg != null && reg[0] != null) ? new RolAndId(Integer.parseInt(reg[0]), reg[1]) : null;
     }
 
     public static void modifica(String query) {

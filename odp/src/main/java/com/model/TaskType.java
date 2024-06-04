@@ -4,16 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskType {
-    Integer id;
-    String name;
-    Integer taskRef;
-    List<TaskType> dependsOn;
-    Integer x;
-    Integer y;
-    Integer prepTime;
-    Integer pieceTime;
-    String  infoFilePath;
-    Integer typeRef;
+    AdminModel adminModel = AdminModel.getAdminModel();
+    private Integer id;
+    private String name;
+    private Integer taskRef;
+    private List<TaskType> dependsOn;
+    private Integer x;
+    private Integer y;
+    private Integer prepTime;
+    private Integer pieceTime;
+    private String  infoFilePath;
+    private Integer typeRef;
+
+    public TaskType() {
+        this.dependsOn = new ArrayList<>();
+    }
+
+    public TaskType(int id, TaskSkill tk, Integer typeRef) {
+        this.id = id;
+        this.typeRef=typeRef;
+        this.taskRef= tk.getId();
+        this.name = tk.name;
+        this.dependsOn = new ArrayList<>();
+        this.pieceTime = 0;
+        this.prepTime = 0;
+        this.infoFilePath = "";
+    }
+
+    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime, Integer pieceTime ){
+        this.id = id;
+        this.typeRef=typeRef;
+        this.taskRef= taskRef;
+        this.name = name;
+        this.dependsOn = new ArrayList<>();
+        this.pieceTime = pieceTime;
+        this.prepTime = prepTime;
+        this.infoFilePath = infoFilePath;
+    }
+
+    public TaskType(Integer id, Integer typeRef ,TaskType other) {
+        this.id = id;
+        this.typeRef = typeRef;
+        this.taskRef = other.taskRef;
+        this.name = other.name;
+        this.dependsOn = new ArrayList<>();
+        this.x = other.x;
+        this.y = other.y;
+        this.prepTime = other.prepTime;
+        this.pieceTime = other.pieceTime;
+        this.infoFilePath = other.infoFilePath;
+    }
 
     public Integer getTypeRef() {
         return typeRef;
@@ -76,32 +116,6 @@ public class TaskType {
         return id;
     }
 
-    public TaskType(int id, TaskSkill tk, Integer typeRef) {
-        this.id = id;
-        this.typeRef=typeRef;
-        this.taskRef= tk.getId();
-        this.name = tk.name;
-        this.dependsOn = new ArrayList<>();
-        this.pieceTime = 0;
-        this.prepTime = 0;
-        this.infoFilePath = "";
-    }
-
-    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime, Integer pieceTime ){
-        this.id = id;
-        this.typeRef=typeRef;
-        this.taskRef= taskRef;
-        this.name = name;
-        this.dependsOn = new ArrayList<>();
-        this.pieceTime = pieceTime;
-        this.prepTime = prepTime;
-        this.infoFilePath = infoFilePath;
-    }
-
-
-/*     public TaskType(Integer id, Integer id_name,String path, Integer prepTime, Integer pieceTime){
-
-    }; */
     @Override
     public String toString() {
         return name;
@@ -142,18 +156,5 @@ public class TaskType {
     public Integer getTaskRef() {
         return taskRef;
     }
-    /*
-     * @Override
-     * public boolean equals(Object o) {
-     * if (this == o) return true;
-     * if (o == null || getClass() != o.getClass()) return false;
-     * TaskType task = (TaskType) o;
-     * return Objects.equals(id, task.id);
-     * }
-     * 
-     * @Override
-     * public int hashCode() {
-     * return Objects.hash(id);
-     * }
-     */
+
 }

@@ -146,12 +146,21 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public static void showConfirmation(String text){
+        showDialog(text,"Operación realizada", "cambios realizados satisfactoriamente", new Alert(AlertType.NONE));
+    }
+
     public static void showDialog(String showedText) {
         if (showedText == null)
             showedText = "null";
+        showDialog(showedText, "Operación no posible", "revise las siguientes condiciones",
+                new Alert(AlertType.WARNING));
+    }
+
+    public static void showDialog(String showedText, String title, String header, Alert al) {
         Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Operación no posible");
-        alert.setHeaderText("revise las siguientes condiciones");
+        alert.setTitle(title);
+        alert.setHeaderText(header);
         alert.setContentText(showedText);
         alert.showAndWait();
     }

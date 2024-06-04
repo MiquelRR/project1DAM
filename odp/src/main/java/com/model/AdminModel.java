@@ -3,6 +3,7 @@ package com.model;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class AdminModel {
         // hereim
         for (Type t : types) {
             System.out.println("X".repeat(100)+t.getName()+"-"+t.getIdType());
-            t.setTaskList(toAttachInTypes.getOrDefault(t.idType,new ArrayList<>()));                    
+            t.setTaskList(toAttachInTypes.getOrDefault(t.getIdType(),new ArrayList<>()));                    
         }
         System.out.println("KeySet = "+toAttachInTypes.keySet());
   
@@ -73,7 +74,7 @@ public class AdminModel {
         Accesdb.updateType(type);
     }
 
-    private int getNextTypeIdx() {
+    public int getNextTypeIdx() {
         return types.size() + models.size();
     }
 
@@ -270,11 +271,8 @@ public class AdminModel {
     }
 
     public void addTask(String newTaskName) {
-        System.out.println("MMMMMMMMMMMMMMMMMMMMMMMMMMMMM"+newTaskName);
         TaskSkill task = new TaskSkill(getNextTaskType(), newTaskName);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+task.getName());
         taskTypes.add(task);
-        System.out.println("<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>"+task.getName());
         Accesdb.addTask(task);
     }
 
@@ -292,9 +290,26 @@ public class AdminModel {
 
 
     public void addModel(String typeName, Type modelOf){
-        Type newType = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
-        models.add(newType);
-        Accesdb.addType(newType);
+        Type newModel = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
+        Bidimap refsMap = new Bidimap();
+        System.out.println("·".repeat(100)+modelOf.getTaskList());
+        for (TaskType tt: modelOf.getTaskList()) {
+            System.out.println("·".repeat(100)+tt.getName());
+            Integer newId=getNextIdTask();
+            TaskType t2 = new TaskType(newId, getNextTypeIdx(), tt);
+            refsMap.put(t2,tt);
+        }
+        for (TaskType t2 : refsMap.keySet()) {
+            List<TaskType> dependsOnNew = new ArrayList<>();
+            for (TaskType tt : refsMap.getValue(t2).getDependsOn()) {
+                dependsOnNew.add(refsMap.getKeyOf(tt));
+            }
+            t2.setDependsOn(dependsOnNew);
+        }
+        newModel.setTaskList(new ArrayList<>(refsMap.keySet()));
+        models.add(newModel);
+        Accesdb.addType(newModel);
+        // at this moment cloned tasktypes aren't saved to ddbb, will be done later when edited
     }
 
     public static AdminModel getAdminModel() {

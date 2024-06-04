@@ -16,6 +16,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -165,7 +167,7 @@ public class adminMenuController {
     void addTask(ActionEvent event) {
 
         if (taskField.getText().length() > 1) {
-            System.out.println("--------------------------------------"+taskField.getText());
+            System.out.println("--------------------------------------" + taskField.getText());
             adminModel.addTask(taskField.getText());
             taskField.setText("");
             addTaskButton.setDisable(false);
@@ -206,9 +208,11 @@ public class adminMenuController {
 
     @FXML
     void editType(ActionEvent event) throws IOException {
-        System.out.println("~".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
-        App.editedType=typeChoice.getValue();
-        System.out.println("~".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
+        App.editedModel=null;
+        App.editedType = typeChoice.getValue();
+        if (!modelChoice.getItems().isEmpty())
+            App.showDialog("Al editar el tipo sólo afectará a modelos nuevos", "Advertencia",
+                    "Los cambios no afectan a modelos ya exitentes", new Alert(AlertType.WARNING));
         Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));
@@ -216,7 +220,7 @@ public class adminMenuController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OpendPlan: Edición de tipos");
-        stage.setX(parentWindow.getX()-300);
+        stage.setX(parentWindow.getX() - 300);
         stage.setY(parentWindow.getY() + 150);
         stage.show();
 
@@ -242,10 +246,9 @@ public class adminMenuController {
 
     @FXML
     void addNewModel(ActionEvent event) {
-        //HERE
-        App.editedType=typeChoice.getValue();
+        App.editedType = typeChoice.getValue();
         if (modelField.getText().length() > 1) {
-            adminModel.addModel(typeField.getText(), typeChoice.getValue());//--------
+            adminModel.addModel(modelField.getText(), typeChoice.getValue());
             modelField.setText("");
             addModelButton.setDisable(false);
             addModelButton.setText("+");
@@ -280,7 +283,18 @@ public class adminMenuController {
     }
 
     @FXML
-    void editModel(ActionEvent event) {
+    void editModel(ActionEvent event) throws IOException {
+        App.editedModel= modelChoice.getValue();
+        Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("OpendPlan: Edición de tipos");
+        stage.setX(parentWindow.getX() - 300);
+        stage.setY(parentWindow.getY() + 150);
+        stage.show();
 
     }
 
@@ -359,11 +373,35 @@ public class adminMenuController {
     }
 
     @FXML
+    void setEditedType() {
+        List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
+       
+        System.out.println("2222222222222222222222222222222       "+typeChoice.getValue());
+        System.out.println("~".repeat(100)+modelsOfType);
+
+        if (!possibleModels || modelsOfType.isEmpty()) {
+            editModelButton.setVisible(false);
+            addModelButton.setVisible(false);
+            modelField.setVisible(true);
+            modelChoice.setVisible(false);
+        } else {
+            editModelButton.setVisible(true);
+            modelChoice.getItems().clear();
+            modelChoice.getItems().addAll(modelsOfType);
+            modelChoice.setVisible(true);
+            modelChoice.getSelectionModel().select(modelChoice.getItems().size() - 1);
+            addModelButton.setVisible(true);
+        }
+    }
+
+    private static boolean possibleModels;
+
+    @FXML
     void refresh() {
-        System.out.println("=".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
+        System.out.println("=".repeat(100) + "<>" + App.editedType.getName() + "-" + App.editedType.getTaskList());
         boolean possibleWorkers = true;
         boolean possibleTypes = true;
-        boolean possibleModels = true;
+        possibleModels = true;
         if (adminModel.getSections().isEmpty()) {
             possibleWorkers = false;
             removeSectionButton.setVisible(false);
@@ -428,8 +466,9 @@ public class adminMenuController {
             typeChoice.getSelectionModel().select(typeChoice.getItems().size() - 1);
             addTypeButton.setVisible(true);
         }
-
-        List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
+        setEditedType();
+  /*       List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
+        System.out.println("~".repeat(100)+modelsOfType);
 
         if (!possibleModels || modelsOfType.isEmpty()) {
             editModelButton.setVisible(false);
@@ -443,20 +482,19 @@ public class adminMenuController {
             modelChoice.setVisible(true);
             modelChoice.getSelectionModel().select(modelChoice.getItems().size() - 1);
             addModelButton.setVisible(true);
-        }
+        } */
 
         typeField.setVisible(possibleTypes);
         modelField.setVisible(possibleModels);
         arrow.setVisible(possibleModels);
         editWorkerButton.setVisible(possibleWorkers);
-        System.out.println("=".repeat(100)+"<>"+App.editedType.getName()+"-"+App.editedType.getTaskList());
+        System.out.println("=".repeat(100) + "<>" + App.editedType.getName() + "-" + App.editedType.getTaskList());
     }
 
     @FXML
     void initialize() {
         // adminModel.filterStaff(null, null);
         refresh();
-
 
     }
 
