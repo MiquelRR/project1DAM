@@ -35,7 +35,6 @@ public class AdminModel {
         Integer lt = Accesdb.getLastLiveIdTask();
         lastIdtask = (lt == null) ? 0 : lt;
 
-
         Map<Integer, List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
 
         for (Type t : types) {
@@ -50,7 +49,6 @@ public class AdminModel {
         for (Integer i : toAttachInTypes.keySet()) {
 
         }
-
 
         LocalDate lastDate = Accesdb.readLastProcessedDate();
         LocalDate today = LocalDate.now();
@@ -77,8 +75,10 @@ public class AdminModel {
                 abilities.add(taskTypes.get(key));
             }
             worker.setAbilities(abilities);
-            if (worker.getRol().equals("ADMIN")) admins.add(worker);
-            if (worker.getRol().equals("ROOT")) admins.add(worker);
+            if (worker.getRol().equals("ADMIN"))
+                admins.add(worker);
+            if (worker.getRol().equals("ROOT"))
+                admins.add(worker);
         }
         staffList.removeAll(admins);
 
@@ -119,7 +119,7 @@ public class AdminModel {
         else if (weekTemplates.keySet().contains(worker.getSection()))
             key = worker.getSection();
 
-        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(1));
+        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(10001));
         for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
             Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
             calendar.add(day);
@@ -164,8 +164,12 @@ public class AdminModel {
     public Worker getLastWorker() {
         if (!staffList.isEmpty())
             return staffList.get(staffList.size() - 1);
-        else
-            return null;
+        else{
+                Worker w = new Worker(staffList.size());
+            return w;
+            }
+            
+            
     }
 
     public Integer getNextIdTask() {
@@ -216,7 +220,7 @@ public class AdminModel {
     }
 
     private int getNextSection() {
-        int next = 9999;
+        int next = 19999;
         for (Section section : sections) {
             next = (section.getId() > next) ? section.getId() : next;
         }

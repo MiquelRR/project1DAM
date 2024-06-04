@@ -39,7 +39,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="459.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="112.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="︽ volver" textFill="#7c7c7c">
+      <Button fx:id="returnButton" layoutX="442.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="129.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;&lt; volver" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>
@@ -136,7 +136,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="typeChoice" onAction="#setEditedType" layoutX="244.0" layoutY="310.0" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <ChoiceBox fx:id="typeChoice" layoutX="244.0" layoutY="310.0" onAction="#setEditedType" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
       <Label alignment="CENTER_RIGHT" layoutX="-1.0" layoutY="380.0" prefHeight="52.0" prefWidth="183.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="producto: modelo" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
@@ -154,7 +154,7 @@
          </font>
       </Button>
       <ChoiceBox fx:id="modelChoice" layoutX="244.0" layoutY="380.0" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Label alignment="CENTER_RIGHT" layoutY="450.0" prefHeight="52.0" prefWidth="174.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="pedido : cliente" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutY="450.0" prefHeight="52.0" prefWidth="174.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="programa pedido" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -165,7 +165,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addOrderButton" layoutX="538.0" layoutY="450.0" mnemonicParsing="false" onAction="#editOrder" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addOrderButton" layoutX="531.0" layoutY="450.0" mnemonicParsing="false" onAction="#editOrder" prefHeight="52.0" prefWidth="69.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;&gt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -175,7 +175,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="removeTaskButton" layoutX="482.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
+      <Button fx:id="removeTaskButton" layoutX="481.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -191,27 +191,38 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="editTypeButton" layoutX="482.0" layoutY="310.0" mnemonicParsing="false" onAction="#editType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
+      <Button fx:id="editTypeButton" layoutX="481.0" layoutY="310.0" mnemonicParsing="false" onAction="#editType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="editModelButton" layoutX="482.0" layoutY="380.0" mnemonicParsing="false" onAction="#editModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
+      <Button fx:id="editModelButton" layoutX="481.0" layoutY="380.0" mnemonicParsing="false" onAction="#editModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="clientField" layoutX="184.0" layoutY="450.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="217.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
+      <TextField fx:id="referenceField" layoutX="180.0" layoutY="450.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="272.0" promptText="referencia" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="unitsField" layoutX="421.0" layoutY="450.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="104.0" promptText="unidades" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
+      <TextField fx:id="unitsField" layoutX="457.0" layoutY="450.0" onKeyTyped="#showAddRankButton" prefHeight="52.0" prefWidth="69.0" promptText="uds" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label fx:id="arrow" alignment="CENTER_RIGHT" layoutX="538.0" layoutY="345.0" prefHeight="61.0" prefWidth="46.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="⤸" textFill="#7c7c7c">
+      <Label fx:id="arrow" alignment="CENTER_RIGHT" layoutX="537.0" layoutY="345.0" prefHeight="61.0" prefWidth="46.0" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="⤸" textFill="#7c7c7c">
+         <font>
+            <Font size="43.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label fx:id="arrow2" alignment="CENTER_RIGHT" layoutX="119.0" layoutY="405.0" prefHeight="61.0" prefWidth="69.0" rotate="21.2" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="⤿" textFill="#7c7c7c">
          <font>
             <Font size="43.0" />
          </font>

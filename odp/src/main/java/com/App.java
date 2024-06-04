@@ -56,8 +56,11 @@ public class App extends Application {
     );
     protected final static Border ORANGE_BORDER_B = new Border(borderStroke3);
 
+    public static Integer units;
+    public static String reference;
+
     @SuppressWarnings("exports")
-    public static Worker editedWorker = new Worker();
+    public static Worker editedWorker;;
     public static boolean workerProfModeAdd;
     @SuppressWarnings("exports")
     public static Type editedType = new Type();

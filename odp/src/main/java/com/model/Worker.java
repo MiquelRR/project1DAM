@@ -40,7 +40,10 @@ public class Worker {
 
     public Worker() {
         this.docFolder=App.WORKERS_FOLDER;
-        
+    }
+    public Worker(Integer id) {
+        this.idWorker=id;
+        this.docFolder=App.WORKERS_FOLDER;
     }
 
     public Worker(String idWorker, String userName, String fullName, String passwd, String since, String ssNum,

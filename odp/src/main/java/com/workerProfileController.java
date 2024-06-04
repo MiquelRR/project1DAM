@@ -40,7 +40,6 @@ public class workerProfileController {
         return matcher.matches();
     }
 
-    private static int workerIdx;
 
     AdminModel adminModel = AdminModel.getAdminModel();
     // Worker worker;
@@ -225,7 +224,7 @@ public class workerProfileController {
     }
 
     private void addNewWorker() {
-        App.editedWorker = new Worker();
+        App.editedWorker = new Worker(adminModel.getNewWorkerIndex()); 
         showWorker(App.editedWorker);
     }
 
@@ -346,12 +345,13 @@ public class workerProfileController {
                 });
             }
         }
+        
 
         sectionChoice.getItems().setAll(adminModel.getSections());
         rankChoice.getItems().setAll(adminModel.getRanks());
         sectionChoice.getSelectionModel().select(App.getDefaultSection());
         rankChoice.getSelectionModel().select(App.getDefaultRank());
-        workerIdx = App.editedWorker.getIdWorker();
+        App.editedWorker=adminModel.getLastWorker();
         showWorker(App.editedWorker);
         refresh();
 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.model.AdminModel;
 import com.model.Rank;
@@ -12,6 +14,8 @@ import com.model.TaskSkill;
 import com.model.Type;
 import com.model.Worker;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +40,9 @@ public class adminMenuController {
 
     @FXML
     private Label arrow;
+
+    @FXML
+    private Label arrow2;
 
     @FXML
     private ResourceBundle resources;
@@ -113,7 +120,7 @@ public class adminMenuController {
     private TextField modelField;
 
     @FXML
-    private TextField clientField;
+    private TextField referenceField;
 
     @FXML
     private TextField unitsField;
@@ -208,7 +215,7 @@ public class adminMenuController {
 
     @FXML
     void editType(ActionEvent event) throws IOException {
-        App.editedModel=null;
+        App.editedModel = null;
         App.editedType = typeChoice.getValue();
         if (!modelChoice.getItems().isEmpty())
             App.showDialog("Al editar el tipo sólo afectará a modelos nuevos", "Advertencia",
@@ -229,17 +236,20 @@ public class adminMenuController {
     @FXML
     void editWorker(ActionEvent event) throws IOException {
 
-        if (adminModel.getLastWorker() == null) {
-            System.out.println("ES NULL");
-            App.setDefaultSection(sectionChooser.getValue());
-            App.setDefaultRank(rankChooser.getValue());
-            App.setWorkerProfModeAdd(true);
-            App.editedWorker = new Worker();
-        } else {
-            App.setWorkerProfModeAdd(false);
-            App.editedWorker = adminModel.getLastWorker();
-
-        }
+        /*
+         * if (adminModel.getLastWorker() == null) {
+         * System.out.println("ES NULL");
+         * App.setDefaultSection(sectionChooser.getValue());
+         * App.setDefaultRank(rankChooser.getValue());
+         * App.setWorkerProfModeAdd(true);
+         * App.editedWorker = new Worker();
+         * } else {
+         * App.setWorkerProfModeAdd(false);
+         * App.editedWorker = adminModel.getLastWorker();
+         * System.out.println(App.editedWorker.getFullName());
+         * 
+         * }
+         */
         App.setRoot("workerProfile");
 
     }
@@ -264,6 +274,9 @@ public class adminMenuController {
 
     @FXML
     void editOrder(ActionEvent event) {
+        App.units= Integer.parseInt(unitsField.getText());
+        App.reference = referenceField.getText();
+        // HERE I AM
 
     }
 
@@ -284,7 +297,7 @@ public class adminMenuController {
 
     @FXML
     void editModel(ActionEvent event) throws IOException {
-        App.editedModel= modelChoice.getValue();
+        App.editedModel = modelChoice.getValue();
         Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("typeEdit.fxml"));
@@ -375,9 +388,9 @@ public class adminMenuController {
     @FXML
     void setEditedType() {
         List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
-       
-        System.out.println("2222222222222222222222222222222       "+typeChoice.getValue());
-        System.out.println("~".repeat(100)+modelsOfType);
+
+        System.out.println("2222222222222222222222222222222       " + typeChoice.getValue());
+        System.out.println("~".repeat(100) + modelsOfType);
 
         if (!possibleModels || modelsOfType.isEmpty()) {
             editModelButton.setVisible(false);
@@ -398,10 +411,12 @@ public class adminMenuController {
 
     @FXML
     void refresh() {
-        System.out.println("=".repeat(100) + "<>" + App.editedType.getName() + "-" + App.editedType.getTaskList());
+
         boolean possibleWorkers = true;
         boolean possibleTypes = true;
         possibleModels = true;
+        boolean possibleOrder = adminModel.getModels().size() > 0;
+
         if (adminModel.getSections().isEmpty()) {
             possibleWorkers = false;
             removeSectionButton.setVisible(false);
@@ -467,22 +482,29 @@ public class adminMenuController {
             addTypeButton.setVisible(true);
         }
         setEditedType();
-  /*       List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
-        System.out.println("~".repeat(100)+modelsOfType);
+        /*
+         * List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
+         * System.out.println("~".repeat(100)+modelsOfType);
+         * 
+         * if (!possibleModels || modelsOfType.isEmpty()) {
+         * editModelButton.setVisible(false);
+         * addModelButton.setVisible(false);
+         * modelField.setVisible(true);
+         * modelChoice.setVisible(false);
+         * } else {
+         * editModelButton.setVisible(true);
+         * modelChoice.getItems().clear();
+         * modelChoice.getItems().addAll(modelsOfType);
+         * modelChoice.setVisible(true);
+         * modelChoice.getSelectionModel().select(modelChoice.getItems().size() - 1);
+         * addModelButton.setVisible(true);
+         * }
+         */
 
-        if (!possibleModels || modelsOfType.isEmpty()) {
-            editModelButton.setVisible(false);
-            addModelButton.setVisible(false);
-            modelField.setVisible(true);
-            modelChoice.setVisible(false);
-        } else {
-            editModelButton.setVisible(true);
-            modelChoice.getItems().clear();
-            modelChoice.getItems().addAll(modelsOfType);
-            modelChoice.setVisible(true);
-            modelChoice.getSelectionModel().select(modelChoice.getItems().size() - 1);
-            addModelButton.setVisible(true);
-        } */
+        referenceField.setVisible(possibleOrder);
+        unitsField.setVisible(possibleOrder);
+        addOrderButton.setVisible(possibleOrder);
+        arrow2.setVisible(possibleOrder);
 
         typeField.setVisible(possibleTypes);
         modelField.setVisible(possibleModels);
@@ -490,10 +512,57 @@ public class adminMenuController {
         editWorkerButton.setVisible(possibleWorkers);
         System.out.println("=".repeat(100) + "<>" + App.editedType.getName() + "-" + App.editedType.getTaskList());
     }
+    @FXML
+    void refreshBorders(){
+        Boolean readyToPlan = true;
+        if (referenceField.getText() != null && referenceField.getText().length()>1){
+            referenceField.setBorder(null);
+        } else {
+            readyToPlan=false;
+            referenceField.setBorder(App.ORANGE_BORDER);
+        }
+        
+        if (validate(unitsField.getText(), "^\\d+$") && Integer.parseInt(unitsField.getText())>0){
+            unitsField.setBorder(null);
+        } else{
+            readyToPlan=false;
+            unitsField.setBorder(App.ORANGE_BORDER);
+        }
+
+        addOrderButton.setDisable(!readyToPlan);
+
+
+
+
+    }
+    
+    public static boolean validate(String string, String patt) {
+        if (string == null || string.isEmpty()) {
+            return false; // Retorna false si la cadena es nula o vacía
+        }
+        Pattern pattern = Pattern.compile(patt);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
 
     @FXML
     void initialize() {
-        // adminModel.filterStaff(null, null);
+        addOrderButton.setDisable(true);
+        refreshBorders();
+
+        unitsField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                refreshBorders();
+            }
+        });
+        referenceField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                refreshBorders();
+            }
+        });
+
         refresh();
 
     }
