@@ -62,6 +62,7 @@ public class Worker {
         this.telNum = telNum;
         this.mail = mail;
         this.contact = contact;
+        if(docFolder==null) docFolder=App.WORKERS_FOLDER;
         this.docFolder = docFolder;
         this.active = active != null && active.equals("YES");
         this.type = type;
@@ -84,6 +85,7 @@ public class Worker {
         this.telNum = telNum;
         this.mail = mail;
         this.contact = contact;
+        if(docFolder==null) docFolder=App.WORKERS_FOLDER;
         this.docFolder = docFolder;
         this.active = active;
         this.rol = rol;

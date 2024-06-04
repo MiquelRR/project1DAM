@@ -79,7 +79,6 @@ public class Accesdb {
         List<String[]> lst = lligQuery(
                 "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime FROM " + BBDD_NAME
                         + ".liveTask WHERE date IS null;");
-        System.out.println("~".repeat(100)+"found"+lst.size());
         for (String[] reg : lst) {
             Integer idLliveTask = Integer.parseInt(reg[0]);
             TaskType tt = new TaskType(
@@ -303,7 +302,6 @@ public class Accesdb {
         List<String[]> lst = lligTaula("taskType");
         for (String[] reg : lst) {
             TaskSkill taskType = new TaskSkill(Integer.parseInt(reg[0]), reg[1]);
-            System.out.println(reg[0] + "-" + reg[1] + ">>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<");
             skill.put(Integer.parseInt(reg[0]), reg[1]);
             list.add(taskType);
 
@@ -557,9 +555,7 @@ public class Accesdb {
                 bbddlog.log(msg);
             else
                 System.out.println(msg);
-            // System.out.println("Error en convertir <" + entrada + "> en tipus Integer -"
-            // + e.getMessage());
-            // sc.nextLine();
+
             return null;
         }
         return eixida;

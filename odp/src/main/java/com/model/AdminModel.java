@@ -13,7 +13,8 @@ import javafx.concurrent.Task;
 public class AdminModel {
     private static AdminModel adminModel; // ---- Singleton
     private List<Worker> staffList;
-    //private List<Worker> filteredStaff = new ArrayList<>();
+    private List<Worker> admins;
+    // private List<Worker> filteredStaff = new ArrayList<>();
 
     private Map<Integer, WeekTemplate> weekTemplates;
     private List<Rank> ranks;
@@ -30,19 +31,28 @@ public class AdminModel {
         taskTypes = Accesdb.readTaskTypes();
         sections = Accesdb.readAllSections();
         types = Accesdb.readAllTypes();
-        Integer lt=Accesdb.getLastLiveIdTask();
-        lastIdtask= (lt==null)?0:lt;
-        Map<Integer,List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
-        // hereim
-        for (Type t : types) {
-            System.out.println("X".repeat(100)+t.getName()+"-"+t.getIdType());
-            t.setTaskList(toAttachInTypes.getOrDefault(t.getIdType(),new ArrayList<>()));                    
-        }
-        System.out.println("KeySet = "+toAttachInTypes.keySet());
-  
         models = Accesdb.readAllModels();
+        Integer lt = Accesdb.getLastLiveIdTask();
+        lastIdtask = (lt == null) ? 0 : lt;
+
+
+        Map<Integer, List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
+
+        for (Type t : types) {
+            List<TaskType> listToAtach = toAttachInTypes.getOrDefault(t.getIdType(), new ArrayList<>());
+            t.setTaskList(listToAtach);
+        }
+
+        for (Type m : models) {
+            List<TaskType> listToAtach = toAttachInTypes.getOrDefault(m.getIdType(), new ArrayList<>());
+            m.setTaskList(listToAtach);
+        }
+        for (Integer i : toAttachInTypes.keySet()) {
+
+        }
+
+
         LocalDate lastDate = Accesdb.readLastProcessedDate();
-        System.out.println(lastDate);
         LocalDate today = LocalDate.now();
         LocalDate expected = getExpected(today);
 
@@ -59,6 +69,7 @@ public class AdminModel {
                 worker.setCalendar(calendar);
             }
         }
+        admins = new ArrayList<>();
         for (Worker worker : staffList) {
             List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
             List<TaskSkill> abilities = new ArrayList<>();
@@ -66,11 +77,14 @@ public class AdminModel {
                 abilities.add(taskTypes.get(key));
             }
             worker.setAbilities(abilities);
+            if (worker.getRol().equals("ADMIN")) admins.add(worker);
+            if (worker.getRol().equals("ROOT")) admins.add(worker);
         }
+        staffList.removeAll(admins);
 
     }
 
-    public void writeType(Type type){
+    public void writeType(Type type) {
         Accesdb.updateType(type);
     }
 
@@ -90,7 +104,7 @@ public class AdminModel {
         List<Type> list = new ArrayList<>();
         if (type != null) {
             for (Type t : this.models) {
-                if (t.getModelOf()==type.getIdType())
+                if (t.getModelOf() == type.getIdType())
                     list.add(t);
             }
         }
@@ -120,7 +134,6 @@ public class AdminModel {
 
     }
 
-
     private int getNextRank() {
         int next = -1;
         for (Rank rank : ranks) {
@@ -149,13 +162,13 @@ public class AdminModel {
     }
 
     public Worker getLastWorker() {
-        if (staffList.size() > 2)
+        if (!staffList.isEmpty())
             return staffList.get(staffList.size() - 1);
         else
             return null;
     }
 
-    public Integer getNextIdTask(){
+    public Integer getNextIdTask() {
         return lastIdtask++;
 
     }
@@ -198,7 +211,7 @@ public class AdminModel {
             Accesdb.updateWorker(worker);
     }
 
-    public void updateType(Type type){
+    public void updateType(Type type) {
         Accesdb.updateType(type);
     }
 
@@ -251,7 +264,7 @@ public class AdminModel {
     public boolean removeTaskType(TaskSkill task) {
         Boolean clearTask = true;
         for (Worker worker : staffList) {
-            if (!worker.getAbilities().isEmpty() && worker.getAbilities().contains(task)) { 
+            if (!worker.getAbilities().isEmpty() && worker.getAbilities().contains(task)) {
                 clearTask = false;
                 break; // Patxi!!
             }
@@ -282,22 +295,19 @@ public class AdminModel {
         Accesdb.addRank(newRank);
     }
 
-    public void addType(String typeName){
+    public void addType(String typeName) {
         Type newType = new Type(getNextTypeIdx(), typeName);
         types.add(newType);
         Accesdb.addType(newType);
     }
 
-
-    public void addModel(String typeName, Type modelOf){
+    public Type addModel(String typeName, Type modelOf) {
         Type newModel = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
         Bidimap refsMap = new Bidimap();
-        System.out.println("·".repeat(100)+modelOf.getTaskList());
-        for (TaskType tt: modelOf.getTaskList()) {
-            System.out.println("·".repeat(100)+tt.getName());
-            Integer newId=getNextIdTask();
+        for (TaskType tt : modelOf.getTaskList()) {
+            Integer newId = getNextIdTask();
             TaskType t2 = new TaskType(newId, getNextTypeIdx(), tt);
-            refsMap.put(t2,tt);
+            refsMap.put(t2, tt);
         }
         for (TaskType t2 : refsMap.keySet()) {
             List<TaskType> dependsOnNew = new ArrayList<>();
@@ -309,7 +319,9 @@ public class AdminModel {
         newModel.setTaskList(new ArrayList<>(refsMap.keySet()));
         models.add(newModel);
         Accesdb.addType(newModel);
-        // at this moment cloned tasktypes aren't saved to ddbb, will be done later when edited
+        return newModel;
+        // at this moment cloned tasktypes aren't saved to ddbb, will be done later when
+        // edited
     }
 
     public static AdminModel getAdminModel() {
@@ -338,18 +350,18 @@ public class AdminModel {
         return taskTypes;
     }
 
-    public TaskSkill getTaskByName(String name){
+    public TaskSkill getTaskByName(String name) {
         for (TaskSkill tk : taskTypes) {
-            if (tk.getName().equals(name)) 
-            return tk;            
+            if (tk.getName().equals(name))
+                return tk;
         }
         return null;
     }
 
-    public String getNameSkillById(Integer id){
+    public String getNameSkillById(Integer id) {
         for (TaskSkill tk : taskTypes) {
-            if (tk.getId()==id) 
-            return tk.getName();            
+            if (tk.getId() == id)
+                return tk.getName();
         }
         return null;
 

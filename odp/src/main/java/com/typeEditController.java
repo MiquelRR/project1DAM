@@ -532,8 +532,10 @@ public class typeEditController {
                 modelMode = App.editedModel != null;
                 edited=(modelMode)?App.editedModel:App.editedType;
                 String toLabel = App.editedType.toString();
-                if (modelMode)
+                if (modelMode){
                         toLabel += " : " + App.editedModel.toString();
+                        //generateButtons(order());
+                }
                 nameLabel.setText(toLabel);
 
                 selectMode = true;

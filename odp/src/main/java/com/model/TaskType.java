@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskType {
-    AdminModel adminModel = AdminModel.getAdminModel();
     private Integer id;
     private String name;
     private Integer taskRef;
