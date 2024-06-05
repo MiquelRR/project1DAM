@@ -301,7 +301,7 @@ public class workerProfileController {
             App.editedWorker = adminModel.getWorkerById(App.editedWorker.getIdWorker());
             int idx = App.editedWorker.getIdWorker();
             int lastIdx = adminModel.getWorkerStafSize() - 1;
-            prevButton.setDisable(idx <= 2);
+            prevButton.setDisable(idx <= 0);
             nextButton.setText((idx >= lastIdx) ? "+" : ">");
         }
         Boolean is = activeCheckbox.isSelected();

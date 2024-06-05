@@ -174,7 +174,6 @@ public class adminMenuController {
     void addTask(ActionEvent event) {
 
         if (taskField.getText().length() > 1) {
-            System.out.println("--------------------------------------" + taskField.getText());
             adminModel.addTask(taskField.getText());
             taskField.setText("");
             addTaskButton.setDisable(false);
@@ -250,6 +249,7 @@ public class adminMenuController {
          * 
          * }
          */
+        System.out.println("?".repeat(50)+adminModel.getStaffList());
         App.setRoot("workerProfile");
 
     }
@@ -388,10 +388,6 @@ public class adminMenuController {
     @FXML
     void setEditedType() {
         List<Type> modelsOfType = adminModel.getModelsOf(typeChoice.getValue());
-
-        System.out.println("2222222222222222222222222222222       " + typeChoice.getValue());
-        System.out.println("~".repeat(100) + modelsOfType);
-
         if (!possibleModels || modelsOfType.isEmpty()) {
             editModelButton.setVisible(false);
             addModelButton.setVisible(false);
@@ -510,7 +506,6 @@ public class adminMenuController {
         modelField.setVisible(possibleModels);
         arrow.setVisible(possibleModels);
         editWorkerButton.setVisible(possibleWorkers);
-        System.out.println("=".repeat(100) + "<>" + App.editedType.getName() + "-" + App.editedType.getTaskList());
     }
     @FXML
     void refreshBorders(){

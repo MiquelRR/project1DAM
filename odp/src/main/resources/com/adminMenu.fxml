@@ -15,7 +15,7 @@
    <children>
       <Label fx:id="title" alignment="CENTER_RIGHT" layoutY="17.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="menú administración" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
          <opaqueInsets>
             <Insets />
@@ -39,7 +39,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="returnButton" layoutX="442.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="129.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;&lt; volver" textFill="#7c7c7c">
+      <Button fx:id="returnButton" layoutX="442.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonPressed" prefHeight="52.0" prefWidth="129.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;&lt;- volver" textFill="#7c7c7c">
          <font>
             <Font size="18.0" />
          </font>

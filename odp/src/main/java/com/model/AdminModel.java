@@ -211,7 +211,6 @@ public class AdminModel {
     }
 
     public void updateWorker(Worker worker) {
-        if (worker.getIdWorker() > 1)
             Accesdb.updateWorker(worker);
     }
 

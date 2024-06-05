@@ -24,7 +24,6 @@ com/Main.class
 com/model/PdfViewerApp.class
 com/typeEditController$2.class
 com/adminMenuController.class
-com/model/userSesion.class
 com/model/Type.class
 com/App.class
 com/model/TaskSkill.class
