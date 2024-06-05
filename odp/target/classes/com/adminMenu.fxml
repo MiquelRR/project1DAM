@@ -165,7 +165,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addOrderButton" layoutX="531.0" layoutY="450.0" mnemonicParsing="false" onAction="#editOrder" prefHeight="52.0" prefWidth="69.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;&gt;" textFill="#7c7c7c">
+      <Button fx:id="addOrderButton" layoutX="531.0" layoutY="450.0" mnemonicParsing="false" onAction="#addOrder" prefHeight="52.0" prefWidth="69.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;&gt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.util.converter.LocalDateStringConverter;
+
 public class Accesdb {
 
     // DEBUGGING:
@@ -19,7 +21,7 @@ public class Accesdb {
     private static boolean logMode = true;
 
     private static LogToFile bbddlog = new LogToFile("queries");
-    private final static String BBDD_NAME = "odplanDDBB";
+    private final static String BBDD_NAME = "odplanDDBB2";
     private final static String bdcon = (local) ? "jdbc:mysql://localhost:3306/" + BBDD_NAME
             : "jdbc:mysql://localhost:33006/" + BBDD_NAME;
     // private final static String bdcon =
@@ -60,10 +62,30 @@ public class Accesdb {
         return list;
     }
 
+
+    /**
+     * in further versions WILL BE IMPROVED to read onlilive orders
+     * 
+     * @return
+     */
+    public static List<Type> readAllOrders() {
+        List<Type> list = new ArrayList<>();
+        List<String[]> lst = lligTaula("productType");
+        for (String[] reg : lst) {
+            if (reg[4].equals("ORDER")) {
+                Type type = new Type(Integer.parseInt(reg[0]), reg[1], reg[2], Integer.parseInt(reg[3]));
+                list.add(type);
+            }
+        }
+        return list;
+    }
+
     public static Integer getLastLiveIdTask() {
         String[] n = lligReg("SELECT MAX(idLiveTask) FROM liveTask;");
-        if(n == null) return 0;
-        if(n[0] == null) return 0;
+        if (n == null)
+            return 0;
+        if (n[0] == null)
+            return 0;
         return toInt(n[0]);
     }
 
@@ -105,6 +127,29 @@ public class Accesdb {
         return map;
     }
 
+    public static List<TaskType> readLiveTasks() {
+        List<TaskType> returnList = new ArrayList<>();
+        List<String[]> lst = lligQuery(
+                "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime, date, idWorker FROM " + BBDD_NAME
+                        + ".liveTask WHERE date > current_date AND done = 'NO';");
+                        for (String[] reg : lst) {
+                            Integer idLliveTask = Integer.parseInt(reg[0]);
+                            LocalDate date = LocalDate.parse(reg[6]);
+                            TaskType tt = new TaskType(
+                                    idLliveTask,
+                                    Integer.parseInt(reg[1]),
+                                    Integer.parseInt(reg[2]),
+                                    skill.get(Integer.parseInt(reg[2])),
+                                    reg[3],
+                                    Integer.parseInt(reg[4]),
+                                    Integer.parseInt(reg[5]),
+                                    date,
+                                    Integer.parseInt(reg[7])
+                                    );
+                                    returnList.add(idLliveTask, tt);
+                        }
+        return returnList;
+    }
 
     public static List<Section> readAllSections() {
         List<Section> list = new ArrayList<>();
@@ -210,6 +255,12 @@ public class Accesdb {
                 "mainFolderPath", type.getDocFolder(), "modelOf", type.getModelOf(), "type", typeString });
     }
 
+    public static void addOrder(Type type) {
+        String typeString = "ORDER";
+        agrega(BBDD_NAME + ".productType", new Object[] { "idProductType", type.getIdType(), "name", type.toString(),
+                "mainFolderPath", type.getDocFolder(), "modelOf", type.getModelOf(), "type", typeString });
+    }
+
     public static void removeSection(Section sec) {
         modifica("DELETE FROM " + BBDD_NAME + ".section WHERE idSection = " + sec.getId());
     }
@@ -294,7 +345,7 @@ public class Accesdb {
         return returnList;
     }
 
-    private static Map<Integer,String> skill;
+    private static Map<Integer, String> skill;
 
     public static List<TaskSkill> readTaskTypes() {
         skill = new HashMap<>();

@@ -3,11 +3,8 @@ package com.model;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javafx.concurrent.Task;
 
 //-------------------------------- Singleton 
 public class AdminModel {
@@ -22,6 +19,8 @@ public class AdminModel {
     private List<Section> sections;
     private List<Type> types;
     private List<Type> models;
+    private List<Type> orders;
+    private List<TaskType> liveTasks;
     private Integer lastIdtask;
 
     private AdminModel() {
@@ -32,8 +31,10 @@ public class AdminModel {
         sections = Accesdb.readAllSections();
         types = Accesdb.readAllTypes();
         models = Accesdb.readAllModels();
+        orders = Accesdb.readAllOrders();
         Integer lt = Accesdb.getLastLiveIdTask();
         lastIdtask = (lt == null) ? 0 : lt;
+        liveTasks = Accesdb.readLiveTasks();
 
         Map<Integer, List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
 
@@ -100,6 +101,33 @@ public class AdminModel {
         return models;
     }
 
+    public Type getModelById(Integer id) {
+        for (Type t : models) {
+            if (t.getIdType() == id)
+                return t;
+        }
+        return null;
+    }
+
+    public Type getTypeById(Integer id) {
+        for (Type t : types) {
+            if (t.getIdType() == id)
+                return t;
+        }
+        return null;
+    }
+
+    public List<Worker> getAllWorkers(){
+        return staffList;
+    }
+
+    public List<Worker> getActiveWorkers(){
+        List<Worker> returnList = new ArrayList<>();
+        for (Worker worker : staffList) {
+            if(worker.getActive()) returnList.add(worker);
+        }
+        return returnList;
+    }
     public List<Type> getModelsOf(Type type) {
         List<Type> list = new ArrayList<>();
         if (type != null) {
@@ -126,6 +154,76 @@ public class AdminModel {
         }
         worker.setCalendar(calendar);
         Accesdb.writeCalendar(worker.getIdWorker(), calendar);
+    }
+
+    public void plan(List<TaskType> list) {
+        for (TaskType t : list) {
+            if (t.getDependsOn().isEmpty()) {
+                Worker wk = null;
+                boolean found = false;
+                LocalDate today = LocalDate.now();
+                LocalDate date = today;
+                while (!found) {
+                    date.plusDays(1);
+                    // here
+                    TaskSkill skill = taskTypes.get(t.getTaskRef());
+                    List<Worker> wl = getAvaliableWorkersFor(skill, today, t.getPieceTime() + t.getPrepTime());
+                    Double unnoc = 0D;
+                    Integer[] mins;
+                    if (!wl.isEmpty()) {
+                        for (Worker w : wl) {
+                            mins = dayAvaliability(w, date);
+                            if (mins[0] != 0) {
+                                double result = (double) mins[1] / mins[0];
+                                if (result > unnoc) {
+                                    unnoc = result;
+                                    wk = w;
+                                }
+                                if (unnoc > 0) {
+                                    found = true;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                if (wk != null)
+                    t.setIdWorker(wk.getIdWorker());
+                t.setDate(date);
+            }
+        }
+        //this shoud aply the dates and workes for the tasks without dependencies
+        //HERE I'M
+
+    }
+
+    public List<Worker> getAvaliableWorkersFor(TaskSkill skill, LocalDate day, Integer neededMinutes) {
+        List<Worker> result = new ArrayList<>();
+        for (Worker worker : staffList) {
+            if (worker.getAbilities().contains(skill)) {
+                Integer[] da = dayAvaliability(worker, day);
+                if (da[1] >= neededMinutes)
+                    result.add(worker);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * must return return[0] minutes total, return[1] free minutes
+     * 
+     * @param worker
+     * @param day
+     * @return
+     */
+    public Integer[] dayAvaliability(Worker worker, LocalDate day) {
+        Integer workingTime = worker.getCalendar(day);
+        Integer restingTime = workingTime;
+        for (TaskType t : liveTasks) {
+            if (t.getIdWorker() == worker.getIdWorker())
+                restingTime -= (t.getPrepTime() + t.getPieceTime());
+        }
+        return new Integer[] { workingTime, restingTime };
     }
 
     private LocalDate getExpected(LocalDate today) {
@@ -164,12 +262,11 @@ public class AdminModel {
     public Worker getLastWorker() {
         if (!staffList.isEmpty())
             return staffList.get(staffList.size() - 1);
-        else{
-                Worker w = new Worker(staffList.size());
+        else {
+            Worker w = new Worker(staffList.size());
             return w;
-            }
-            
-            
+        }
+
     }
 
     public Integer getNextIdTask() {
@@ -211,7 +308,7 @@ public class AdminModel {
     }
 
     public void updateWorker(Worker worker) {
-            Accesdb.updateWorker(worker);
+        Accesdb.updateWorker(worker);
     }
 
     public void updateType(Type type) {
@@ -304,6 +401,7 @@ public class AdminModel {
         Accesdb.addType(newType);
     }
 
+    // DUPLICATED CODE, this is an case of addOrder with units=1
     public Type addModel(String typeName, Type modelOf) {
         Type newModel = new Type(getNextTypeIdx(), typeName, modelOf.getIdType());
         Bidimap refsMap = new Bidimap();
@@ -323,6 +421,30 @@ public class AdminModel {
         models.add(newModel);
         Accesdb.addType(newModel);
         return newModel;
+        // at this moment cloned tasktypes aren't saved to ddbb, will be done later when
+        // edited
+    }
+
+    public Type addOrder(String orderReference, Type modelOf, Integer units) {
+        Type newOrder = new Type(getNextTypeIdx(), orderReference, modelOf.getIdType());
+        Bidimap refsMap = new Bidimap();
+        for (TaskType tt : modelOf.getTaskList()) {
+            Integer newId = getNextIdTask();
+            TaskType t2 = new TaskType(newId, getNextTypeIdx(), tt);
+            t2.setPieceTime(tt.getPieceTime() * units); // here it is the product
+            refsMap.put(t2, tt);
+        }
+        for (TaskType t2 : refsMap.keySet()) {
+            List<TaskType> dependsOnNew = new ArrayList<>();
+            for (TaskType tt : refsMap.getValue(t2).getDependsOn()) {
+                dependsOnNew.add(refsMap.getKeyOf(tt));
+            }
+            t2.setDependsOn(dependsOnNew);
+        }
+        newOrder.setTaskList(new ArrayList<>(refsMap.keySet()));
+        orders.add(newOrder);
+        Accesdb.addType(newOrder);
+        return newOrder;
         // at this moment cloned tasktypes aren't saved to ddbb, will be done later when
         // edited
     }

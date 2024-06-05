@@ -1,19 +1,40 @@
 package com.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskType {
     private Integer id;
     private String name;
-    private Integer taskRef;
+    private Integer taskRef; //id of skill
     private List<TaskType> dependsOn;
     private Integer x;
     private Integer y;
     private Integer prepTime;
     private Integer pieceTime;
-    private String  infoFilePath;
-    private Integer typeRef;
+    private String infoFilePath;
+    private Integer typeRef; //ide of type
+    private LocalDate date;
+    private Integer idWorker;
+    private Boolean done;
+    
+    public Integer getIdWorker() {
+        return idWorker;
+    }
+
+    public void setIdWorker(Integer idWorker) {
+        this.idWorker = idWorker;
+    }
+
+    
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public TaskType() {
         this.dependsOn = new ArrayList<>();
@@ -21,8 +42,8 @@ public class TaskType {
 
     public TaskType(int id, TaskSkill tk, Integer typeRef) {
         this.id = id;
-        this.typeRef=typeRef;
-        this.taskRef= tk.getId();
+        this.typeRef = typeRef;
+        this.taskRef = tk.getId();
         this.name = tk.name;
         this.dependsOn = new ArrayList<>();
         this.pieceTime = 0;
@@ -30,18 +51,40 @@ public class TaskType {
         this.infoFilePath = "";
     }
 
-    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime, Integer pieceTime ){
+    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime,
+            Integer pieceTime) {
         this.id = id;
-        this.typeRef=typeRef;
-        this.taskRef= taskRef;
+        this.typeRef = typeRef;
+        this.taskRef = taskRef;
         this.name = name;
         this.dependsOn = new ArrayList<>();
         this.pieceTime = pieceTime;
         this.prepTime = prepTime;
         this.infoFilePath = infoFilePath;
     }
+    public TaskType(Integer id, Integer typeRef, Integer taskRef, String name, String infoFilePath, Integer prepTime,
+            Integer pieceTime, LocalDate date, Integer idWorker) {
+        this.id = id;
+        this.typeRef = typeRef;
+        this.taskRef = taskRef;
+        this.name = name;
+        this.dependsOn = new ArrayList<>();
+        this.pieceTime = pieceTime;
+        this.prepTime = prepTime;
+        this.infoFilePath = infoFilePath;
+        this.done=false;
+        this.date = date;
+        this.idWorker= idWorker;
+    }
 
-    public TaskType(Integer id, Integer typeRef ,TaskType other) {
+    /**
+     * Construtor to copy a tasktype from another
+     * 
+     * @param id
+     * @param typeRef
+     * @param other
+     */
+    public TaskType(Integer id, Integer typeRef, TaskType other) {
         this.id = id;
         this.typeRef = typeRef;
         this.taskRef = other.taskRef;
@@ -69,7 +112,6 @@ public class TaskType {
     public void setInfoFilePath(String infoFilePath) {
         this.infoFilePath = infoFilePath;
     }
-
 
     public Integer getPieceTime() {
         return pieceTime;
@@ -154,6 +196,18 @@ public class TaskType {
 
     public Integer getTaskRef() {
         return taskRef;
+    }
+
+    public void setTaskRef(Integer taskRef) {
+        this.taskRef = taskRef;
+    }
+
+    public Boolean isDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 
 }

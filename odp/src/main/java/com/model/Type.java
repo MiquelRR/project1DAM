@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Type {
-    Integer idType;
-    String name;
-    String docFolder;
-    Integer modelOf;
-    List<TaskType> taskList;
+    private Integer idType;
+    private String name;
+    private String docFolder;
+    private Integer modelOf;
+/*     private String orderRef;
+    public String getOrderRef() {
+        return orderRef;
+    }
+
+    public void setOrderRef(String orderRef) {
+        this.orderRef = orderRef;
+    } */
+
+    private List<TaskType> taskList;
 
     public List<TaskType> getTaskList() {
         return taskList;

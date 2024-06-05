@@ -234,22 +234,6 @@ public class adminMenuController {
 
     @FXML
     void editWorker(ActionEvent event) throws IOException {
-
-        /*
-         * if (adminModel.getLastWorker() == null) {
-         * System.out.println("ES NULL");
-         * App.setDefaultSection(sectionChooser.getValue());
-         * App.setDefaultRank(rankChooser.getValue());
-         * App.setWorkerProfModeAdd(true);
-         * App.editedWorker = new Worker();
-         * } else {
-         * App.setWorkerProfModeAdd(false);
-         * App.editedWorker = adminModel.getLastWorker();
-         * System.out.println(App.editedWorker.getFullName());
-         * 
-         * }
-         */
-        System.out.println("?".repeat(50)+adminModel.getStaffList());
         App.setRoot("workerProfile");
 
     }
@@ -273,10 +257,23 @@ public class adminMenuController {
     }
 
     @FXML
-    void editOrder(ActionEvent event) {
-        App.units= Integer.parseInt(unitsField.getText());
+    void addOrder(ActionEvent event) throws IOException {
+        Integer units=Integer.parseInt(unitsField.getText());
+        App.units= units;
         App.reference = referenceField.getText();
-        // HERE I AM
+        
+        App.editedOrder=adminModel.addOrder(referenceField.getText(), modelChoice.getValue(), units );
+        System.out.println("@".repeat(199)+App.editedOrder.getName());
+        Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("plan.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("OndPlan: Planificar pedido");
+        stage.setX(parentWindow.getX() - 300);
+        stage.setY(parentWindow.getY() + 150);
+        stage.show();
 
     }
 
@@ -304,7 +301,7 @@ public class adminMenuController {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("OpendPlan: Edición de tipos");
+        stage.setTitle("OndPlan: Edición de tipos");
         stage.setX(parentWindow.getX() - 300);
         stage.setY(parentWindow.getY() + 150);
         stage.show();
@@ -346,7 +343,8 @@ public class adminMenuController {
     }
 
     @FXML
-    void toCalendars(ActionEvent event) {
+    void toCalendars(ActionEvent event) throws IOException {
+        App.setRoot("calendarsEdit");
 
     }
 

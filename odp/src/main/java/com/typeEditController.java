@@ -179,7 +179,6 @@ public class typeEditController {
                 Integer lastColumn = 0;
                 List<Integer> orderedIds = new ArrayList<>();
                 List<TaskType> taskListCp = new ArrayList<>();
-                System.out.println("#".repeat(100) + edited.getTaskList());
                 taskListCp.addAll(edited.getTaskList());
 
                 while (!taskListCp.isEmpty()) {
@@ -308,9 +307,6 @@ public class typeEditController {
                 int x = (h.length - coord[0]) / 2;
                 int y = (v.length - coord[1]) / 2;
                 normalBorder = (coord[1] > v.length || coord[0] > h.length) ? App.RED_BORDER : null;
-                // metaDependences = new ArrayList<>();
-                // System.out.println("#".repeat(70)+edited.getName()+" tl size =
-                // "+App.editedModel.getTaskList().size());
                 for (TaskType tk : edited.getTaskList()) {
                         genToggleButton(tk, x, y);
                 }

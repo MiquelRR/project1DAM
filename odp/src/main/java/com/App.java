@@ -60,12 +60,14 @@ public class App extends Application {
     public static String reference;
 
     @SuppressWarnings("exports")
-    public static Worker editedWorker;;
+    public static Worker editedWorker;
     public static boolean workerProfModeAdd;
     @SuppressWarnings("exports")
     public static Type editedType = new Type();
     @SuppressWarnings("exports")
     public static Type editedModel = new Type();
+    @SuppressWarnings("exports")
+    public static Type editedOrder = new Type();
 
     public static boolean isWorkerProfModeAdd() {
         return workerProfModeAdd;
@@ -132,7 +134,7 @@ public class App extends Application {
         // scene = new Scene(loadFXML("workerProfile"), 600, 600);
         st = stage;
         scene = new Scene(loadFXML("login"), 600, 600);
-        // scene = new Scene(loadFXML("typeEdit"), 1200, 600);
+        //scene = new Scene(loadFXML("calendarsEdit"), 600, 600);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("OndPlan Beta MiquelRRdev");

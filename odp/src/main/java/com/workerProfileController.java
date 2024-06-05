@@ -351,7 +351,7 @@ public class workerProfileController {
         rankChoice.getItems().setAll(adminModel.getRanks());
         sectionChoice.getSelectionModel().select(App.getDefaultSection());
         rankChoice.getSelectionModel().select(App.getDefaultRank());
-        App.editedWorker=adminModel.getLastWorker();
+        if(App.editedWorker==null) App.editedWorker=adminModel.getLastWorker();
         showWorker(App.editedWorker);
         refresh();
 

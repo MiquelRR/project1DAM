@@ -95,6 +95,13 @@ public class Worker {
         
     }
 
+    public Integer getCalendar(LocalDate date){
+        for (Day d:this.calendar) {
+            if(d.getDate().equals(date)) return d.getWorkTime();            
+        }
+        return 0;
+    }
+
     public String getUserName() {
         return userName;
     }
