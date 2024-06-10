@@ -174,14 +174,14 @@
       <Rectangle fill="#aad7d9" height="52.0" layoutY="170.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
       <DatePicker fx:id="dateSelector" layoutX="39.0" layoutY="170.0" onAction="#changedDates" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
       <ChoiceBox fx:id="workerChoice" layoutX="331.0" layoutY="380.0" onAction="#checkChoices" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <ChoiceBox fx:id="dayWeekAllChoice" layoutX="331.0" layoutY="450.0" onAction="#checkChoices" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
+      <ChoiceBox fx:id="dayWeekAllChoice" layoutX="339.0" layoutY="100.0" onAction="#checkChoices" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
       <ChoiceBox fx:id="reduceChoice" layoutX="38.0" layoutY="534.0" onAction="#checkChoices" prefHeight="52.0" prefWidth="245.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Button fx:id="nextWeekButton" layoutX="475.0" layoutY="170.0" mnemonicParsing="false" onAction="#nextWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
+      <Button fx:id="nextButton" layoutX="475.0" layoutY="170.0" mnemonicParsing="false" onAction="#next" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="pervWeekbuton" layoutX="375.0" layoutY="170.0" mnemonicParsing="false" onAction="#prevWeek" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
+      <Button fx:id="prevButon" layoutX="375.0" layoutY="170.0" mnemonicParsing="false" onAction="#prev" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -192,18 +192,7 @@
       <TextField fx:id="thursdayField" layoutX="361.0" layoutY="240.0" onAction="#thursdayEdited" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
       <TextField fx:id="fridayField" layoutX="461.0" layoutY="240.0" onAction="#fridayEdited" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="7.5" />
       <TextField fx:id="saturdayField" layoutX="561.0" layoutY="240.0" onAction="#saturdayEdited" prefHeight="52.0" prefWidth="40.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0; -fx-text-inner-color: #7c7c7c;" text="0" />
-      <Label layoutY="100.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="configura semana:" textFill="WHITE">
-         <font>
-            <Font name="Cantarell Regular" size="18.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="12.0" right="12.0" />
-         </padding>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutY="450.0" prefHeight="52.0" prefWidth="330.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="periodo: " textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="100.0" prefHeight="52.0" prefWidth="330.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="periodo: " textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -226,6 +215,17 @@
          </padding>
       </Label>
       <Label layoutX="1.0" layoutY="310.0" prefHeight="52.0" prefWidth="593.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="personal afectado:" textFill="WHITE">
+         <font>
+            <Font name="Cantarell Regular" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </Label>
+      <Label fx:id="info" alignment="CENTER" layoutX="1.0" layoutY="450.0" prefHeight="52.0" prefWidth="593.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
