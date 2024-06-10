@@ -17,11 +17,11 @@ import javafx.util.converter.LocalDateStringConverter;
 public class Accesdb {
 
     // DEBUGGING:
-    private static boolean local = true;
+    private static boolean local = false;
     private static boolean logMode = true;
 
     private static LogToFile bbddlog = new LogToFile("queries");
-    private final static String BBDD_NAME = "odplanDDBB2";
+    private final static String BBDD_NAME = "odplanDDBB";
     private final static String bdcon = (local) ? "jdbc:mysql://localhost:3306/" + BBDD_NAME
             : "jdbc:mysql://localhost:33006/" + BBDD_NAME;
     // private final static String bdcon =
@@ -313,7 +313,7 @@ public class Accesdb {
         List<String[]> lst = lligTaula("weekTemplate");
         for (String[] reg : lst) {
             int idWeek = Integer.parseInt(reg[0]);
-            int idWorker = Integer.parseInt(reg[1]);
+            int idSection = Integer.parseInt(reg[1]);
             int monday = Integer.parseInt(reg[2]);
             int tuesday = Integer.parseInt(reg[3]);
             int wednesday = Integer.parseInt(reg[4]);
@@ -321,7 +321,7 @@ public class Accesdb {
             int friday = Integer.parseInt(reg[6]);
             int saturday = Integer.parseInt(reg[7]);
             WeekTemplate wt = new WeekTemplate(monday, tuesday, wednesday, thursday, friday, saturday);
-            readedList.put(idWorker, wt);
+            readedList.put(idSection, wt);
         }
         return readedList;
     }

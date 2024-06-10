@@ -77,7 +77,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addSectionButton" layoutX="104.0" layoutY="100.0" mnemonicParsing="false" onAction="#addSection" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addSectionButton" layoutX="389.0" layoutY="100.0" mnemonicParsing="false" onAction="#addSection" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -88,7 +88,7 @@
          </font>
       </TextField>
       <ChoiceBox fx:id="sectionChooser" layoutX="167.0" layoutY="100.0" prefHeight="52.0" prefWidth="217.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Button fx:id="removeSectionButton" layoutX="389.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeSection" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
+      <Button fx:id="removeSectionButton" layoutX="104.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeSection" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -104,7 +104,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addRankButton" layoutX="104.0" layoutY="170.0" mnemonicParsing="false" onAction="#addRank" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addRankButton" layoutX="389.0" layoutY="170.0" mnemonicParsing="false" onAction="#addRank" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -115,7 +115,7 @@
          </font>
       </TextField>
       <ChoiceBox fx:id="rankChooser" layoutX="167.0" layoutY="170.0" prefHeight="52.0" prefWidth="217.0" style="-fx-background-color: #e1e2da; -fx-background-radius: 0;" />
-      <Button fx:id="removeRankButton" layoutX="389.0" layoutY="170.0" mnemonicParsing="false" onAction="#removeRank" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
+      <Button fx:id="removeRankButton" layoutX="104.0" layoutY="170.0" mnemonicParsing="false" onAction="#removeRank" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -131,7 +131,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addTypeButton" layoutX="182.0" layoutY="310.0" mnemonicParsing="false" onAction="#addNewType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addTypeButton" layoutX="482.0" layoutY="310.0" mnemonicParsing="false" onAction="#addNewType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -148,7 +148,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="addModelButton" layoutX="181.0" layoutY="380.0" mnemonicParsing="false" onAction="#addNewModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addModelButton" layoutX="481.0" layoutY="380.0" mnemonicParsing="false" onAction="#addNewModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -170,12 +170,12 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="addTaskButton" layoutX="182.0" layoutY="240.0" mnemonicParsing="false" onAction="#addTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
+      <Button fx:id="addTaskButton" layoutX="482.0" layoutY="240.0" mnemonicParsing="false" onAction="#addTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="+" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="removeTaskButton" layoutX="481.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
+      <Button fx:id="removeTaskButton" layoutX="180.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="🗑️" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -191,12 +191,12 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Button fx:id="editTypeButton" layoutX="481.0" layoutY="310.0" mnemonicParsing="false" onAction="#editType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
+      <Button fx:id="editTypeButton" layoutX="180.0" layoutY="310.0" mnemonicParsing="false" onAction="#editType" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="editModelButton" layoutX="481.0" layoutY="380.0" mnemonicParsing="false" onAction="#editModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
+      <Button fx:id="editModelButton" layoutX="180.0" layoutY="380.0" mnemonicParsing="false" onAction="#editModel" prefHeight="52.0" prefWidth="58.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="☰" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

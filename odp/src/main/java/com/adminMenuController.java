@@ -258,12 +258,12 @@ public class adminMenuController {
 
     @FXML
     void addOrder(ActionEvent event) throws IOException {
-        Integer units=Integer.parseInt(unitsField.getText());
-        App.units= units;
+        Integer units = Integer.parseInt(unitsField.getText());
+        App.units = units;
         App.reference = referenceField.getText();
-        
-        App.editedOrder=adminModel.addOrder(referenceField.getText(), modelChoice.getValue(), units );
-        System.out.println("@".repeat(199)+App.editedOrder.getName());
+
+        App.editedOrder = adminModel.addOrder(referenceField.getText(), modelChoice.getValue(), units);
+        System.out.println("@".repeat(199) + App.editedOrder.getName());
         Window parentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("plan.fxml"));
@@ -327,6 +327,7 @@ public class adminMenuController {
     void removeSection(ActionEvent event) {
         Boolean result = false;
         if (sectionChooser.getValue() != null) {
+            System.out.println(sectionChooser.getValue());
             result = adminModel.removeSection(sectionChooser.getValue());
 
             if (result) {
@@ -420,12 +421,13 @@ public class adminMenuController {
         } else {
             removeSectionButton.setVisible(true);
             sectionChooser.getItems().clear();
-            // sectionChooser.getItems().add(new Section(-1, "TODAS"));
             sectionChooser.getItems().addAll(adminModel.getSections());
             sectionChooser.setVisible(!addSectionButton.isDisabled());
             sectionChooser.getSelectionModel().select(sectionChooser.getItems().size() - 1);
             addSectionButton.setVisible(true);
         }
+        if (sectionChooser.getValue().getId() == -1) //general section
+            removeSectionButton.setVisible(false);
 
         if (adminModel.getRanks().isEmpty()) {
             possibleWorkers = false;
@@ -505,30 +507,28 @@ public class adminMenuController {
         arrow.setVisible(possibleModels);
         editWorkerButton.setVisible(possibleWorkers);
     }
+
     @FXML
-    void refreshBorders(){
+    void refreshBorders() {
         Boolean readyToPlan = true;
-        if (referenceField.getText() != null && referenceField.getText().length()>1){
+        if (referenceField.getText() != null && referenceField.getText().length() > 1) {
             referenceField.setBorder(null);
         } else {
-            readyToPlan=false;
+            readyToPlan = false;
             referenceField.setBorder(App.ORANGE_BORDER);
         }
-        
-        if (validate(unitsField.getText(), "^\\d+$") && Integer.parseInt(unitsField.getText())>0){
+
+        if (validate(unitsField.getText(), "^\\d+$") && Integer.parseInt(unitsField.getText()) > 0) {
             unitsField.setBorder(null);
-        } else{
-            readyToPlan=false;
+        } else {
+            readyToPlan = false;
             unitsField.setBorder(App.ORANGE_BORDER);
         }
 
         addOrderButton.setDisable(!readyToPlan);
 
-
-
-
     }
-    
+
     public static boolean validate(String string, String patt) {
         if (string == null || string.isEmpty()) {
             return false; // Retorna false si la cadena es nula o vacía

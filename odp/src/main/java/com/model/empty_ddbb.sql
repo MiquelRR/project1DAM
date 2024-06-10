@@ -146,6 +146,9 @@ CREATE TABLE `section` (
   `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idSection`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+/*!40000 ALTER TABLE `worker` DISABLE KEYS */;
+INSERT INTO `section` VALUES (-1,'GENERAL');
+/*!40000 ALTER TABLE `worker` ENABLE KEYS */;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +191,7 @@ DROP TABLE IF EXISTS `weekTemplate`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `weekTemplate` (
   `idweekTemplate` int NOT NULL,
-  `idWorker` int DEFAULT NULL,
+  `idSection` int DEFAULT NULL,
   `monday` int(10) unsigned zerofill DEFAULT NULL,
   `tuesday` int(10) unsigned zerofill DEFAULT NULL,
   `wednesday` int(10) unsigned zerofill DEFAULT NULL,
@@ -198,12 +201,12 @@ CREATE TABLE `weekTemplate` (
   `sunday` int(10) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`idweekTemplate`),
   KEY `fk_weekTemplate_1_idx` (`idWorker`),
-  CONSTRAINT `fk_weekTemplate_1` FOREIGN KEY (`idWorker`) REFERENCES `worker` (`idWorker`)
+  CONSTRAINT `fk_weekTemplate_1` FOREIGN KEY (`idSection`) REFERENCES `worker` (`idSection`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `weekTemplate` WRITE;
 /*!40000 ALTER TABLE `weekTemplate` DISABLE KEYS */;
-INSERT INTO `weekTemplate` VALUES (0,10001,0000000510,0000000510,0000000510,0000000510,0000000360,0000000000,0000000000);
+INSERT INTO `weekTemplate` VALUES (0,-1,0000000510,0000000510,0000000510,0000000510,0000000360,0000000000,0000000000);
 /*!40000 ALTER TABLE `weekTemplate` ENABLE KEYS */;
 UNLOCK TABLES;
 --
@@ -250,7 +253,7 @@ CREATE TABLE `worker` (
 
 LOCK TABLES `worker` WRITE;
 /*!40000 ALTER TABLE `worker` DISABLE KEYS */;
-INSERT INTO `worker` VALUES (9999,'root',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ROOT'), (10000,'admin',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ADMIN'),(10001,'GENERAL',NULL,NULL,'2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ALL','ADMIN');
+INSERT INTO `worker` VALUES (9999,'root',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ROOT'), (10000,'admin',NULL,'1234','2900-01-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'YES','WORKER','ADMIN');
 /*!40000 ALTER TABLE `worker` ENABLE KEYS */;
 UNLOCK TABLES;
 

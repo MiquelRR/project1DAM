@@ -51,23 +51,6 @@ public class AdminModel {
 
         }
 
-        LocalDate lastDate = Accesdb.readLastProcessedDate();
-        LocalDate today = LocalDate.now();
-        LocalDate expected = getExpected(today);
-
-        if (lastDate == null || lastDate.isBefore(expected)) {
-            LocalDate sinceDate = (today.isAfter(lastDate)) ? today : lastDate;
-            for (Worker worker : staffList) {
-                generateCalendar(sinceDate, expected, worker);
-            }
-            lastDate = expected;
-            Accesdb.writeLastProcessedDate(expected);
-        } else {
-            for (Worker worker : staffList) {
-                List<Day> calendar = Accesdb.readCalendarOf(worker.getIdWorker());
-                worker.setCalendar(calendar);
-            }
-        }
         admins = new ArrayList<>();
         for (Worker worker : staffList) {
             List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
@@ -81,7 +64,26 @@ public class AdminModel {
             if (worker.getRol().equals("ROOT"))
                 admins.add(worker);
         }
+
         staffList.removeAll(admins);
+        LocalDate lastDate = Accesdb.readLastProcessedDate();
+        LocalDate today = LocalDate.now();
+        LocalDate expected = getExpected(today);
+
+        if (lastDate == null || lastDate.isBefore(expected)) {
+            LocalDate sinceDate = (today.isAfter(lastDate)) ? today : lastDate;
+            // System.out.println("#".repeat(100)+staffList.get(0));
+            for (Worker worker : staffList) {
+                generateCalendar(sinceDate, expected, worker);
+            }
+            lastDate = expected;
+            Accesdb.writeLastProcessedDate(expected);
+        } else {
+            for (Worker worker : staffList) {
+                List<Day> calendar = Accesdb.readCalendarOf(worker.getIdWorker());
+                worker.setCalendar(calendar);
+            }
+        }
 
     }
 
@@ -117,17 +119,19 @@ public class AdminModel {
         return null;
     }
 
-    public List<Worker> getAllWorkers(){
+    public List<Worker> getAllWorkers() {
         return staffList;
     }
 
-    public List<Worker> getActiveWorkers(){
+    public List<Worker> getActiveWorkers() {
         List<Worker> returnList = new ArrayList<>();
         for (Worker worker : staffList) {
-            if(worker.getActive()) returnList.add(worker);
+            if (worker.getActive())
+                returnList.add(worker);
         }
         return returnList;
     }
+
     public List<Type> getModelsOf(Type type) {
         List<Type> list = new ArrayList<>();
         if (type != null) {
@@ -147,7 +151,7 @@ public class AdminModel {
         else if (weekTemplates.keySet().contains(worker.getSection()))
             key = worker.getSection();
 
-        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(10001));
+        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(-1));
         for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
             Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
             calendar.add(day);
@@ -192,8 +196,8 @@ public class AdminModel {
                 t.setDate(date);
             }
         }
-        //this shoud aply the dates and workes for the tasks without dependencies
-        //HERE I'M
+        // this shoud aply the dates and workes for the tasks without dependencies
+        // HERE I'M
 
     }
 
@@ -332,33 +336,25 @@ public class AdminModel {
     }
 
     public boolean removeSection(Section sec) {
-        Boolean clearSection = true;
+        if (sec.getId() < 0)
+            return false;
         for (Worker worker : staffList) {
-            if (worker.getSection() != null && worker.getSection() == sec.getId()) {
-                clearSection = false;
-                break; // Patxi!!
-            }
-            if (clearSection) {
-                sections.remove(sec);
-                Accesdb.removeSection(sec);
-            }
+            if (worker.getSection() != null && worker.getSection() == sec.getId())
+                return false;
         }
-        return clearSection;
+        sections.remove(sec);
+        Accesdb.removeSection(sec);
+        return true;
     }
 
     public boolean removeRank(Rank rank) {
-        Boolean clearRank = true;
         for (Worker worker : staffList) {
-            if (worker.getRank() != null && worker.getRank() == rank.getId()) {
-                clearRank = false;
-                break; // Patxi!!
-            }
-            if (clearRank) {
-                ranks.remove(rank);
-                Accesdb.removeRank(rank);
-            }
+            if (worker.getRank() != null && worker.getRank() == rank.getId())
+                return false;
         }
-        return clearRank;
+        ranks.remove(rank);
+        Accesdb.removeRank(rank);
+        return true;
     }
 
     public boolean removeTaskType(TaskSkill task) {

@@ -34,17 +34,17 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="removeButton" layoutX="274.0" layoutY="266.0" mnemonicParsing="false" onAction="#remove" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
+      <Button fx:id="removeButton" layoutX="274.0" layoutY="266.0" mnemonicParsing="false" onAction="#remove" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="addButton" layoutX="274.0" layoutY="185.0" mnemonicParsing="false" onAction="#add" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&lt;" textFill="#7c7c7c">
+      <Button fx:id="addButton" layoutX="274.0" layoutY="185.0" mnemonicParsing="false" onAction="#add" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #E5E1DA; -fx-background-radius: 0;" styleClass="init-button" text="&gt;" textFill="#7c7c7c">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Label alignment="CENTER_RIGHT" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="capacitaciones" textAlignment="RIGHT" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="todas las tareas" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -55,7 +55,7 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <Label layoutX="350.0" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="todas las tareas" textFill="WHITE">
+      <Label layoutX="350.0" layoutY="103.0" prefHeight="52.0" prefWidth="250.0" style="-fx-background-color: #aad7d9; -fx-background-radius: 0;" text="✔ capacitaciones" textFill="WHITE">
          <font>
             <Font name="Cantarell Regular" size="18.0" />
          </font>
@@ -66,8 +66,8 @@
             <Insets left="12.0" right="12.0" />
          </padding>
       </Label>
-      <ListView fx:id="abilities" layoutX="50.0" layoutY="185.0" prefHeight="322.0" prefWidth="200.0" />
-      <ListView fx:id="allAbilities" layoutX="350.0" layoutY="183.0" prefHeight="322.0" prefWidth="200.0" />
+      <ListView fx:id="abilities" layoutX="350.0" layoutY="185.0" prefHeight="322.0" prefWidth="200.0" />
+      <ListView fx:id="allAbilities" layoutX="50.0" layoutY="183.0" prefHeight="322.0" prefWidth="200.0" />
 
    </children>
 </Pane>
