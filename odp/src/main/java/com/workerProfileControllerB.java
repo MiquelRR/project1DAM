@@ -1,5 +1,5 @@
 package com;
-
+//
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -14,10 +14,13 @@ import com.model.Rank;
 import com.model.Section;
 import com.model.Worker;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -25,7 +28,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class workerProfileController {
+public class workerProfileControllerB {
     private static final String EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
     private static final String SS = "^\\d{8}$";
     private static final String DNI = "^\\d{8}[A-Za-z]$";
@@ -39,7 +42,6 @@ public class workerProfileController {
         Matcher matcher = pattern.matcher(string);
         return matcher.matches();
     }
-
 
     AdminModel adminModel = AdminModel.getAdminModel();
     // Worker worker;
@@ -191,12 +193,44 @@ public class workerProfileController {
             App.editedWorker.setPasswd(passField.getText().strip());
             App.editedWorker.setActive(!activeCheckbox.isSelected());
             if (App.workerProfModeAdd) {
-                adminModel.addNewWorker(App.editedWorker);
-                App.setWorkerProfModeAdd(false);
+                root.setCursor(Cursor.WAIT);
+                applyButton.setCursor(Cursor.WAIT);
+                Task<Void> task = new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        System.out.println(App.editedWorker);
+                        adminModel.addNewWorker(App.editedWorker);
+                        return null;
+                    }
+
+                    @Override
+                    protected void succeeded() {
+                        super.succeeded();
+                        Platform.runLater(() -> {
+                            root.setCursor(Cursor.DEFAULT);
+                            applyButton.setCursor(Cursor.DEFAULT);
+                            App.setWorkerProfModeAdd(false);
+                            refresh();
+                        });
+                    }
+                    @Override
+                    protected void failed(){
+                        super.failed();
+                        Platform.runLater(()->{
+                            App.showDialog("Error inserción trabajador "+nickField.getText());
+                            root.setCursor(Cursor.DEFAULT);
+                            applyButton.setCursor(Cursor.DEFAULT);
+                            refresh();
+                        });
+                    }
+                };
+                new Thread(task).start();
+
             } else {
                 adminModel.updateWorker(App.editedWorker);
+                refresh();
             }
-            refresh();
+            
         } else {
             App.showDialog(alert);
         }
@@ -224,7 +258,7 @@ public class workerProfileController {
     }
 
     private void addNewWorker() {
-        App.editedWorker = new Worker(adminModel.getNewWorkerIndex()); 
+        App.editedWorker = new Worker(adminModel.getNewWorkerIndex());
         showWorker(App.editedWorker);
     }
 
@@ -321,8 +355,9 @@ public class workerProfileController {
         abilitiesButton.setDisable(is);
         refreshBorders();
     }
+
     @FXML
-    void refreshBorders(){
+    void refreshBorders() {
         nameField.setBorder(!nameField.getText().isBlank() ? null : App.ORANGE_BORDER);
         ssField.setBorder(validate(ssField.getText(), SS) ? null : App.ORANGE_BORDER);
         ssDniField.setBorder(validate(ssDniField.getText(), DNI) ? null : App.ORANGE_BORDER);
@@ -339,19 +374,20 @@ public class workerProfileController {
                 TextField textField = (TextField) node;
                 textField.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
                     @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    public void changed(ObservableValue<? extends String> observable, String oldValue,
+                            String newValue) {
                         refreshBorders();
                     }
                 });
             }
         }
-        
 
         sectionChoice.getItems().setAll(adminModel.getSections());
         rankChoice.getItems().setAll(adminModel.getRanks());
         sectionChoice.getSelectionModel().select(App.getDefaultSection());
         rankChoice.getSelectionModel().select(App.getDefaultRank());
-        if(App.editedWorker==null) App.editedWorker=adminModel.getLastWorker();
+        if (App.editedWorker == null)
+            App.editedWorker = adminModel.getLastWorker();
         showWorker(App.editedWorker);
         refresh();
 

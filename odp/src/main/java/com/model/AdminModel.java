@@ -13,7 +13,6 @@ public class AdminModel {
     private List<Worker> admins;
     // private List<Worker> filteredStaff = new ArrayList<>();
 
-    private Map<Integer, WeekTemplate> weekTemplates;
     private List<Rank> ranks;
     private List<TaskSkill> taskTypes;
     private List<Section> sections;
@@ -24,11 +23,11 @@ public class AdminModel {
     private Integer lastIdtask;
 
     private AdminModel() {
-        weekTemplates = Accesdb.readWeekTemplates();
-        staffList = Accesdb.readWorkers();
-        ranks = Accesdb.readRanks();
-        taskTypes = Accesdb.readTaskTypes();
+        // weekTemplates = Accesdb.readWeekTemplates();
         sections = Accesdb.readAllSections();
+        ranks = Accesdb.readRanks();
+        staffList = Accesdb.readWorkers();
+        taskTypes = Accesdb.readTaskTypes();
         types = Accesdb.readAllTypes();
         models = Accesdb.readAllModels();
         orders = Accesdb.readAllOrders();
@@ -52,6 +51,7 @@ public class AdminModel {
         }
 
         admins = new ArrayList<>();
+
         for (Worker worker : staffList) {
             List<Integer> list = Accesdb.readTaskTypeIndexesOf(worker.idWorker);
             List<TaskSkill> abilities = new ArrayList<>();
@@ -72,23 +72,172 @@ public class AdminModel {
 
         if (lastDate == null || lastDate.isBefore(expected)) {
             LocalDate sinceDate = (today.isAfter(lastDate)) ? today : lastDate;
-            // System.out.println("#".repeat(100)+staffList.get(0));
+            for (Section sec : sections) {
+                generateSectionCalendar(sinceDate, expected, sec);
+            }
             for (Worker worker : staffList) {
-                generateCalendar(sinceDate, expected, worker);
+                Accesdb.copySectionCalendarToWorker(worker);
+                // generateCalendar(sinceDate, expected, worker);
             }
             lastDate = expected;
             Accesdb.writeLastProcessedDate(expected);
         } else {
-            for (Worker worker : staffList) {
-                List<Day> calendar = Accesdb.readCalendarOf(worker.getIdWorker());
-                worker.setCalendar(calendar);
-            }
+            /*
+             * for (Section sec : sections) {
+             * List<Day> calendar = Accesdb.readCalendarOfSection(sec.getId());
+             * sec.setCalendar(calendar);
+             * }
+             * for (Worker worker : staffList) {
+             * List<Day> calendar = Accesdb.readCalendarOf(worker.getIdWorker());
+             * worker.setCalendar(calendar);
+             * }
+             */
         }
 
     }
 
+    public LocalDate getLastGeneratedDate(){
+        return Accesdb.readLastProcessedDate();
+    }
+
+    public void modifyAllCalendarWorker(Worker worker, WeekTemplate wt, boolean reduce) {
+        List<Day> cal = Accesdb.readCalendarOf(worker.getIdWorker());
+        applyWt(wt, cal, reduce);
+        Accesdb.removeWorkerCalendar(worker);
+        Accesdb.writeCalendar(worker.getIdWorker(), cal);
+    }
+
+    private void applyWt(WeekTemplate wt, List<Day> cal, boolean reduce) {
+        for (Day day : cal) {
+            int time = wt.getWorkingMinutes()[day.getDate().getDayOfWeek().getValue() - 1];
+            if (time < day.getWorkTime() || !reduce) {
+                day.setWorkTime(time);
+            }
+        }
+    }
+    public void modifyWeekCalendarSection(Section sec, WeekTemplate wt, LocalDate monday , boolean reduce){
+        LocalDate sunday = monday.plusDays(6);
+        List<Integer> secsIds = getSections(sec, wt);
+        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+
+        for (Integer secId : secsIds) {
+            List<Day> cal = Accesdb.readCalendarOfSection(secId, monday,sunday);
+            applyWt(wt, cal, reduce);
+            Accesdb.removeSectionCalendar(sec.getId(), monday, sunday);
+            Accesdb.writeSectionCalendar(sec.getId(), cal);
+        }
+
+        for (Integer idWorker : workersIds) {
+            List<Day> cal= Accesdb.readCalendarOf(idWorker, monday, sunday);
+            applyWt(wt, cal, reduce);
+            Accesdb.removeWorkerCalendar(idWorker, monday, sunday);
+            Accesdb.writeCalendar(idWorker, cal);
+        }
+
+    }
+
+
+    public void modifyAllCalendarSection(Section sec, WeekTemplate wt, boolean reduce) {
+        List<Integer> secsIds = getSections(sec, wt);
+        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+
+        for (Integer secId : secsIds) {
+            Accesdb.modifySection(sec);
+            List<Day> cal = Accesdb.readCalendarOfSection(secId);
+            applyWt(wt, cal, reduce);
+            Accesdb.removeSectionCalendar(sec);
+            Accesdb.writeSectionCalendar(sec.getId(), cal);
+        }
+
+        for (Integer idWorker : workersIds) {
+            List<Day> cal = Accesdb.readCalendarOf(idWorker);  
+            applyWt(wt, cal, reduce);
+            Accesdb.removeWorkerCalendar(idWorker);
+            Accesdb.writeCalendar(idWorker, cal);
+        }
+
+    }
+
+    public void modifyDayCalendarSection(Section sec, LocalDate date, Integer time, boolean reduce){
+        List<Integer> secsIds = new ArrayList<>();
+        if(sec==getGeneralSection()){
+            for (Section s : sections) {
+                secsIds.add(s.getId());                
+            }
+        } else
+        secsIds.add(sec.getId());
+        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+        for (Integer idWorker : workersIds) {
+            Integer tm = Accesdb.getDayWorktime(idWorker,date);
+            if(!reduce || tm> time)
+            Accesdb.modifyDay(idWorker, date, time);
+        }
+        for (Integer idSection : secsIds){
+            Integer tm =Accesdb.getDaySectionWorktime(idSection, date);
+            if(!reduce || tm> time)
+            Accesdb.modifySectionDay(idSection, date, time);
+            
+        }
+    }
+    
+    private List<Integer> getidWorkersOnSections(List<Integer> secsIds){
+        List<Integer> workersIds=new ArrayList<>();
+        for (Worker worker : staffList) {
+            if (secsIds.contains(worker.getSection()))
+                workersIds.add(worker.getIdWorker());
+        }
+
+        return workersIds;
+    }
+
+    private List<Integer>  getSections(Section sec, WeekTemplate wt) {
+        List<Integer> secsIds=new ArrayList<>();
+        if (sec == getGeneralSection()) {
+            for (Section sc : sections) {
+                sc.setWeekTemplate(wt);
+                secsIds.add(sc.getId());
+            }
+        } else {
+            for (Section sc : sections) {
+                if(sc.getId()==sec.getId())
+                sc.setWeekTemplate(wt);
+            }
+            secsIds.add(sec.getId());
+        }
+
+        return secsIds;
+    }
+
+    public void modifyDayCalendarWorker(Worker worker, LocalDate date, Integer newTimeMins) {
+        Accesdb.modifyDay(worker.getIdWorker(), date, newTimeMins);
+    }
+
+    public void modifyWeekCalendarWorker(Worker worker, WeekTemplate wt, LocalDate monday, boolean reduce) {
+        LocalDate sunday = monday.plusDays(6);
+        List<Day> cal = Accesdb.readCalendarOf(worker.getIdWorker(), monday, sunday);
+        applyWt(wt, cal, reduce);
+        Accesdb.removeWorkerCalendar(worker.getIdWorker(), monday, sunday);
+        Accesdb.writeCalendar(worker.getIdWorker(), cal);
+    }
+
     public void writeType(Type type) {
         Accesdb.updateType(type);
+    }
+
+    public WeekTemplate getWorkerWeek(Worker worker, LocalDate monday) {
+        return Accesdb.getWorkerWeek(worker.getIdWorker(), monday);
+    }
+
+    public WeekTemplate getSectionWeek(Section section, LocalDate monday) {
+        return Accesdb.getSectionWeek(section.getId(), monday);
+    }
+
+    public Section getGeneralSection() {
+        for (Section sec : sections) {
+            if (sec.getId() == -1)
+                return sec;
+        }
+        return null;
     }
 
     public int getNextTypeIdx() {
@@ -143,21 +292,50 @@ public class AdminModel {
         return list;
     }
 
+    private Section getSectionById(Integer id) {
+        for (Section sec : sections) {
+            if (sec.getId() == id)
+                return sec;
+        }
+        return null;
+    }
+
     private void generateCalendar(LocalDate sinceDate, LocalDate toDate, Worker worker) {
         List<Day> calendar = new ArrayList<>();
-        Integer key = 1;
-        if (weekTemplates.keySet().contains(worker.getIdWorker()))
-            key = worker.getIdWorker();
-        else if (weekTemplates.keySet().contains(worker.getSection()))
-            key = worker.getSection();
-
-        WeekTemplate wt = weekTemplates.getOrDefault(key, weekTemplates.get(-1));
+        Section sec = getGeneralSection();
+        if (worker.getSection() != null) {
+            sec = getSectionById(worker.getSection());
+        }
+        WeekTemplate wt = sec.getWeekTemplate();
         for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
             Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
             calendar.add(day);
         }
-        worker.setCalendar(calendar);
+        // worker.setCalendar(calendar);
         Accesdb.writeCalendar(worker.getIdWorker(), calendar);
+    }
+
+    private void generateCalendar(LocalDate sinceDate, LocalDate toDate, Worker worker, WeekTemplate wt) {
+        List<Day> calendar = new ArrayList<>();
+        for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
+            Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
+            calendar.add(day);
+        }
+        // worker.setCalendar(calendar);
+        Accesdb.writeCalendar(worker.getIdWorker(), calendar);
+    }
+
+    private void generateSectionCalendar(LocalDate sinceDate, LocalDate toDate, Section sec) {
+        List<Day> calendar = new ArrayList<>();
+
+        WeekTemplate wt = sec.getWeekTemplate();
+        for (LocalDate date = sinceDate; !date.isAfter(toDate); date = date.plusDays(1)) {
+            System.out.println(date + " -> " + wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
+            Day day = new Day(date, wt.getTotalTime(date.getDayOfWeek().getValue() - 1));
+            calendar.add(day);
+        }
+        // sec.setCalendar(calendar);
+        Accesdb.writeSectionCalendar(sec.getId(), calendar);
     }
 
     public void plan(List<TaskType> list) {
@@ -298,12 +476,22 @@ public class AdminModel {
         return staffList.get(id);
     }
 
+    public void addSection(String newSectionName) {
+        Section newSect = new Section(getNextSection(), newSectionName);
+        newSect.setWeekTemplate(getGeneralSection().getWeekTemplate());
+        System.out.println(getGeneralSection().getWeekTemplate());
+        sections.add(newSect);
+        Accesdb.addSection(newSect);
+        generateSectionCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), newSect);
+    }
+
     public void addNewWorker(Worker worker) {
         worker.setRol("WORKER");
         worker.setIdWorker(staffList.size());
         staffList.add(worker);
         Accesdb.addWorker(worker);
-        generateCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), worker);
+        Accesdb.copySectionCalendarToWorker(worker);
+        // generateCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), worker);
 
     }
 
@@ -365,18 +553,12 @@ public class AdminModel {
                 break; // Patxi!!
             }
         }
-        clearTask = clearTask && !Accesdb.isTaskinUse(task); // IMPROVE: SEE AT MEMORY, NOT DB.
+        clearTask = clearTask && !Accesdb.isTaskinUse(task); // IMPROVE: CHECK AT MEMORY, NOT DB.
         if (clearTask) {
             taskTypes.remove(task);
             Accesdb.removeTask(task);
         }
         return clearTask;
-    }
-
-    public void addSection(String newSectionName) {
-        Section newSect = new Section(getNextSection(), newSectionName);
-        sections.add(newSect);
-        Accesdb.addSection(newSect);
     }
 
     public void addTask(String newTaskName) {
@@ -457,10 +639,6 @@ public class AdminModel {
 
     public List<Worker> getStaffList() {
         return staffList;
-    }
-
-    public Map<Integer, WeekTemplate> getWeekTemplates() {
-        return weekTemplates;
     }
 
     public List<Rank> getRanks() {

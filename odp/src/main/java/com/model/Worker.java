@@ -30,12 +30,10 @@ public class Worker {
     String mail;
     String contact;
     String docFolder;
-    String type;
 
     Boolean active = true;
     List<Day> calendar = new ArrayList<>();
     List<TaskSkill> abilities = new ArrayList<>();
-    WeekTemplate weekTemplate;
     String rol;
 
     public Worker() {
@@ -48,7 +46,7 @@ public class Worker {
 
     public Worker(String idWorker, String userName, String fullName, String passwd, String since, String ssNum,
             String dni, String section, String rank, String address, String telNum, String mail, String contact,
-            String docFolder, String active, String type, String rol) {
+            String docFolder, String active, String rol) {
         this.idWorker = Integer.parseInt(idWorker);
         this.userName = userName;
         this.fullName = fullName;
@@ -68,7 +66,6 @@ public class Worker {
         if(docFolder==null) docFolder=App.WORKERS_FOLDER;
         this.docFolder = docFolder;
         this.active = active != null && active.equals("YES");
-        this.type = type;
         this.rol = rol;
         
     }
@@ -238,14 +235,6 @@ public class Worker {
         this.abilities = abilities;
     }
 
-    public WeekTemplate getWeekTemplate() {
-        return weekTemplate;
-    }
-
-    public void setWeekTemplate(WeekTemplate weekTemplate) {
-        this.weekTemplate = weekTemplate;
-    }
-
     public String getRol() {
         return rol;
     }
@@ -259,12 +248,5 @@ public class Worker {
         return userName;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
 }

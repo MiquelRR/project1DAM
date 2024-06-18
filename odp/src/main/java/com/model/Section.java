@@ -1,14 +1,23 @@
 package com.model;
 
+import java.util.List;
+
 public class Section {
     int id;
     String name;
-   /*  WeekTemplate weekTemplate; */
+    WeekTemplate weekTemplate; 
+    List<Day> calendar;
     
+    public List<Day> getCalendar() {
+        return calendar;
+    }
+    public void setCalendar(List<Day> calendar) {
+        this.calendar = calendar;
+    }
     public Section(int id, String name) {
         this.id = id;
         this.name = name;
-        /* this.weekTemplate = weekTemplate; */
+        
     }
     @Override
     public String toString(){
@@ -31,12 +40,12 @@ public class Section {
         this.name = name;
     }
 
-/*     public WeekTemplate getWeekTemplate() {
+  public WeekTemplate getWeekTemplate() {
         return weekTemplate;
     }
 
     public void setWeekTemplate(WeekTemplate weekTemplate) {
         this.weekTemplate = weekTemplate;
-    } */
+    } 
     
 }

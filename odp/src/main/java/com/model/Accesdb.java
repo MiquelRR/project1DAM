@@ -12,12 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.util.converter.LocalDateStringConverter;
-
 public class Accesdb {
 
     // DEBUGGING:
-    private static boolean local = false;
+    private static boolean local = true;
     private static boolean logMode = true;
 
     private static LogToFile bbddlog = new LogToFile("queries");
@@ -64,7 +62,7 @@ public class Accesdb {
 
 
     /**
-     * in further versions WILL BE IMPROVED to read onlilive orders
+     * in further versions WILL BE IMPROVED to read only live orders
      * 
      * @return
      */
@@ -79,6 +77,32 @@ public class Accesdb {
         }
         return list;
     }
+
+
+
+    public static WeekTemplate getWorkerWeek(Integer id, LocalDate monday){
+        return getWeek("idWorker", id, monday);
+    }
+
+    public static WeekTemplate getSectionWeek(Integer id, LocalDate monday){
+        return getWeek("idSection", id, monday);
+    }
+
+
+
+    protected static WeekTemplate getWeek(String str,Integer id, LocalDate monday){
+        LocalDate saturday=monday.plusDays(5);
+        List<String[]> lst =lligQuery("SELECT date, workTime FROM calendar WHERE "+str+" ="+id+" AND date BETWEEN '"+monday+"' AND '"+saturday+"';");
+        WeekTemplate wt = new WeekTemplate();
+        for (String[] reg : lst) {
+            LocalDate date= LocalDate.parse(reg[0]);
+            Integer time = Integer.parseInt(reg[1]);
+            wt.setTime(date, time);
+        }
+        return wt;
+    }
+
+    
 
     public static Integer getLastLiveIdTask() {
         String[] n = lligReg("SELECT MAX(idLiveTask) FROM liveTask;");
@@ -127,6 +151,14 @@ public class Accesdb {
         return map;
     }
 
+    public static void copySectionCalendarToWorker(Worker w){
+        int sectionId=w.getSection();
+        int workerId=w.getIdWorker();
+        String query="INSERT INTO calendar (idWorker, date, workTime, idSection) SELECT "+workerId+" AS idWorker, date, workTime, NULL AS idSection FROM calendar WHERE idSection = "+sectionId+" AND date >= CURDATE();";
+        System.out.println(query);
+        modifica(query);
+    }
+
     public static List<TaskType> readLiveTasks() {
         List<TaskType> returnList = new ArrayList<>();
         List<String[]> lst = lligQuery(
@@ -157,6 +189,8 @@ public class Accesdb {
         for (String[] reg : lst) {
             Section section = new Section(Integer.parseInt(reg[0]), reg[1]);
             list.add(section);
+            WeekTemplate wt =  new WeekTemplate(Integer.parseInt(reg[2]), Integer.parseInt(reg[3]),Integer.parseInt(reg[4]),Integer.parseInt(reg[5]),Integer.parseInt(reg[6]),Integer.parseInt(reg[7]));
+            section.setWeekTemplate(wt);
         }
         return list;
     }
@@ -178,7 +212,6 @@ public class Accesdb {
                 "contact", worker.getContact(),
                 "docFolder", worker.getDocFolder(),
                 "active", (worker.getActive()) ? "YES" : "NO",
-                "workerType", "WORKER",
                 "workerRol", "WORKER"
         };
 
@@ -206,6 +239,34 @@ public class Accesdb {
         modifica(query);
 
     }
+    public static void addSection(Section sec) {
+        WeekTemplate wt=sec.getWeekTemplate();
+        agrega(BBDD_NAME + ".section", new Object[] { "idSection", sec.getId(), "name", sec.toString() ,
+         "monday",wt.getTotalTime("monday"),
+         "tuesday",wt.getTotalTime("tuesday"),
+         "wednesday",wt.getTotalTime("wednesday"),
+         "thursday",wt.getTotalTime("thursday"),
+         "friday",wt.getTotalTime("friday"),
+         "saturday",wt.getTotalTime("saturday"),
+         "sunday",0
+        });
+    }
+
+    public static void modifySection(Section sec){
+        WeekTemplate wt=sec.getWeekTemplate();
+        String query = "UPDATE section SET";
+        query += " name = '"+sec.getName();
+        query += "', monday = "+wt.getTotalTime("monday");
+        query += ", tuesday = "+wt.getTotalTime("tuesday");
+        query += ", wednesday = "+wt.getTotalTime("wednesday");
+        query += ", thursday = "+wt.getTotalTime("thursday");
+        query += ", friday = "+wt.getTotalTime("friday");
+        query += ", saturday = "+wt.getTotalTime("saturday");
+        query += ", sunday = 0 ";
+        query += " WHERE idSection = "+sec.getId()+";";
+        modifica(query);
+    }
+
 
     public static void updateType(Type type) {
         String query = "UPDATE productType SET";
@@ -236,9 +297,7 @@ public class Accesdb {
 
     }
 
-    public static void addSection(Section sec) {
-        agrega(BBDD_NAME + ".section", new Object[] { "idSection", sec.getId(), "name", sec.toString() });
-    }
+  
 
     public static void addTask(TaskSkill task) {
 
@@ -262,8 +321,10 @@ public class Accesdb {
     }
 
     public static void removeSection(Section sec) {
+        modifica("DELETE FROM " + BBDD_NAME + ".calendar WHERE idSection = " + sec.getId());
         modifica("DELETE FROM " + BBDD_NAME + ".section WHERE idSection = " + sec.getId());
     }
+
 
     public static void removeRank(Rank rank) {
         modifica("DELETE FROM " + BBDD_NAME + ".rank WHERE idRank = " + rank.getId());
@@ -336,13 +397,65 @@ public class Accesdb {
     }
 
     public static List<Day> readCalendarOf(Integer idWorker) {
-        List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE idWorker=" + idWorker);
+        List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE date >= CURDATE() AND idWorker=" + idWorker);
         List<Day> returnList = new ArrayList<>();
         for (String[] reg : list) {
             Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
             returnList.add(day);
         }
         return returnList;
+    }
+
+    public static List<Day> readCalendarOf(Integer idWorker, LocalDate since, LocalDate toDate) {
+        List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE idWorker=" + idWorker+" AND date BETWEEN '"+since+"' AND '"+toDate+"';");
+        List<Day> returnList = new ArrayList<>();
+        for (String[] reg : list) {
+            Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
+            returnList.add(day);
+        }
+        return returnList;
+    }
+
+    public static void removeWorkerCalendar(Integer idWorker, LocalDate since, LocalDate toDate) {
+        String query= "DELETE FROM calendar WHERE idWorker=" + idWorker+" AND date BETWEEN '"+since+"' AND '"+toDate+"';";
+        modifica(query);
+    }
+    public static void removeWorkerCalendar(Worker worker){
+        modifica("DELETE FROM calendar WHERE idWorker="+worker.getIdWorker());
+    }
+    public static void removeWorkerCalendar(Integer idWorker){
+        modifica("DELETE FROM calendar WHERE idWorker="+idWorker);
+    }
+
+    public static void removeSectionCalendar(Integer idSection, LocalDate since, LocalDate toDate) {
+        String query= "DELETE FROM calendar WHERE idSection=" + idSection+" AND date BETWEEN '"+since+"' AND '"+toDate+"';";
+        modifica(query);
+    }
+
+    public static void removeSectionCalendar(Section sec){
+        modifica("DELETE FROM calendar WHERE idSection = "+sec.getId());
+    }
+
+    public static List<Day> readCalendarOfSection(Integer idSection) {
+        List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE date >= CURDATE() AND idSection=" + idSection);
+        List<Day> returnList = new ArrayList<>();
+        for (String[] reg : list) {
+            Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
+            returnList.add(day);
+        }
+        return returnList;
+    }
+//HERE
+    public static List<Day> readCalendarOfSection(Integer idSection, LocalDate fromDate , LocalDate toDate ) {
+        List<Day> cal = new ArrayList<>();
+        List<String[]> lst =lligQuery("SELECT date, workTime FROM calendar WHERE idSection ="+idSection+" AND date BETWEEN '"+fromDate+"' AND '"+toDate+"';");
+        for (String[] reg : lst) {
+            LocalDate date= LocalDate.parse(reg[0]);
+            Integer time = Integer.parseInt(reg[1]);
+            Day day= new Day(date, time);
+            cal.add(day);
+        }
+        return cal;
     }
 
     private static Map<Integer, String> skill;
@@ -380,10 +493,9 @@ public class Accesdb {
             String contact = reg[12];
             String docFolder = reg[13];
             String active = reg[14];
-            String type = reg[15];
-            String rol = reg[16];
+            String rol = reg[15];
             Worker wk = new Worker(idWorker, userName, fullName, passwd, since, ssNum, dni, section, rank, address,
-                    telNum, mail, contact, docFolder, active, type, rol);
+                    telNum, mail, contact, docFolder, active, rol);
             readedList.add(wk);
         }
         return readedList;
@@ -407,12 +519,37 @@ public class Accesdb {
         }
     }
 
+    public static void modifyDay(Integer idWorker, LocalDate date, Integer time){
+        modifica("UPDATE calendar SET workTime = "+time+" WHERE idWorker = "+idWorker+" AND date = '"+date+"';");
+    }
+    public static void modifySectionDay(Integer idSection, LocalDate date, Integer time){
+        modifica("UPDATE calendar SET workTime = "+time+" WHERE idSection = "+idSection+" AND date = '"+date+"';");
+    }
+
+    public static Integer getDayWorktime(Integer idWorker, LocalDate date){
+        String res=lligString("SELECT workTime FROM calendar WHERE idWorker = "+idWorker+" AND date = '"+date+"';");
+        return Integer.parseInt(res);
+        
+    }
+
+    public static Integer getDaySectionWorktime(Integer idSection, LocalDate date){
+        String res=lligString("SELECT workTime FROM calendar WHERE idSection = "+idSection+" AND date = '"+date+"';");
+        return Integer.parseInt(res);
+        
+    }
+
     public static void writeCalendar(int idWorker, List<Day> calendar) {
         for (Day day : calendar) {
             agrega("calendar", new Object[] { "idWorker", idWorker, "date", day.getDate().toString(), "workTime",
                     day.getWorkTime() });
         }
+    }
 
+    public static void writeSectionCalendar(int idSection, List<Day> calendar) {
+        for (Day day : calendar) {
+            agrega("calendar", new Object[] { "idSection", idSection, "date", day.getDate().toString(), "workTime",
+                    day.getWorkTime() });
+        }
     }
 
     public static RolAndId trustWorker(String username, String pwd) {

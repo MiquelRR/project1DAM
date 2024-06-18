@@ -12,13 +12,15 @@ import com.model.Rank;
 import com.model.Section;
 import com.model.TaskSkill;
 import com.model.Type;
-import com.model.Worker;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -27,6 +29,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -35,6 +38,10 @@ public class adminMenuController {
     final String OK = "✔";
     final String MENU = "☰";
     private String message = "";
+
+    @FXML
+    private Pane root;
+
     @FXML
     private Label title;
 
@@ -154,12 +161,40 @@ public class adminMenuController {
     @FXML
     void addSection(ActionEvent event) {
         if (sectionField.getText().length() > 1) {
-            adminModel.addSection(sectionField.getText());
-            sectionField.setText("");
-            ;
-            addSectionButton.setDisable(false);
-            addSectionButton.setText("+");
-            refresh();
+            sectionField.setCursor(Cursor.WAIT);
+
+            Task<Void> task = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    adminModel.addSection(sectionField.getText());
+                    return null;
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    Platform.runLater(() -> {
+                        sectionField.setText("");
+                        addSectionButton.setText("+");
+                        refresh();
+                        sectionField.setCursor(Cursor.DEFAULT);
+                    });
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    Platform.runLater(() -> {
+                        App.showDialog("Error inserción sección "+sectionField.getText());
+                        sectionField.setText("");
+                        addSectionButton.setText("+");
+                        refresh();
+                        sectionField.setCursor(Cursor.DEFAULT);
+                        
+                    });
+                }
+            };
+            new Thread(task).start();
         } else {
             addSectionButton.setDisable(true);
             sectionChooser.setVisible(false);
@@ -167,7 +202,6 @@ public class adminMenuController {
             sectionField.requestFocus();
             removeSectionButton.setVisible(false);
         }
-
     }
 
     @FXML
@@ -354,6 +388,7 @@ public class adminMenuController {
         addSectionButton.setVisible(true);
         addSectionButton.setDisable(false);
         addSectionButton.setText(OK);
+
     }
 
     @FXML
@@ -426,7 +461,7 @@ public class adminMenuController {
             sectionChooser.getSelectionModel().select(sectionChooser.getItems().size() - 1);
             addSectionButton.setVisible(true);
         }
-        if (sectionChooser.getValue().getId() == -1) //general section
+        if (sectionChooser.getValue().getId() == -1) // general section
             removeSectionButton.setVisible(false);
 
         if (adminModel.getRanks().isEmpty()) {
@@ -540,6 +575,7 @@ public class adminMenuController {
 
     @FXML
     void initialize() {
+        // root.setCursor(Cursor.WAIT);
         addOrderButton.setDisable(true);
         refreshBorders();
 
