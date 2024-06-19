@@ -2,13 +2,11 @@ package com;
 import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.model.Accesdb;
 import com.model.AdminModel;
 import com.model.Section;
 import com.model.WeekTemplate;
@@ -243,8 +241,7 @@ public class calendarsController {
 
                 Boolean weekTemplatesEdit = (dayWeekAllChoice.getValue() == null
                                 || dayWeekAllChoice.getValue().equals("PARA TODAS LAS SEMANAS"));
-                
-                
+
                 dateSelector.setDisable(weekTemplatesEdit);
                 selectedDate = dateSelector.getValue();
                 prevButon.setDisable(weekTemplatesEdit || selectedDate.isBefore(LocalDate.now().plusDays(1)));
@@ -259,6 +256,7 @@ public class calendarsController {
                 int enabled = 8;
                 if (dayWeekAllChoice.getValue() == null || dayWeekAllChoice.getValue().equals("SOLO ESTE DIA"))
                         enabled = weekDate;
+
                 for (int i = 0; i < dayField.length; i++) {
                         String tx = (weekTemplatesEdit || !(enabled == 8 || enabled == i)) ? ""
                                         : formatLocalDate(monday.plusDays(i));
@@ -275,9 +273,8 @@ public class calendarsController {
 
                 // show weektemplate
                 Section sec;
-                if (sectionChoice.getValue() != null && workerChoice.getValue() != null
-                                && dayWeekAllChoice.getValue() != null) {
-                        if (sectionChoice.getValue() == solo) {
+                if (sectionChoice.getValue() != null && dayWeekAllChoice.getValue() != null) {
+                        if (workerChoice.getValue() != null && sectionChoice.getValue() == solo) {
                                 sec = adminModel.getSectionById(workerChoice.getValue().getSection());
                                 System.out.println(workerChoice.getValue()+ " belongs to  "+sec);
                         } else
@@ -456,7 +453,7 @@ public class calendarsController {
                 return null;
         }
 
-        static Boolean initzialitzed = false;
+        static Boolean initialized = false;
         static Section solo;
         static LocalDate lastDate;
         @FXML
@@ -490,7 +487,7 @@ public class calendarsController {
                         }
                 }
 
-                initzialitzed = true;
+                initialized = true;
 
                 dayField = new TextField[] { mondayField, tuesdayField, wednesdayField, thursdayField, fridayField,
                                 saturdayField };
@@ -500,19 +497,23 @@ public class calendarsController {
 
                 solo = new Section(-101, "SOLO UN TRABAJADOR --->");
                 sectionChoice.getItems().setAll(adminModel.getSections());
-                sectionChoice.getItems().add(solo);
-                sectionChoice.getSelectionModel().selectLast();
-                workerChoice.getItems().setAll(adminModel.getActiveWorkers());
-                workerChoice.getSelectionModel().selectLast();
-                workerChoice.setDisable(true);
+                if(adminModel.getActiveWorkers().isEmpty()) {
+                        workerChoice.setVisible(false);
+                } else {
+                        sectionChoice.getItems().add(solo);
+                        workerChoice.getItems().setAll(adminModel.getActiveWorkers());
+                        workerChoice.getSelectionModel().selectLast();
+                        workerChoice.setDisable(true);
+                }
+                sectionChoice.getSelectionModel().select(App.getDefaultSection());
                 System.out.println("0->" + workerChoice.getValue());
                 reduceChoice.getItems().setAll("SOLO REDUCE HORARIO", "REDUCE y/o AMPLIA");
                 reduceChoice.getSelectionModel().selectLast();
                 dayWeekAllChoice.getItems().setAll("SOLO ESTE DIA", "LA SEMANA MOSTRADA", "PARA TODAS LAS SEMANAS");
                 dayWeekAllChoice.getSelectionModel().selectLast();
                 dateSelector.setValue(LocalDate.now());
-                for (int i = 0; i < dayField.length; i++) {
-                        dayField[i].setDisable(true);
+                for (TextField textField : dayField) {
+                        textField.setDisable(true);
                 }
 
                 refresh();

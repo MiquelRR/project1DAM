@@ -1,6 +1,5 @@
 package com;
 //
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -8,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.model.Accesdb;
 import com.model.AdminModel;
 import com.model.Rank;
 import com.model.Section;
@@ -21,11 +19,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 public class workerProfileControllerB {
@@ -115,7 +109,6 @@ public class workerProfileControllerB {
     @FXML
     private void showWorker(Worker worker) {
         nickField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
-        nickField.setText((worker.getUserName() == null) ? "" : worker.getUserName());
         nameField.setText((worker.getFullName() == null) ? "" : worker.getFullName());
         passField.setText((worker.getPasswd() == null) ? "" : worker.getPasswd());
         if (worker.getSince() == null) {
@@ -142,14 +135,14 @@ public class workerProfileControllerB {
         telField.setText((worker.getTelNum() == null) ? "" : worker.getTelNum());
         mailField.setText((worker.getMail() == null) ? "" : worker.getMail());
         otherField.setText((worker.getContact() == null) ? "" : worker.getContact());
-        activeCheckbox.setSelected(worker.getActive() == null || !worker.getActive());
+        activeCheckbox.setSelected(!worker.isActive());
         refresh();
     }
 
     @FXML
     Boolean applyButtonPressed(ActionEvent event) {
         String alert = "";
-        Boolean required = true;
+        boolean required = true;
         if (nameField.getText().isBlank()) {
             alert += "Rellena el Nombre completo\n";
             required = false;
@@ -179,6 +172,9 @@ public class workerProfileControllerB {
         }
         ;
         if (required) {
+            if(App.editedWorker.getSection()!=sectionChoice.getValue().getId()){
+                App.showDialog("Atención: Cambiar de seccion implica generar un nuevo calendario.");
+            }
             App.editedWorker.setFullName(nameField.getText());
             App.editedWorker.setSince(datePicker.getValue());
             App.editedWorker.setSsNum(ssField.getText());
@@ -313,12 +309,14 @@ public class workerProfileControllerB {
         if (App.editedWorker.getDocFolder().equals(App.WORKERS_FOLDER))
             color = "-fx-text-fill: orange;";
         else
-            color = "#c7c7c7";
+            color = "#c7c7c7" ;
+
         folderButton.setStyle(color);
         if (App.editedWorker.getAbilities() == null)
             color = "-fx-text-fill: orange;";
         else
-            color = "#c7c7c7";
+            color = "#c7c7c7" ;
+
         abilitiesButton.setStyle(color);
         applyButton.setText((App.workerProfModeAdd) ? "Añadir" : "Actualiza");
         if (App.isWorkerProfModeAdd()) {
@@ -369,6 +367,23 @@ public class workerProfileControllerB {
 
     @FXML
     void initialize() {
+        Tooltip customTooltip = new Tooltip("la sección define el calendario de el trabajador");
+        customTooltip.setStyle("-fx-font-size: 10px; ");
+        Tooltip.install(sectionChoice, customTooltip);
+        customTooltip = new Tooltip("acceso a la carpeta de documentos del trabajador");
+        customTooltip.setStyle("-fx-font-size: 10px; ");
+        Tooltip.install(folderButton, customTooltip);
+        customTooltip = new Tooltip("define las tareas qe este trabajador puede realizar");
+        customTooltip.setStyle("-fx-font-size: 10px; ");
+        Tooltip.install(abilitiesButton, customTooltip);
+        customTooltip = new Tooltip("Nombre corto par identificarlo en todo el sistema, sin espacios");
+        customTooltip.setStyle("-fx-font-size: 10px; ");
+        Tooltip.install(nickField, customTooltip);
+        customTooltip = new Tooltip("password para acceso a su panel de trabajador");
+        customTooltip.setStyle("-fx-font-size: 10px; ");
+        Tooltip.install(passField, customTooltip);
+
+
         for (javafx.scene.Node node : root.getChildren()) {
             if (node instanceof TextField) {
                 TextField textField = (TextField) node;

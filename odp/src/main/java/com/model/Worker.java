@@ -211,7 +211,7 @@ public class Worker {
         this.docFolder = docFolder;
     }
 
-    public Boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 

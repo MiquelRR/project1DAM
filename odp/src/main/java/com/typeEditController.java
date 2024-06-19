@@ -176,10 +176,9 @@ public class typeEditController {
         private int[] order() {
                 int maxY = 0;
                 List<Integer> columns = new ArrayList<>();
-                Integer lastColumn = 0;
+                int lastColumn = 0;
                 List<Integer> orderedIds = new ArrayList<>();
-                List<TaskType> taskListCp = new ArrayList<>();
-                taskListCp.addAll(edited.getTaskList());
+                List<TaskType> taskListCp = new ArrayList<>(edited.getTaskList());
 
                 while (!taskListCp.isEmpty()) {
                         List<Integer> taskColumn = new ArrayList<>();
@@ -198,12 +197,7 @@ public class typeEditController {
                                 }
                         }
 
-                        Iterator<TaskType> iterator = taskListCp.iterator();
-                        while (iterator.hasNext()) {
-                                TaskType tk = iterator.next();
-                                if (taskColumn.contains(tk.getId()))
-                                        iterator.remove();
-                        }
+                        taskListCp.removeIf(tk -> taskColumn.contains(tk.getId()));
 
                         orderedIds.addAll(taskColumn);
                         lastColumn++;
@@ -248,12 +242,10 @@ public class typeEditController {
                 alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == buttonTypeOne) {
-                        edited.setDefaultFlder();
-                        edited.setTaskList(new ArrayList<>());
                         Stage stage = (Stage) exitButton.getScene().getWindow();
                         stage.close();
                 }
-                App.editedModel = null;
+                //App.editedModel = null;
         }
 
         @FXML

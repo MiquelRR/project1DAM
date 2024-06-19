@@ -5,6 +5,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 //-------------------------------- Singleton 
 public class AdminModel {
@@ -38,17 +39,18 @@ public class AdminModel {
         Map<Integer, List<TaskType>> toAttachInTypes = Accesdb.readLivetaskModels();
 
         for (Type t : types) {
-            List<TaskType> listToAtach = toAttachInTypes.getOrDefault(t.getIdType(), new ArrayList<>());
-            t.setTaskList(listToAtach);
+            List<TaskType> listToAttach = toAttachInTypes.getOrDefault(t.getIdType(), new ArrayList<>());
+            t.setTaskList(listToAttach);
         }
 
         for (Type m : models) {
-            List<TaskType> listToAtach = toAttachInTypes.getOrDefault(m.getIdType(), new ArrayList<>());
-            m.setTaskList(listToAtach);
+            List<TaskType> listToAttach = toAttachInTypes.getOrDefault(m.getIdType(), new ArrayList<>());
+            System.out.println(m.getName()+"--------------------------->"+listToAttach.toString());
+            m.setTaskList(listToAttach);
         }
-        for (Integer i : toAttachInTypes.keySet()) {
-
-        }
+//        for (Integer i : toAttachInTypes.keySet()) {
+//
+//        }
 
         admins = new ArrayList<>();
 
@@ -64,6 +66,10 @@ public class AdminModel {
             if (worker.getRol().equals("ROOT"))
                 admins.add(worker);
         }
+
+        List<Worker> unActives;
+
+
 
         staffList.removeAll(admins);
         LocalDate lastDate = Accesdb.readLastProcessedDate();
@@ -118,7 +124,7 @@ public class AdminModel {
     public void modifyWeekCalendarSection(Section sec, WeekTemplate wt, LocalDate monday , boolean reduce){
         LocalDate sunday = monday.plusDays(6);
         List<Integer> secsIds = getSections(sec, wt);
-        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+        List<Integer> workersIds = getIdWorkersOnSections(secsIds);
 
         for (Integer secId : secsIds) {
             List<Day> cal = Accesdb.readCalendarOfSection(secId, monday,sunday);
@@ -139,7 +145,7 @@ public class AdminModel {
 
     public void modifyAllCalendarSection(Section sec, WeekTemplate wt, boolean reduce) {
         List<Integer> secsIds = getSections(sec, wt);
-        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+        List<Integer> workersIds = getIdWorkersOnSections(secsIds);
 
         for (Integer secId : secsIds) {
             Accesdb.modifySection(sec);
@@ -165,22 +171,22 @@ public class AdminModel {
                 secsIds.add(s.getId());                
             }
         } else
-        secsIds.add(sec.getId());
-        List<Integer> workersIds = getidWorkersOnSections(secsIds);
+            secsIds.add(sec.getId());
+        List<Integer> workersIds = getIdWorkersOnSections(secsIds);
         for (Integer idWorker : workersIds) {
             Integer tm = Accesdb.getDayWorktime(idWorker,date);
             if(!reduce || tm> time)
-            Accesdb.modifyDay(idWorker, date, time);
+                Accesdb.modifyDay(idWorker, date, time);
         }
         for (Integer idSection : secsIds){
             Integer tm =Accesdb.getDaySectionWorktime(idSection, date);
             if(!reduce || tm> time)
-            Accesdb.modifySectionDay(idSection, date, time);
+                Accesdb.modifySectionDay(idSection, date, time);
             
         }
     }
     
-    private List<Integer> getidWorkersOnSections(List<Integer> secsIds){
+    private List<Integer> getIdWorkersOnSections(List<Integer> secsIds){
         List<Integer> workersIds=new ArrayList<>();
         for (Worker worker : staffList) {
             if (secsIds.contains(worker.getSection()))
@@ -200,7 +206,7 @@ public class AdminModel {
         } else {
             for (Section sc : sections) {
                 if(sc.getId()==sec.getId())
-                sc.setWeekTemplate(wt);
+                    sc.setWeekTemplate(wt);
             }
             secsIds.add(sec.getId());
         }
@@ -273,12 +279,10 @@ public class AdminModel {
     }
 
     public List<Worker> getActiveWorkers() {
-        List<Worker> returnList = new ArrayList<>();
-        for (Worker worker : staffList) {
-            if (worker.getActive())
-                returnList.add(worker);
-        }
-        return returnList;
+
+        return staffList.stream()
+                .filter(Worker::isActive)
+                .collect(Collectors.toList());
     }
 
     public List<Type> getModelsOf(Type type) {
@@ -452,7 +456,7 @@ public class AdminModel {
     }
 
     public Integer getNextIdTask() {
-        return lastIdtask++;
+        return ++lastIdtask;
 
     }
 
@@ -479,10 +483,11 @@ public class AdminModel {
     public void addSection(String newSectionName) {
         Section newSect = new Section(getNextSection(), newSectionName);
         newSect.setWeekTemplate(getGeneralSection().getWeekTemplate());
-        System.out.println(getGeneralSection().getWeekTemplate());
+        //System.out.println(getGeneralSection().getWeekTemplate());
         sections.add(newSect);
         Accesdb.addSection(newSect);
-        generateSectionCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), newSect);
+        Accesdb.copySectionCalendarToSection(getGeneralSection(),newSect);
+        //generateSectionCalendar(LocalDate.now(), Accesdb.readLastProcessedDate(), newSect);
     }
 
     public void addNewWorker(Worker worker) {
@@ -598,6 +603,7 @@ public class AdminModel {
         newModel.setTaskList(new ArrayList<>(refsMap.keySet()));
         models.add(newModel);
         Accesdb.addType(newModel);
+        Accesdb.updateType(newModel);
         return newModel;
         // at this moment cloned tasktypes aren't saved to ddbb, will be done later when
         // edited
@@ -670,4 +676,10 @@ public class AdminModel {
         return sections;
     }
 
+    public void removeType(Type value) {
+        if(types.contains(value) && getModelsOf(value).isEmpty()) {
+            types.remove(value);
+            Accesdb.removeType(value);
+        }
+    }
 }

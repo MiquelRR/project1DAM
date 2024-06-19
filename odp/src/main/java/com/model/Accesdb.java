@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Accesdb {
 
@@ -126,16 +123,16 @@ public class Accesdb {
                 "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime FROM " + BBDD_NAME
                         + ".liveTask WHERE date IS null;");
         for (String[] reg : lst) {
-            Integer idLliveTask = Integer.parseInt(reg[0]);
+            Integer idLiveTask = Integer.parseInt(reg[0]);
             TaskType tt = new TaskType(
-                    idLliveTask,
+                    idLiveTask,
                     Integer.parseInt(reg[1]),
                     Integer.parseInt(reg[2]),
                     skill.get(Integer.parseInt(reg[2])),
                     reg[3],
                     Integer.parseInt(reg[4]),
                     Integer.parseInt(reg[5]));
-            taskTypesMap.put(idLliveTask, tt);
+            taskTypesMap.put(idLiveTask, tt);
         }
         lst = lligQuery("SELECT * FROM " + BBDD_NAME + ".taskDependency;");
         for (String[] reg : lst) {
@@ -144,7 +141,7 @@ public class Accesdb {
             taskTypesMap.get(taskId).addDependency(taskTypesMap.get(depensOnId));
         }
         for (TaskType tt : taskTypesMap.values()) {
-            if (!map.keySet().contains(tt.getTypeRef()))
+            if (!map.containsKey(tt.getTypeRef()))
                 map.put(tt.getTypeRef(), new ArrayList<>());
             map.get(tt.getTypeRef()).add(tt);
         }
@@ -155,7 +152,15 @@ public class Accesdb {
         int sectionId=w.getSection();
         int workerId=w.getIdWorker();
         String query="INSERT INTO calendar (idWorker, date, workTime, idSection) SELECT "+workerId+" AS idWorker, date, workTime, NULL AS idSection FROM calendar WHERE idSection = "+sectionId+" AND date >= CURDATE();";
-        System.out.println(query);
+        modifica(query);
+    }
+
+    public static void copySectionCalendarToSection(Section target, Section destination){
+        int targetId=target.getId();
+        int destinationId=destination.getId();
+        String query="INSERT INTO calendar (date, workTime, idSection)\n" +
+                "SELECT date, workTime, "+destinationId+" AS idSection\n" +
+                "FROM calendar WHERE idSection = "+targetId+" AND date >= CURDATE();";
         modifica(query);
     }
 
@@ -165,10 +170,10 @@ public class Accesdb {
                 "SELECT idLiveTask, idproductType, idTask, taskInstructions, initTime, pieceTime, date, idWorker FROM " + BBDD_NAME
                         + ".liveTask WHERE date > current_date AND done = 'NO';");
                         for (String[] reg : lst) {
-                            Integer idLliveTask = Integer.parseInt(reg[0]);
+                            Integer idLiveTask = Integer.parseInt(reg[0]);
                             LocalDate date = LocalDate.parse(reg[6]);
                             TaskType tt = new TaskType(
-                                    idLliveTask,
+                                    idLiveTask,
                                     Integer.parseInt(reg[1]),
                                     Integer.parseInt(reg[2]),
                                     skill.get(Integer.parseInt(reg[2])),
@@ -178,7 +183,7 @@ public class Accesdb {
                                     date,
                                     Integer.parseInt(reg[7])
                                     );
-                                    returnList.add(idLliveTask, tt);
+                                    returnList.add(idLiveTask, tt);
                         }
         return returnList;
     }
@@ -211,7 +216,7 @@ public class Accesdb {
                 "email", worker.getMail(),
                 "contact", worker.getContact(),
                 "docFolder", worker.getDocFolder(),
-                "active", (worker.getActive()) ? "YES" : "NO",
+                "active", (worker.isActive()) ? "YES" : "NO",
                 "workerRol", "WORKER"
         };
 
@@ -220,7 +225,14 @@ public class Accesdb {
     }
 
     public static void updateWorker(Worker worker) { ////
-        String query = "UPDATE worker SET";
+        String query = "SELECT idSection FROM worker WHERE idWorker = " + worker.getIdWorker();
+        Integer lastSectionId = toInt(lligString(query));
+        if(!Objects.equals(lastSectionId, worker.getSection())){
+            query="DELETE FROM calendar WHERE idWorker = " + worker.getIdWorker();
+            modifica(query);
+            copySectionCalendarToWorker(worker);
+        }
+        query = "UPDATE worker SET";
         query += " userName = '" + worker.getUserName();
         query += "', fullName = '" + worker.getFullName();
         query += "', password = '" + worker.getPasswd();
@@ -234,7 +246,7 @@ public class Accesdb {
         query += "', email = '" + worker.getMail();
         query += "', contact = '" + worker.getContact();
         query += "', docFolder = '" + worker.getDocFolder();
-        query += "', active = " + ((worker.getActive()) ? "'YES'" : "'NO'");
+        query += "', active = " + ((worker.isActive()) ? "'YES'" : "'NO'");
         query += " WHERE idWorker = " + worker.getIdWorker();
         modifica(query);
 
@@ -279,8 +291,8 @@ public class Accesdb {
         for (TaskType tk : type.getTaskList()) {
             modifica("DELETE FROM " + BBDD_NAME + ".taskDependency WHERE idtaskInType = " + tk.getId());
         }
-        List<Integer[]> bufferDependencies = new ArrayList<>(); // for Miquel on future : you must write on the ddbb
-                                                                // dependencies once task are written (Foreing Keys)
+        List<Integer[]> bufferDependencies = new ArrayList<>();
+
         modifica("DELETE FROM " + BBDD_NAME + ".liveTask WHERE idproductType = " + type.getIdType());
         for (TaskType tk : type.getTaskList()) {
             agrega(BBDD_NAME + ".liveTask", new Object[] { "idLiveTask", tk.getId(), "idproductType", type.getIdType(),
@@ -325,6 +337,11 @@ public class Accesdb {
         modifica("DELETE FROM " + BBDD_NAME + ".section WHERE idSection = " + sec.getId());
     }
 
+    public static void removeType(Type type) {
+        modifica("DELETE FROM " + BBDD_NAME + ".productType WHERE idproductType = " + type.getIdType());
+
+    }
+
 
     public static void removeRank(Rank rank) {
         modifica("DELETE FROM " + BBDD_NAME + ".rank WHERE idRank = " + rank.getId());
@@ -335,7 +352,7 @@ public class Accesdb {
     }
 
     public static boolean isTaskinUse(TaskSkill task) {
-        return lligQuery("SELECT * FROM " + BBDD_NAME + ".liveTask WHERE idTask=" + task.getId()).size() > 0;
+        return !lligQuery("SELECT * FROM " + BBDD_NAME + ".liveTask WHERE idTask=" + task.getId()).isEmpty();
     }
 
     public static LocalDate readLastProcessedDate() {
@@ -398,6 +415,10 @@ public class Accesdb {
 
     public static List<Day> readCalendarOf(Integer idWorker) {
         List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE date >= CURDATE() AND idWorker=" + idWorker);
+        return getDays(list);
+    }
+
+    private static List<Day> getDays(List<String[]> list) {
         List<Day> returnList = new ArrayList<>();
         for (String[] reg : list) {
             Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
@@ -408,12 +429,7 @@ public class Accesdb {
 
     public static List<Day> readCalendarOf(Integer idWorker, LocalDate since, LocalDate toDate) {
         List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE idWorker=" + idWorker+" AND date BETWEEN '"+since+"' AND '"+toDate+"';");
-        List<Day> returnList = new ArrayList<>();
-        for (String[] reg : list) {
-            Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
-            returnList.add(day);
-        }
-        return returnList;
+        return getDays(list);
     }
 
     public static void removeWorkerCalendar(Integer idWorker, LocalDate since, LocalDate toDate) {
@@ -438,12 +454,7 @@ public class Accesdb {
 
     public static List<Day> readCalendarOfSection(Integer idSection) {
         List<String[]> list = lligQuery("SELECT date, workTime FROM calendar WHERE date >= CURDATE() AND idSection=" + idSection);
-        List<Day> returnList = new ArrayList<>();
-        for (String[] reg : list) {
-            Day day = new Day(LocalDate.parse(reg[0]), Integer.parseInt(reg[1]));
-            returnList.add(day);
-        }
-        return returnList;
+        return getDays(list);
     }
 //HERE
     public static List<Day> readCalendarOfSection(Integer idSection, LocalDate fromDate , LocalDate toDate ) {
@@ -451,7 +462,7 @@ public class Accesdb {
         List<String[]> lst =lligQuery("SELECT date, workTime FROM calendar WHERE idSection ="+idSection+" AND date BETWEEN '"+fromDate+"' AND '"+toDate+"';");
         for (String[] reg : lst) {
             LocalDate date= LocalDate.parse(reg[0]);
-            Integer time = Integer.parseInt(reg[1]);
+            int time = Integer.parseInt(reg[1]);
             Day day= new Day(date, time);
             cal.add(day);
         }
@@ -502,7 +513,7 @@ public class Accesdb {
     }
 
     public static void initStaff() {
-        // generate "GENERAL" calendar if does't exist;
+        // generate "GENERAL" calendar if doesn't exist;
         LocalDate today = LocalDate.now();
         LocalDate lastDate = today;
         int nextYear = today.getYear() + 1;
@@ -748,5 +759,6 @@ public class Accesdb {
         }
         return eixida;
     }
+
 
 }
