@@ -65,7 +65,7 @@ En este modelo, un **tipo de producto** recoge todos aquellos productos que sigu
 
 
 ### La tarea
-La tarea es una unidad de trabajo sobre un **modelo** pedido, donde un trabajjados cualificado para ella le será asignada
+La tarea es una unidad de trabajo sobre un **modelo** pedido, donde un trabajador cualificado para ella le será asignada
 ![alt text](./imagenes/edicion_tipo.png)
 
 En el ejemplo del tipo **Mesa de melamina blanca** el proceso tendría las siguientes **tareas**:
